@@ -2,8 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Conditions Générales d\'Utilisation — AKASHA AI',
-  description: 'CGU de AKASHA AI par SASU PURAMA.',
+  title: 'Conditions Générales d\'Utilisation — Vida Langue',
+  description: 'CGU de Vida Langue par SASU PURAMA.',
 }
 
 export default function CGU() {
@@ -26,7 +26,7 @@ export default function CGU() {
               1. Acceptation des CGU
             </h2>
             <p>
-              En accédant et en utilisant la plateforme AKASHA AI (accessible à <strong className="text-[var(--text-primary)]">akasha.purama.dev</strong>), vous acceptez sans réserve les présentes Conditions Générales d&apos;Utilisation.
+              En accédant et en utilisant la plateforme Vida Langue (accessible à <strong className="text-[var(--text-primary)]">vidalangue.purama.dev</strong>), vous acceptez sans réserve les présentes Conditions Générales d&apos;Utilisation.
               Si vous n&apos;acceptez pas ces conditions, vous ne devez pas utiliser le service.
             </p>
             <p className="mt-2">
@@ -39,15 +39,15 @@ export default function CGU() {
               2. Description du service
             </h2>
             <p>
-              AKASHA AI est une plateforme SaaS (Software as a Service) proposant un écosystème d&apos;outils d&apos;intelligence artificielle, incluant notamment :
+              Vida Langue est une plateforme SaaS (Software as a Service) d&apos;apprentissage des langues fondée sur la méthode neuro-phonétique propriétaire Natif Instinct™, incluant notamment :
             </p>
             <ul className="mt-3 space-y-1.5 ml-4 list-disc">
-              <li>Chat avec des modèles d&apos;IA multiples (Claude, GPT-4o, Gemini, Mistral, etc.)</li>
-              <li>Génération de contenus créatifs (images, vidéos, musique, voix)</li>
-              <li>Création et déploiement d&apos;agents autonomes</li>
-              <li>Automatisation de workflows via des intégrations tierces</li>
-              <li>Marketplace d&apos;agents IA</li>
-              <li>Outils de développement et d&apos;analyse</li>
+              <li>Sessions Natif Instinct™ : phonétique en 3 couches (orthographe, IPA, audible FR)</li>
+              <li>HoloTalk : conversations vocales avec personas natifs en streaming</li>
+              <li>Vocabulaire à répétition espacée et fil de vie multilingue</li>
+              <li>Missions d&apos;immersion linguistique et impact</li>
+              <li>16 langues disponibles avec accents régionaux</li>
+              <li>Coach IA expert en linguistique neuro-cognitive</li>
             </ul>
             <p className="mt-3">
               Le service est fourni en mode SaaS accessible via navigateur web et application mobile progressive (PWA). SASU PURAMA s&apos;efforce d&apos;assurer une disponibilité maximale du service (objectif SLA 99,5%) mais ne peut garantir une disponibilité ininterrompue.
@@ -58,7 +58,7 @@ export default function CGU() {
             <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--text-primary)] mb-4">
               3. Création et gestion du compte
             </h2>
-            <p>Pour utiliser AKASHA AI, vous devez créer un compte en fournissant une adresse e-mail valide. Vous pouvez également vous connecter via votre compte Google.</p>
+            <p>Pour utiliser Vida Langue, vous devez créer un compte en fournissant une adresse e-mail valide. Vous pouvez également vous connecter via votre compte Google.</p>
             <p className="mt-2">Vous êtes responsable :</p>
             <ul className="mt-2 space-y-1.5 ml-4 list-disc">
               <li>De la confidentialité de vos identifiants de connexion</li>
@@ -74,7 +74,7 @@ export default function CGU() {
             <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--text-primary)] mb-4">
               4. Utilisation acceptable
             </h2>
-            <p>En utilisant AKASHA AI, vous vous engagez à ne pas :</p>
+            <p>En utilisant Vida Langue, vous vous engagez à ne pas :</p>
             <ul className="mt-3 space-y-1.5 ml-4 list-disc">
               <li>Générer, diffuser ou promouvoir du contenu illégal, haineux, violent, pornographique ou discriminatoire</li>
               <li>Utiliser le service pour du spam, du phishing ou toute activité frauduleuse</li>
@@ -84,6 +84,7 @@ export default function CGU() {
               <li>Violer les droits de propriété intellectuelle de tiers</li>
               <li>Usurper l&apos;identité d&apos;une autre personne ou entité</li>
               <li>Utiliser des robots ou scripts automatisés non autorisés pour accéder au service</li>
+              <li>Frauder le système de parrainage (multi-comptes, faux filleuls)</li>
             </ul>
             <p className="mt-3">
               SASU PURAMA se réserve le droit de suspendre ou supprimer tout compte en violation de ces règles, sans préavis et sans remboursement dans les cas graves.
@@ -95,13 +96,13 @@ export default function CGU() {
               5. Propriété intellectuelle
             </h2>
             <p>
-              <strong className="text-[var(--text-primary)]">Contenu de la plateforme :</strong> L&apos;ensemble du code, des interfaces, des marques, des logos et contenus de AKASHA AI restent la propriété exclusive de SASU PURAMA.
+              <strong className="text-[var(--text-primary)]">Contenu de la plateforme :</strong> L&apos;ensemble du code, des interfaces, des marques, des logos et contenus de Vida Langue restent la propriété exclusive de SASU PURAMA.
             </p>
             <p className="mt-3">
-              <strong className="text-[var(--text-primary)]">Contenu généré :</strong> Les contenus que vous créez via AKASHA AI vous appartiennent, sous réserve des licences des modèles IA utilisés. Vous accordez à SASU PURAMA une licence limitée pour afficher ces contenus dans le cadre du service.
+              <strong className="text-[var(--text-primary)]">Contenu généré :</strong> Les contenus que vous créez via Vida Langue vous appartiennent, sous réserve des licences des modèles IA utilisés. Vous accordez à SASU PURAMA une licence limitée pour afficher ces contenus dans le cadre du service.
             </p>
             <p className="mt-3">
-              <strong className="text-[var(--text-primary)]">Contenu posté sur la Marketplace :</strong> En publiant un agent ou un workflow sur la Marketplace, vous accordez à SASU PURAMA une licence non-exclusive pour le distribuer aux utilisateurs de la plateforme.
+              <strong className="text-[var(--text-primary)]">Vocabulaire et fil de vie :</strong> Les phrases, mots et notes que vous générez restent les vôtres. Vida Langue peut conserver ces données pour personnaliser votre apprentissage tant que votre compte est actif.
             </p>
           </section>
 
@@ -110,7 +111,7 @@ export default function CGU() {
               6. Responsabilité limitée
             </h2>
             <p>
-              AKASHA AI fournit des outils d&apos;intelligence artificielle à titre d&apos;assistance. Les résultats générés par l&apos;IA sont fournis à titre indicatif et ne constituent pas un conseil professionnel (juridique, médical, financier, etc.).
+              Vida Langue fournit un service d&apos;apprentissage linguistique à titre éducatif. Les transcriptions phonétiques et les corrections sont fournies à titre indicatif et ne sauraient remplacer une certification linguistique officielle (DELF, TOEFL, IELTS, etc.).
             </p>
             <p className="mt-2">
               SASU PURAMA ne saurait être tenue responsable des décisions prises sur la base des résultats générés par l&apos;IA. La responsabilité de SASU PURAMA est limitée au montant total des sommes versées par l&apos;utilisateur au cours des 12 derniers mois.

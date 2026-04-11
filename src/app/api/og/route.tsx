@@ -4,8 +4,8 @@ export const runtime = 'edge'
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const title = searchParams.get('title') ?? 'AKASHA AI'
-  const subtitle = searchParams.get('subtitle') ?? '47+ outils IA. 1 abonnement. Des 7€/mois.'
+  const title = searchParams.get('title') ?? 'Vida Langue'
+  const subtitle = searchParams.get('subtitle') ?? 'Apprends une langue 5x plus vite avec la méthode Natif Instinct™.'
 
   return new ImageResponse(
     (
@@ -62,7 +62,7 @@ export async function GET(request: Request) {
             fontWeight: '600',
           }}
         >
-          🌌 Ecosysteme IA tout-en-un
+          🌱 Méthode neuro-phonétique
         </div>
 
         {/* Title */}
@@ -71,7 +71,7 @@ export async function GET(request: Request) {
             fontSize: title.length > 20 ? 56 : 72,
             fontWeight: '900',
             textAlign: 'center',
-            background: 'linear-gradient(135deg, #00d4ff 0%, #a855f7 50%, #ff6b9d 100%)',
+            background: 'linear-gradient(135deg, #10B981 0%, #34D399 50%, #6EE7B7 100%)',
             backgroundClip: 'text',
             color: 'transparent',
             lineHeight: 1.1,
@@ -102,7 +102,7 @@ export async function GET(request: Request) {
             marginTop: '48px',
           }}
         >
-          {['47+ Outils', 'Des 7€/mois', '100% RGPD', 'Made in France 🇫🇷'].map((stat) => (
+          {['16 langues', 'Dès 12,90€/mois', '100% RGPD', 'Made in France 🇫🇷'].map((stat) => (
             <div
               key={stat}
               style={{

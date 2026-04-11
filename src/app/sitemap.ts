@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://akasha.purama.dev'
+  const base = 'https://vidalangue.purama.dev'
   const lastMod = new Date()
   return [
     { url: base, lastModified: lastMod, priority: 1.0, changeFrequency: 'weekly' },

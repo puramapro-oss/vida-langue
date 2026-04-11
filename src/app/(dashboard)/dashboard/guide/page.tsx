@@ -1,87 +1,87 @@
 'use client'
 
 import { useState } from 'react'
-import { BookOpen, MessageSquare, Image, Bot, Zap, Users, Plug, ChevronRight } from 'lucide-react'
+import { BookOpen, Mic, Volume2, Brain, Heart, Sparkles, ChevronRight } from 'lucide-react'
 import Card from '@/components/ui/Card'
 import { cn } from '@/lib/utils'
 
 const GUIDES = [
   {
-    id: 'chat',
-    icon: MessageSquare,
-    title: 'Chat IA',
-    color: '#00d4ff',
+    id: 'natif-instinct',
+    icon: Brain,
+    title: 'Natif Instinct™',
+    color: '#10B981',
     steps: [
-      'Ouvre le Chat IA depuis le menu',
-      'Choisis ton modele (Sonnet, Opus ou Haiku)',
-      'Ecris ta question ou colle du texte a analyser',
-      'Utilise la reconnaissance vocale pour dicter',
-      'Sauvegarde tes conversations favorites',
+      'Va dans Sessions → Natif Instinct',
+      'Tape un mot ou une phrase dans la langue cible',
+      'Découvre les 3 couches : spelling, IPA, et "audible FR"',
+      'Écoute la prononciation native (Web Speech API)',
+      'Ton vocabulaire est sauvegardé et reviendra en spaced repetition',
     ],
   },
   {
-    id: 'studio',
-    icon: Image,
-    title: 'Studio Creatif',
-    color: '#a855f7',
+    id: 'holotalk',
+    icon: Mic,
+    title: 'HoloTalk',
+    color: '#34D399',
     steps: [
-      'Va dans Studio Creatif',
-      'Choisis le type : Image, Video, Audio ou Code',
-      'Decris precisement ce que tu veux generer',
-      'Ajuste les parametres (taille, style, modele)',
-      'Telecharge ou partage ta creation',
+      'Ouvre Sessions → HoloTalk',
+      'Choisis un persona natif (Marco, Yuki, Sofia…)',
+      'Active le micro et parle naturellement',
+      'Le persona te répond en streaming, avec voix native',
+      'Chaque conversation nourrit ta progression et ton fil de vie',
     ],
   },
   {
-    id: 'agents',
-    icon: Bot,
-    title: 'Agents IA',
-    color: '#f59e0b',
+    id: 'missions',
+    icon: Heart,
+    title: 'Missions impact',
+    color: '#6EE7B7',
     steps: [
-      'Cree un agent avec un role specifique',
-      'Definis son prompt systeme et sa personnalite',
-      'Teste-le dans le chat',
-      'Publie-le sur le Marketplace pour le partager',
-      'Installe les agents de la communaute',
+      'Va dans Missions',
+      'Choisis une mission (vocabulaire, conversation, écoute, partage)',
+      'Accepte-la — elle apparaît dans ton dashboard',
+      'Termine-la pour gagner XP, énergie Vida et impact réel',
+      'Tes missions alimentent l\'arbre Vida (1 mission = 1 graine plantée)',
     ],
   },
   {
-    id: 'automation',
-    icon: Zap,
-    title: 'Automatisation',
-    color: '#10b981',
+    id: 'fil-vie',
+    icon: Sparkles,
+    title: 'Fil de vie & Univers',
+    color: '#10B981',
     steps: [
-      'Cree un workflow avec des etapes',
-      'Configure un declencheur (horaire, evenement)',
-      'Connecte des actions : IA, email, webhook',
-      'Active le workflow et suis les executions',
-      'Optimise avec les analytics',
+      'Va dans Univers',
+      'Visualise ta progression par langue et par mode',
+      'Consulte ton fil de vie : chaque session laisse une trace',
+      'Suis tes streaks, tes paliers et tes derniers mots appris',
+      'Ton univers grandit littéralement avec toi',
     ],
   },
   {
-    id: 'collab',
-    icon: Users,
-    title: 'Collaboration',
-    color: '#ec4899',
+    id: 'parrainage',
+    icon: Volume2,
+    title: 'Parrainage',
+    color: '#34D399',
     steps: [
-      'Cree un espace de collaboration',
-      'Invite des membres par email',
-      'Partagez un chat IA commun',
-      'Travaillez ensemble en temps reel',
-      'Gerez les roles (admin, editeur, lecteur)',
+      'Ouvre Parrainage',
+      'Copie ton lien personnel ou ton code',
+      'Partage-le sur WhatsApp, SMS, Twitter ou Email',
+      'À chaque ami abonné, tu reçois 50% de son 1er mois sur ton wallet',
+      'Monte les paliers Graine → Légende et débloque des avantages',
     ],
   },
   {
-    id: 'api',
-    icon: Plug,
-    title: 'API Console',
-    color: '#6366f1',
+    id: 'wallet',
+    icon: BookOpen,
+    title: 'Wallet & retrait',
+    color: '#6EE7B7',
     steps: [
-      'Genere une cle API dans la console',
-      'Utilise l endpoint /api/v1/chat pour les requetes',
-      'Authentifie avec le header Authorization',
-      'Suis ta consommation dans les analytics',
-      'Consulte la documentation pour les parametres',
+      'Va dans Wallet',
+      'Vérifie ton solde (parrainage + missions)',
+      'Dès 5€, tu peux demander un retrait IBAN',
+      'Gère ton abonnement via le portail Stripe sécurisé',
+      'Consulte tes factures et l\'historique des paiements',
     ],
   },
 ]
@@ -95,7 +95,7 @@ export default function GuidePage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-[var(--text-primary)]">Guide</h1>
-        <p className="mt-1 text-[var(--text-secondary)]">Apprends a utiliser toutes les fonctionnalites d AKASHA</p>
+        <p className="mt-1 text-[var(--text-secondary)]">Apprends à utiliser toutes les fonctionnalités de Vida Langue</p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-4">

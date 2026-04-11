@@ -10,7 +10,7 @@ export default function CookieBanner() {
   const t = useTranslations('cookie')
 
   useEffect(() => {
-    const consent = localStorage.getItem('akasha_cookie_consent')
+    const consent = localStorage.getItem('vida_cookie_consent')
     if (!consent) {
       const timer = setTimeout(() => setShow(true), 2000)
       return () => clearTimeout(timer)
@@ -18,12 +18,12 @@ export default function CookieBanner() {
   }, [])
 
   const accept = () => {
-    localStorage.setItem('akasha_cookie_consent', 'accepted')
+    localStorage.setItem('vida_cookie_consent', 'accepted')
     setShow(false)
   }
 
   const decline = () => {
-    localStorage.setItem('akasha_cookie_consent', 'declined')
+    localStorage.setItem('vida_cookie_consent', 'declined')
     setShow(false)
   }
 

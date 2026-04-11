@@ -2,8 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Politique de Cookies — AKASHA AI',
-  description: 'Politique de cookies de AKASHA AI.',
+  title: 'Politique de Cookies — Vida Langue',
+  description: 'Politique de cookies de Vida Langue.',
 }
 
 export default function Cookies() {
@@ -36,7 +36,7 @@ export default function Cookies() {
               2. Cookies essentiels uniquement
             </h2>
             <p>
-              AKASHA AI utilise <strong className="text-[var(--text-primary)]">exclusivement des cookies essentiels</strong> au bon fonctionnement du service.
+              Vida Langue utilise <strong className="text-[var(--text-primary)]">exclusivement des cookies essentiels</strong> au bon fonctionnement du service.
               Aucun cookie publicitaire, aucun cookie de tracking tiers, aucun cookie de profilage n&apos;est utilisé.
             </p>
             <p className="mt-3">
@@ -66,7 +66,7 @@ export default function Cookies() {
                     <td className="py-3 text-[var(--green)] text-xs">Essentiel</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 font-mono text-xs text-[var(--cyan)]">akasha_theme</td>
+                    <td className="py-3 pr-4 font-mono text-xs text-[var(--cyan)]">vida_theme</td>
                     <td className="py-3 pr-4">Préférence de thème (dark/light/oled)</td>
                     <td className="py-3 pr-4">1 an</td>
                     <td className="py-3 text-[var(--green)] text-xs">Essentiel</td>
@@ -78,13 +78,13 @@ export default function Cookies() {
                     <td className="py-3 text-[var(--green)] text-xs">Essentiel</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 font-mono text-xs text-[var(--cyan)]">akasha_cookie_consent</td>
+                    <td className="py-3 pr-4 font-mono text-xs text-[var(--cyan)]">vida_cookie_consent</td>
                     <td className="py-3 pr-4">Mémorisation de votre consentement cookies</td>
                     <td className="py-3 pr-4">13 mois</td>
                     <td className="py-3 text-[var(--green)] text-xs">Essentiel</td>
                   </tr>
                   <tr>
-                    <td className="py-3 pr-4 font-mono text-xs text-[var(--cyan)]">akasha_partner_ref</td>
+                    <td className="py-3 pr-4 font-mono text-xs text-[var(--cyan)]">vida_ref</td>
                     <td className="py-3 pr-4">Code de parrainage (attribution)</td>
                     <td className="py-3 pr-4">30 jours</td>
                     <td className="py-3 text-[var(--green)] text-xs">Essentiel</td>

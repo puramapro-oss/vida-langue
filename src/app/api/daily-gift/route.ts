@@ -40,7 +40,7 @@ export async function GET(request: Request) {
     const authClient = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      { db: { schema: 'akasha_ai' } }
+      { db: { schema: 'vida_langue' } }
     )
     const { data: { user }, error: authError } = await authClient.auth.getUser(token)
     if (authError || !user) {
@@ -89,7 +89,7 @@ export async function POST(request: Request) {
     const authClient = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      { db: { schema: 'akasha_ai' } }
+      { db: { schema: 'vida_langue' } }
     )
     const { data: { user }, error: authError } = await authClient.auth.getUser(token)
     if (authError || !user) {

@@ -3,8 +3,8 @@ import { ArrowLeft, ExternalLink } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Ecosysteme Purama — AKASHA AI',
-  description: 'Decouvre toutes les apps de l ecosysteme Purama',
+  title: 'Écosystème Purama — Vida Langue',
+  description: 'Découvre toutes les apps de l\'écosystème Purama',
 }
 
 const APPS = [
@@ -33,9 +33,9 @@ export default function EcosystemPage() {
           <ArrowLeft className="h-4 w-4" /> Retour
         </Link>
 
-        <h1 className="text-3xl font-bold text-[var(--text-primary)]">Ecosysteme Purama</h1>
+        <h1 className="text-3xl font-bold text-[var(--text-primary)]">Écosystème Purama</h1>
         <p className="mt-2 text-[var(--text-secondary)]">
-          Un compte unique, des dizaines d&apos;apps IA specialisees. Utilise AKASHA pour tout, ou explore chaque domaine en profondeur.
+          Un compte unique, des dizaines d&apos;apps spécialisées. Vida Langue est l&apos;app langues — explore aussi nos autres apps santé, finance, créativité.
         </p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

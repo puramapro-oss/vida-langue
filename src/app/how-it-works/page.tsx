@@ -1,48 +1,48 @@
 import Link from 'next/link'
-import { ArrowLeft, MessageSquare, Sparkles, Bot, Zap, Users, BarChart3 } from 'lucide-react'
+import { ArrowLeft, Brain, Mic, Sparkles, Heart, Trophy, BarChart3 } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Comment ca marche — AKASHA AI',
-  description: 'Decouvre comment utiliser AKASHA AI, l agregateur multi-IA',
+  title: 'Comment ça marche — Vida Langue',
+  description: 'Découvre comment Vida Langue grave une langue dans ton cerveau en 30 jours.',
 }
 
 const STEPS = [
   {
-    icon: MessageSquare,
-    color: '#00d4ff',
-    title: '1. Discute avec l IA',
-    description: 'Pose n importe quelle question. AKASHA utilise les meilleurs modeles IA pour te donner des reponses precises et detaillees.',
+    icon: Brain,
+    color: '#10B981',
+    title: '1. Choisis ta langue',
+    description: 'Anglais, Espagnol, Italien, Japonais, Arabe… 16 langues disponibles. Sélectionne aussi un accent régional (UK, US, Australia…) pour t\'immerger dès la première session.',
+  },
+  {
+    icon: Mic,
+    color: '#34D399',
+    title: '2. Active la couche audible',
+    description: 'Notre méthode Natif Instinct™ affiche chaque mot en 3 couches : orthographe, phonétique linguiste (IPA), et "audible FR" — comment ton oreille française entend vraiment le mot.',
   },
   {
     icon: Sparkles,
-    color: '#a855f7',
-    title: '2. Cree du contenu',
-    description: 'Genere des images, videos, musiques et code. Notre Studio Creatif met la puissance de l IA generative a ta portee.',
+    color: '#6EE7B7',
+    title: '3. Parle avec un natif',
+    description: 'HoloTalk te met face à 6 personas natifs (Marco l\'italien, Yuki la japonaise, Sofia l\'espagnole…). Conversations vocales libres, en streaming, sans jugement.',
   },
   {
-    icon: Bot,
-    color: '#f59e0b',
-    title: '3. Cree tes agents',
-    description: 'Personnalise des assistants IA pour tes besoins specifiques. Marketing, developpement, design — ton equipe IA sur mesure.',
+    icon: Heart,
+    color: '#10B981',
+    title: '4. Ancre dans ton cerveau',
+    description: 'Chaque mot est sauvegardé en répétition espacée (intervalles 1 → 120 jours). Ton cerveau le revoit pile avant de l\'oublier — c\'est la science du long terme.',
   },
   {
-    icon: Zap,
-    color: '#10b981',
-    title: '4. Automatise',
-    description: 'Configure des workflows automatises qui tournent en arriere-plan. Gagne des heures chaque semaine.',
-  },
-  {
-    icon: Users,
-    color: '#ec4899',
-    title: '5. Collabore',
-    description: 'Invite ton equipe dans des espaces partages. Travaillez ensemble avec l IA en temps reel.',
+    icon: Trophy,
+    color: '#34D399',
+    title: '5. Vis des missions',
+    description: 'Fini les exercices artificiels. Commande un café, lis un menu, regarde une série. Chaque mission accomplie nourrit ton fil de vie et ton XP Vida.',
   },
   {
     icon: BarChart3,
-    color: '#6366f1',
-    title: '6. Analyse',
-    description: 'Suis ta progression, tes usages et tes performances. Optimise ton utilisation de l IA.',
+    color: '#6EE7B7',
+    title: '6. Suis ta progression',
+    description: 'Ton univers Vida grandit visuellement à chaque session. Streaks, paliers, vocabulaire ancré, conversations tenues — tout est mesurable, tout est visible.',
   },
 ]
 
@@ -54,9 +54,9 @@ export default function HowItWorksPage() {
           <ArrowLeft className="h-4 w-4" /> Retour
         </Link>
 
-        <h1 className="text-3xl font-bold text-[var(--text-primary)]">Comment ca marche</h1>
+        <h1 className="text-3xl font-bold text-[var(--text-primary)]">Comment ça marche</h1>
         <p className="mt-2 text-lg text-[var(--text-secondary)]">
-          AKASHA reunit plusieurs IA dans une interface unique. 6 etapes pour tout maitriser.
+          Vida Langue grave une langue dans ton cerveau en 30 jours, sans cours, sans théorie. 6 étapes.
         </p>
 
         <div className="mt-12 space-y-8">

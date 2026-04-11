@@ -225,7 +225,7 @@ export default function TiragePage() {
             </div>
             {myTickets.length === 0 ? (
               <div className="p-8 text-center text-[var(--text-muted)]">
-                Aucun ticket pour ce tirage. Gagne-en en utilisant AKASHA !
+                Aucun ticket pour ce tirage. Gagne-en en utilisant Vida Langue !
               </div>
             ) : (
               <div className="divide-y divide-white/[0.04] max-h-64 overflow-y-auto">

@@ -516,6 +516,19 @@ CREATE TABLE IF NOT EXISTS vida_langue.faq_articles (
   created_at TIMESTAMPTZ DEFAULT now()
 );
 
+CREATE TABLE IF NOT EXISTS vida_langue.withdrawals (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES vida_langue.profiles(id) ON DELETE CASCADE,
+  amount NUMERIC(10,2) NOT NULL,
+  iban TEXT NOT NULL,
+  status TEXT CHECK (status IN ('pending','processing','completed','rejected')) DEFAULT 'pending',
+  notes TEXT,
+  requested_at TIMESTAMPTZ DEFAULT now(),
+  processed_at TIMESTAMPTZ
+);
+CREATE INDEX IF NOT EXISTS idx_withdrawals_user ON vida_langue.withdrawals(user_id);
+CREATE INDEX IF NOT EXISTS idx_withdrawals_status ON vida_langue.withdrawals(status);
+
 -- ────────────────────────────────────────────────────────────────────
 -- TRIGGERS : auto-profile + updated_at
 -- ────────────────────────────────────────────────────────────────────
@@ -727,6 +740,13 @@ BEGIN
   END IF;
   IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE schemaname='vida_langue' AND tablename='donations' AND policyname='don_self') THEN
     CREATE POLICY don_self ON vida_langue.donations FOR SELECT USING (auth.uid() = user_id);
+  END IF;
+  -- withdrawals : self read + insert
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE schemaname='vida_langue' AND tablename='withdrawals' AND policyname='wd_self_select') THEN
+    CREATE POLICY wd_self_select ON vida_langue.withdrawals FOR SELECT USING (auth.uid() = user_id);
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE schemaname='vida_langue' AND tablename='withdrawals' AND policyname='wd_self_insert') THEN
+    CREATE POLICY wd_self_insert ON vida_langue.withdrawals FOR INSERT WITH CHECK (auth.uid() = user_id);
   END IF;
 
   -- internal_ads self (advertiser)

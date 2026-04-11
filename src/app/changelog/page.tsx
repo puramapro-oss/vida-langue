@@ -3,43 +3,56 @@ import { ArrowLeft, Sparkles, Bug, Zap } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Changelog — AKASHA AI',
-  description: 'Historique des mises a jour AKASHA AI',
+  title: 'Changelog — Vida Langue',
+  description: 'Historique des mises à jour Vida Langue',
 }
 
 const ENTRIES = [
   {
-    date: '9 avril 2026',
-    version: 'v2.0',
+    date: '11 avril 2026',
+    version: 'v0.5',
     changes: [
-      { type: 'feature', text: 'Systeme de parrainage complet (Bronze a Legende)' },
-      { type: 'feature', text: 'Wallet avec retrait IBAN des 5 EUR' },
-      { type: 'feature', text: 'Succes et achievements (15 succes)' },
-      { type: 'feature', text: 'Page profil avec statistiques' },
-      { type: 'feature', text: 'Centre de notifications' },
-      { type: 'feature', text: 'Classement XP global' },
-      { type: 'feature', text: 'Centre d aide avec FAQ' },
-      { type: 'feature', text: 'Ecosysteme Purama (cross-promo)' },
-      { type: 'feature', text: 'Page contact' },
-      { type: 'feature', text: 'Page statut des services' },
-      { type: 'improvement', text: 'Sidebar enrichie avec plus de navigation' },
-      { type: 'improvement', text: 'Schema DB V3 complet' },
+      { type: 'feature', text: 'Design vert émeraude + animations Vida' },
+      { type: 'feature', text: 'i18n 16 langues (purge complète des contenus legacy)' },
+      { type: 'feature', text: 'Centre d\'aide rebrandé avec coach Vida Langue' },
+      { type: 'feature', text: 'Admin dashboard avec stats apprenants' },
+      { type: 'improvement', text: 'Pages légales (CGU/CGV/Mentions/RGPD) adaptées au domaine langues' },
+      { type: 'improvement', text: 'Templates emails Resend rebrandés Vida (10 séquences)' },
+      { type: 'bugfix', text: 'Refactor wallet sur tables Vida (profiles + payments)' },
     ],
   },
   {
-    date: '1 avril 2026',
-    version: 'v1.0',
+    date: '11 avril 2026',
+    version: 'v0.4',
     changes: [
-      { type: 'feature', text: 'Chat IA multi-modeles (Sonnet, Opus, Haiku)' },
-      { type: 'feature', text: 'Studio Creatif (images, videos, audio, code)' },
-      { type: 'feature', text: 'Agents IA personnalises + Marketplace' },
-      { type: 'feature', text: 'Automatisation de workflows' },
-      { type: 'feature', text: 'Espaces de collaboration' },
-      { type: 'feature', text: 'Systeme XP & Badges' },
-      { type: 'feature', text: 'API Console' },
-      { type: 'feature', text: 'Stripe: 4 plans x 3 tiers' },
-      { type: 'feature', text: 'Auth email + Google OAuth' },
-      { type: 'feature', text: 'Landing page 13 sections' },
+      { type: 'feature', text: 'Système de parrainage (Graine → Légende, 50% du 1er paiement)' },
+      { type: 'feature', text: 'Programme influenceur 1 clic + dashboard' },
+      { type: 'feature', text: 'Pricing Vida concret (Mensuel / Annuel / À vie moitié prix)' },
+      { type: 'feature', text: 'Stripe checkout + webhook commission auto' },
+      { type: 'feature', text: 'Page Impact (4 dimensions, équivalents réels)' },
+      { type: 'feature', text: 'Attribution parrainage cookie httpOnly + auth.callback' },
+    ],
+  },
+  {
+    date: '11 avril 2026',
+    version: 'v0.3',
+    changes: [
+      { type: 'feature', text: 'Sessions Natif Instinct™ (3 couches phonétiques + Web Speech)' },
+      { type: 'feature', text: 'HoloTalk : 6 personas natifs en streaming Claude' },
+      { type: 'feature', text: 'Vocabulaire à répétition espacée (intervalles 1→120j)' },
+      { type: 'feature', text: 'Missions impact + fil de vie multilingue' },
+      { type: 'feature', text: 'Onboarding Vida (welcome → native → trial 14j)' },
+    ],
+  },
+  {
+    date: '11 avril 2026',
+    version: 'v0.1',
+    changes: [
+      { type: 'feature', text: 'Schéma vida_langue : 30+ tables avec RLS' },
+      { type: 'feature', text: 'Auth email + Google OAuth + trial 14j auto' },
+      { type: 'feature', text: 'Landing page Vida (Hero + 8 modes + Impact + FAQ)' },
+      { type: 'feature', text: 'Identité Coach IA Vida (linguiste neuro-cognitive)' },
+      { type: 'feature', text: 'Theme émeraude #10B981 + fonts Syne/DM Sans' },
     ],
   },
 ]
@@ -64,7 +77,7 @@ export default function ChangelogPage() {
         </Link>
 
         <h1 className="text-3xl font-bold text-[var(--text-primary)]">Changelog</h1>
-        <p className="mt-2 text-[var(--text-secondary)]">Historique des mises a jour AKASHA AI</p>
+        <p className="mt-2 text-[var(--text-secondary)]">Historique des mises à jour Vida Langue</p>
 
         <div className="mt-8 space-y-10">
           {ENTRIES.map(entry => (

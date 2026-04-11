@@ -26,100 +26,101 @@ function buildEmailHtml(type: EmailType, userName: string): string {
 
   const TEMPLATES: Record<EmailType, string> = {
     welcome: `
-      <h2>Bienvenue ${name} ! 🚀</h2>
-      <p>Tu fais maintenant partie de la communaute <strong>${APP_NAME}</strong>, la plateforme IA multi-expert la plus avancee.</p>
-      <p>Voici ce que tu peux faire des maintenant :</p>
+      <h2>Bienvenue ${name} ! 🌱</h2>
+      <p>Tu rejoins <strong>${APP_NAME}</strong>, la methode neuro-phonetique pour graver une langue dans ton cerveau sans cours, sans theorie, sans grammaire.</p>
+      <p>Voici ce qui t'attend :</p>
       <ul>
-        <li><strong>Chat IA</strong> — Pose n'importe quelle question a AKASHA</li>
-        <li><strong>Studio Creatif</strong> — Genere des images, videos, audio et code</li>
-        <li><strong>Agents</strong> — Cree tes propres assistants IA</li>
-        <li><strong>Parrainage</strong> — Invite tes amis et gagne des commissions</li>
+        <li><strong>Natif Instinct™</strong> — La phonetique en 3 couches qui te fait sonner comme un local des la premiere semaine</li>
+        <li><strong>HoloTalk</strong> — Conversations vocales avec 6 personas natifs</li>
+        <li><strong>Fil de vie</strong> — Ton univers grandit a chaque session</li>
+        <li><strong>Parrainage</strong> — Invite ceux que tu aimes, gagne 50% de leur 1er mois</li>
       </ul>
-      <a href="https://${APP_DOMAIN}/dashboard" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Commencer maintenant</a>
+      <p>Ton essai gratuit de 14 jours commence maintenant. Aucune CB demandee.</p>
+      <a href="https://${APP_DOMAIN}/dashboard" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Lancer ma 1ere session</a>
     `,
     tip_day1: `
       <h2>Salut ${name} ! 💡</h2>
-      <p>Savais-tu que tu peux choisir entre 3 modeles IA sur AKASHA ?</p>
+      <p>Le secret pour ne JAMAIS oublier un mot : la repetition espacee couplee a la phonetique 3 couches.</p>
       <ul>
-        <li><strong>AKASHA Sonnet</strong> — Le plus equilibre pour le quotidien</li>
-        <li><strong>AKASHA Opus</strong> — Reflexion profonde pour les taches complexes</li>
-        <li><strong>AKASHA Haiku</strong> — Ultra-rapide pour les reponses immediates</li>
+        <li><strong>Couche 1 — Spelling</strong> — Comment le mot s'ecrit</li>
+        <li><strong>Couche 2 — IPA</strong> — Comment un linguiste le transcrit</li>
+        <li><strong>Couche 3 — Audible FR</strong> — Comment ton oreille francaise l'entend reellement</li>
       </ul>
-      <p>Essaie de basculer entre les modeles dans le chat pour voir la difference !</p>
-      <a href="https://${APP_DOMAIN}/dashboard/chat" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Tester maintenant</a>
+      <p>10 minutes par jour suffisent. Ton cerveau fait le reste pendant la nuit.</p>
+      <a href="https://${APP_DOMAIN}/dashboard/sessions/natif-instinct" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Lancer Natif Instinct</a>
     `,
     relaunch_day3: `
       <h2>Hey ${name} ! 👋</h2>
-      <p>Ca fait quelques jours qu'on ne t'a pas vu sur AKASHA. Pendant ce temps, d'autres utilisateurs ont :</p>
+      <p>Ca fait quelques jours qu'on ne t'a pas vu. Une langue, ca s'attrape dans la duree — meme 5 minutes par jour valent mieux qu'1h le dimanche.</p>
       <ul>
-        <li>Cree des agents IA personnalises</li>
-        <li>Genere du contenu avec le Studio Creatif</li>
-        <li>Gagne des points et des recompenses</li>
+        <li>Ton fil de vie t'attend</li>
+        <li>Ta mission du jour vaut +30 d'energie Vida</li>
+        <li>Ton streak ne se brisera pas si tu reviens aujourd'hui</li>
       </ul>
-      <p>Ne rate pas ton coffre quotidien — chaque jour compte pour ton streak !</p>
-      <a href="https://${APP_DOMAIN}/dashboard/daily-gift" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Ouvrir mon coffre</a>
+      <p>Reviens 5 minutes — ton cerveau te dira merci.</p>
+      <a href="https://${APP_DOMAIN}/dashboard" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Revenir sur Vida</a>
     `,
     tips_day7: `
-      <h2>7 jours avec AKASHA ! ⚡</h2>
-      <p>${name}, voici 3 fonctionnalites que les power users adorent :</p>
+      <h2>1 semaine avec Vida Langue ! ⚡</h2>
+      <p>${name}, tu as deja fait plus que 80% des gens qui telechargent une appli de langue. Voici 3 trucs que les apprenants serieux adorent :</p>
       <ol>
-        <li><strong>Automatisation</strong> — Cree des workflows qui travaillent pour toi</li>
-        <li><strong>Collaboration</strong> — Invite ton equipe dans des espaces partages</li>
-        <li><strong>Marketplace</strong> — Decouvre les agents crees par la communaute</li>
+        <li><strong>HoloTalk avec Marco</strong> — 5 min de conversation libre = 1 cours particulier</li>
+        <li><strong>Vocabulaire spaced repetition</strong> — Revoir 10 mots juste avant qu'ils s'effacent</li>
+        <li><strong>Ritual hebdo</strong> — Le dimanche, 20 min pour ancrer ce que tu as appris</li>
       </ol>
-      <p>Et n'oublie pas : chaque action te rapporte des XP et des points Purama !</p>
-      <a href="https://${APP_DOMAIN}/dashboard" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Explorer</a>
+      <p>Et chaque session te rapporte XP, energie Vida et missions impact.</p>
+      <a href="https://${APP_DOMAIN}/dashboard/sessions" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Choisir ma session</a>
     `,
     upgrade_day14: `
-      <h2>Offre exclusive pour toi, ${name} ! 🎁</h2>
-      <p>Pour feter tes 2 semaines sur AKASHA, on t'offre <strong>-20%</strong> sur ton premier abonnement.</p>
-      <p>Avec un abonnement, tu debloques :</p>
+      <h2>Offre exclusive, ${name} ! 🎁</h2>
+      <p>Tu termines ton essai de 14 jours. Pour te remercier, voici <strong>-20%</strong> sur ton 1er mois.</p>
+      <p>En passant Vida illimite, tu debloques :</p>
       <ul>
-        <li>Jusqu'a des questions illimitees par jour</li>
-        <li>Acces a AKASHA Opus (reflexion profonde)</li>
-        <li>Studio Creatif complet</li>
-        <li>Gains en euros reels (wallet + retraits IBAN)</li>
+        <li>Sessions Natif Instinct™ illimitees (au lieu de 3/jour)</li>
+        <li>HoloTalk avec les 6 personas natifs sans limite</li>
+        <li>Wallet de gains reels (parrainage + missions impact)</li>
+        <li>16 langues + accent regional au choix</li>
       </ul>
-      <p><strong>Code : EMAIL20</strong> — valable 48h seulement.</p>
-      <a href="https://${APP_DOMAIN}/pricing" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Voir les plans</a>
+      <p><strong>Code : VIDA20</strong> — 48h seulement. Et si la methode ne te transforme pas, tu es rembourse a vie.</p>
+      <a href="https://${APP_DOMAIN}/pricing" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Voir les plans Vida</a>
     `,
     testimonial_day21: `
-      <h2>Ils adorent AKASHA 💬</h2>
-      <p>${name}, decouvre ce que nos utilisateurs disent :</p>
+      <h2>Ils en parlent partout 💬</h2>
+      <p>${name}, ils ont essaye Vida Langue, voici ce qu'ils en disent :</p>
       <blockquote style="border-left:3px solid ${APP_COLOR};padding-left:16px;margin:16px 0;font-style:italic;">
-        "AKASHA a completement change ma facon de travailler. Les agents personnalises me font gagner des heures chaque semaine."
+        "En 3 semaines avec Natif Instinct, j'ai mieux retenu qu'en 6 mois de Babbel. La 3e couche phonetique change tout."
       </blockquote>
       <blockquote style="border-left:3px solid ${APP_COLOR};padding-left:16px;margin:16px 0;font-style:italic;">
-        "Le systeme de parrainage est incroyable — j'ai deja gagne plus de 50 EUR en 1 mois."
+        "HoloTalk avec Marco m'a fait gagner ma confiance. Premiere fois en Italie, je me suis debrouille seul."
       </blockquote>
-      <a href="https://${APP_DOMAIN}/dashboard" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Rejoindre la communaute</a>
+      <a href="https://${APP_DOMAIN}/dashboard/sessions/holotalk" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Tester HoloTalk</a>
     `,
     winback_day30: `
       <h2>${name}, tu nous manques 💛</h2>
-      <p>Ca fait un moment qu'on ne t'a pas vu. Voici ce qui t'attend :</p>
+      <p>Ca fait un mois qu'on ne t'a pas vu. La langue que tu as commence n'est pas perdue — ton cerveau garde tout.</p>
       <ul>
-        <li>Ton coffre quotidien n'attend que toi</li>
-        <li>De nouveaux agents sur le Marketplace</li>
-        <li>Le concours hebdomadaire est en cours (6% du CA redistribue !)</li>
+        <li>10 minutes aujourd'hui = ton streak repart</li>
+        <li>Ton vocabulaire t'attend, intact</li>
+        <li>Le ritual du dimanche est la pour te remettre en route en douceur</li>
       </ul>
-      <p>Reviens vite, ta place est toujours la.</p>
-      <a href="https://${APP_DOMAIN}/dashboard" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Revenir sur AKASHA</a>
+      <p>On t'a garde une place. Pas de jugement, juste un petit pas.</p>
+      <a href="https://${APP_DOMAIN}/dashboard" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Revenir sur Vida</a>
     `,
     referral_event: `
       <h2>Parrainage valide ! 🎉</h2>
-      <p>${name}, quelqu'un s'est inscrit grace a toi ! Ta commission a ete ajoutee a ton wallet.</p>
-      <p>Continue a parrainer pour monter en palier et augmenter tes commissions.</p>
+      <p>${name}, quelqu'un que tu as invite vient de prendre Vida Langue. <strong>50% de son 1er mois</strong> arrive sur ton wallet.</p>
+      <p>Continue de partager — au 5e parrainage, tu passes Vert Vif et gagnes encore plus.</p>
       <a href="https://${APP_DOMAIN}/dashboard/referral" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Voir mes parrainages</a>
     `,
     contest_event: `
       <h2>Resultats du concours ! 🏆</h2>
-      <p>${name}, les resultats sont tombes ! Consulte le classement pour voir si tu fais partie des 10 gagnants.</p>
+      <p>${name}, les 10 gagnants de la semaine sont tombes. Consulte le classement pour voir si tu en fais partie.</p>
       <a href="https://${APP_DOMAIN}/dashboard/concours" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Voir les resultats</a>
     `,
     milestone_event: `
       <h2>Nouveau palier atteint ! 🌟</h2>
-      <p>${name}, felicitations ! Tu viens de debloquer un nouveau palier sur AKASHA.</p>
-      <p>Decouvre tes nouvelles recompenses et continue ta progression.</p>
+      <p>${name}, felicitations ! Tu viens de monter d'un palier sur Vida Langue.</p>
+      <p>De nouvelles recompenses sont debloquees dans ton univers.</p>
       <a href="https://${APP_DOMAIN}/dashboard/achievements" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Voir mes succes</a>
     `,
   }

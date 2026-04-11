@@ -1,16 +1,15 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Wallet, ArrowUpRight, ArrowDownRight, CreditCard, Clock, TrendingUp, ExternalLink } from 'lucide-react'
 import { toast } from 'sonner'
 import { createClient } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
-import Badge from '@/components/ui/Badge'
 import Skeleton from '@/components/ui/Skeleton'
 import EmptyState from '@/components/ui/EmptyState'
-import { formatDate, formatPrice } from '@/lib/utils'
+import { formatDate } from '@/lib/utils'
 import { WALLET_MIN_WITHDRAWAL } from '@/lib/constants'
 
 interface WalletData {
@@ -22,7 +21,7 @@ interface Transaction {
   id: string
   amount: number
   type: string
-  description: string | null
+  description: string
   created_at: string
 }
 
@@ -49,40 +48,99 @@ export default function WalletPage() {
       }
       toast.error(data.error === 'No Stripe customer found'
         ? 'Aucun abonnement actif. Souscris d\'abord depuis /pricing.'
-        : 'Impossible d\'ouvrir le portail. Reessaie.')
+        : 'Impossible d\'ouvrir le portail. Réessaie.')
     } catch {
-      toast.error('Erreur de connexion. Verifie ta connexion internet.')
+      toast.error('Erreur de connexion. Vérifie ta connexion internet.')
     } finally {
       setPortalLoading(false)
     }
   }
 
-  useEffect(() => {
+  const load = useCallback(async () => {
     if (!user) return
-    const load = async () => {
-      const [wRes, tRes] = await Promise.all([
-        supabase.from('wallets').select('*').eq('user_id', user.id).single(),
-        supabase.from('wallet_transactions').select('*').order('created_at', { ascending: false }).limit(50),
-      ])
-      if (wRes.data) setWallet(wRes.data as WalletData)
-      if (tRes.data) setTransactions(tRes.data as Transaction[])
-      setLoading(false)
+    setLoading(true)
+    const [profileRes, refsRes, withdrawalsRes, paymentsRes] = await Promise.all([
+      supabase.from('profiles').select('wallet_balance').eq('id', user.id).maybeSingle(),
+      supabase
+        .from('referrals')
+        .select('id, referrer_earning_cents, status, created_at')
+        .eq('referrer_id', user.id)
+        .order('created_at', { ascending: false })
+        .limit(50),
+      supabase
+        .from('withdrawals')
+        .select('id, amount, status, requested_at, iban')
+        .eq('user_id', user.id)
+        .order('requested_at', { ascending: false })
+        .limit(50),
+      supabase
+        .from('payments')
+        .select('id, amount_cents, type, status, created_at')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
+        .limit(20),
+    ])
+
+    const balance = Number(profileRes.data?.wallet_balance ?? 0)
+    const totalEarned = (refsRes.data ?? [])
+      .filter(r => r.status === 'subscribed')
+      .reduce((sum, r) => sum + Number(r.referrer_earning_cents ?? 0), 0) / 100
+    setWallet({ balance, total_earned: totalEarned })
+
+    const tx: Transaction[] = []
+    for (const r of refsRes.data ?? []) {
+      const cents = Number(r.referrer_earning_cents ?? 0)
+      if (cents > 0 && r.status === 'subscribed') {
+        tx.push({
+          id: `ref-${r.id}`,
+          amount: cents / 100,
+          type: 'commission',
+          description: 'Commission parrainage (50% du 1er paiement filleul)',
+          created_at: r.created_at,
+        })
+      }
     }
-    load()
+    for (const w of withdrawalsRes.data ?? []) {
+      tx.push({
+        id: `wd-${w.id}`,
+        amount: -Number(w.amount),
+        type: 'withdrawal',
+        description: `Retrait IBAN — ${w.status === 'pending' ? 'En attente' : w.status === 'processing' ? 'En traitement' : w.status === 'completed' ? 'Versé' : 'Rejeté'} • ${w.iban.slice(0, 4)}…${w.iban.slice(-4)}`,
+        created_at: w.requested_at,
+      })
+    }
+    for (const p of paymentsRes.data ?? []) {
+      if (p.type === 'subscription' && p.status === 'completed') {
+        tx.push({
+          id: `pay-${p.id}`,
+          amount: -Number(p.amount_cents) / 100,
+          type: 'subscription',
+          description: 'Abonnement Vida Langue (Stripe)',
+          created_at: p.created_at,
+        })
+      }
+    }
+    tx.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+    setTransactions(tx)
+    setLoading(false)
   }, [user, supabase])
+
+  useEffect(() => {
+    void load()
+  }, [load])
 
   const handleWithdraw = async () => {
     const amount = parseFloat(withdrawAmount)
     if (!amount || amount < WALLET_MIN_WITHDRAWAL) {
-      toast.error(`Montant minimum : ${WALLET_MIN_WITHDRAWAL} EUR`)
+      toast.error(`Montant minimum : ${WALLET_MIN_WITHDRAWAL} EUR. Continue à parrainer pour atteindre le seuil.`)
       return
     }
     if (!withdrawIban || withdrawIban.length < 15) {
-      toast.error('IBAN invalide')
+      toast.error('IBAN invalide. Vérifie le format (FR76…).')
       return
     }
     if (!wallet || amount > wallet.balance) {
-      toast.error('Solde insuffisant')
+      toast.error('Solde insuffisant pour ce retrait.')
       return
     }
     setSubmitting(true)
@@ -93,13 +151,14 @@ export default function WalletPage() {
     })
     setSubmitting(false)
     if (error) {
-      toast.error('Erreur lors de la demande de retrait')
+      toast.error('Erreur lors de la demande de retrait. Réessaie ou contacte le support.')
       return
     }
-    toast.success('Demande de retrait envoyee ! Virement sous 48h.')
+    toast.success('Demande de retrait envoyée ! Virement sous 48h ouvrées.')
     setShowWithdraw(false)
     setWithdrawAmount('')
     setWithdrawIban('')
+    await load()
   }
 
   if (loading) {
@@ -116,8 +175,8 @@ export default function WalletPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Wallet</h1>
-        <p className="mt-1 text-[var(--text-secondary)]">Gere tes gains et fais des retraits</p>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Wallet Vida</h1>
+        <p className="mt-1 text-[var(--text-secondary)]">Tes commissions de parrainage, ton abonnement et tes retraits IBAN.</p>
       </div>
 
       {/* Stats */}
@@ -141,7 +200,7 @@ export default function WalletPage() {
               <TrendingUp className="h-6 w-6 text-emerald-400" />
             </div>
             <div>
-              <p className="text-sm text-[var(--text-secondary)]">Total gagne</p>
+              <p className="text-sm text-[var(--text-secondary)]">Total gagné (parrainage)</p>
               <p className="text-2xl font-bold text-emerald-400">
                 {(wallet?.total_earned ?? 0).toFixed(2)} EUR
               </p>

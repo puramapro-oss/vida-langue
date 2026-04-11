@@ -90,7 +90,7 @@ export default function SettingsPage() {
   // Initialize theme from localStorage / DOM
   useEffect(() => {
     if (typeof document === 'undefined') return
-    const stored = localStorage.getItem('akasha-theme') as 'dark' | 'light' | null
+    const stored = localStorage.getItem('vida_theme') as 'dark' | 'light' | null
     const initial: 'dark' | 'light' = stored ?? 'dark'
     setTheme(initial)
     document.documentElement.dataset.theme = initial
@@ -100,7 +100,7 @@ export default function SettingsPage() {
     setTheme(next)
     if (typeof document !== 'undefined') {
       document.documentElement.dataset.theme = next
-      localStorage.setItem('akasha-theme', next)
+      localStorage.setItem('vida_theme', next)
     }
     toast.success(next === 'dark' ? 'Mode sombre active' : 'Mode clair active')
   }
@@ -505,7 +505,7 @@ export default function SettingsPage() {
                   })}
                 </div>
                 <p className="mt-3 text-xs text-[var(--text-muted)]">
-                  L&apos;IA AKASHA repond automatiquement dans la langue de ta question.
+                  Vida Langue répond automatiquement dans la langue de ta question.
                 </p>
               </Card>
             </div>
@@ -674,7 +674,7 @@ export default function SettingsPage() {
                 <Button
                   variant="secondary"
                   onClick={() => {
-                    window.location.href = 'mailto:matiss.frasne@gmail.com?subject=Suppression compte AKASHA'
+                    window.location.href = 'mailto:matiss.frasne@gmail.com?subject=Suppression compte Vida Langue'
                     setShowDeleteConfirm(null)
                   }}
                 >

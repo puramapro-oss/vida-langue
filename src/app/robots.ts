@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/dashboard/', '/api/', '/auth/', '/(auth)/'],
     },
-    sitemap: 'https://akasha.purama.dev/sitemap.xml',
+    sitemap: 'https://vidalangue.purama.dev/sitemap.xml',
   }
 }

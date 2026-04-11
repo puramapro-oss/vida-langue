@@ -62,7 +62,7 @@ const PLATFORMS = [
     name: 'Email',
     icon: Mail,
     color: '#EA4335',
-    getUrl: (link: string, text: string) => `mailto:?subject=${encodeURIComponent('Decouvre AKASHA AI')}&body=${encodeURIComponent(`${text}\n\n${link}`)}`,
+    getUrl: (link: string, text: string) => `mailto:?subject=${encodeURIComponent('Découvre Vida Langue')}&body=${encodeURIComponent(`${text}\n\n${link}`)}`,
   },
   {
     id: 'sms',
@@ -81,7 +81,7 @@ export default function PartagePage() {
   const supabase = createClient()
 
   const shareLink = `https://${APP_DOMAIN}/share/${profile?.referral_code ?? ''}`
-  const shareText = 'AKASHA AI — L agregateur multi-IA le plus complet. Chat, images, videos, code, agents... tout en un.'
+  const shareText = 'Vida Langue — La méthode neuro-phonétique qui grave une langue dans ton cerveau. 14 jours offerts.'
 
   const load = useCallback(async () => {
     if (!user) return
@@ -162,7 +162,7 @@ export default function PartagePage() {
     }
     try {
       await navigator.share({
-        title: 'AKASHA AI',
+        title: 'Vida Langue',
         text: shareText,
         url: shareLink,
       })
@@ -214,7 +214,7 @@ export default function PartagePage() {
           Partage & Gagne
         </h1>
         <p className="mt-1 text-[var(--text-secondary)]">
-          Partage AKASHA et gagne jusqu a 400 points par jour
+          Partage Vida Langue et gagne jusqu&apos;à 400 points par jour
         </p>
       </div>
 

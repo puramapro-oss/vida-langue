@@ -2,8 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Conditions Générales de Vente — AKASHA AI',
-  description: 'CGV de AKASHA AI par SASU PURAMA.',
+  title: 'Conditions Générales de Vente — Vida Langue',
+  description: 'CGV de Vida Langue par SASU PURAMA.',
 }
 
 export default function CGV() {
@@ -26,7 +26,7 @@ export default function CGV() {
               1. Objet
             </h2>
             <p>
-              Les présentes Conditions Générales de Vente (CGV) régissent les relations commerciales entre SASU PURAMA (ci-après &quot;le Prestataire&quot;) et tout utilisateur souscrivant à un abonnement payant sur la plateforme AKASHA AI (ci-après &quot;le Client&quot;).
+              Les présentes Conditions Générales de Vente (CGV) régissent les relations commerciales entre SASU PURAMA (ci-après &quot;le Prestataire&quot;) et tout utilisateur souscrivant à un abonnement payant sur la plateforme Vida Langue (ci-après &quot;le Client&quot;).
             </p>
           </section>
 
@@ -39,16 +39,13 @@ export default function CGV() {
             </p>
             <p className="mt-2">Les abonnements disponibles sont :</p>
             <ul className="mt-3 space-y-1.5 ml-4 list-disc">
-              <li>Plan Gratuit : 0 €/mois (10 requêtes par jour)</li>
-              <li>Plans AUTOMATE, CREATE, BUILD Essentiel : à partir de 7,00 €/mois</li>
-              <li>Plans AUTOMATE, CREATE, BUILD Pro : à partir de 11,00 €/mois</li>
-              <li>Plans AUTOMATE, CREATE, BUILD Max : à partir de 16,00 €/mois</li>
-              <li>Plan COMPLET Essentiel : 22,00 €/mois</li>
-              <li>Plan COMPLET Pro : 33,00 €/mois</li>
-              <li>Plan COMPLET Max : 44,00 €/mois</li>
+              <li>Essai gratuit : 14 jours offerts (sans CB)</li>
+              <li>Vida Mensuel : 12,90 €/mois — accès illimité à tous les modes</li>
+              <li>Vida Annuel : 108 €/an (soit 9 €/mois) — économie de 30%</li>
+              <li>Vida à vie moitié prix : 6,45 €/mois facturés à vie après lock-in</li>
             </ul>
             <p className="mt-3">
-              Une remise de 33% est appliquée pour les abonnements annuels par rapport au tarif mensuel.
+              Une remise de 30% est appliquée pour les abonnements annuels par rapport au tarif mensuel.
             </p>
             <p className="mt-2">
               Les factures sont émises au format PDF et disponibles dans votre espace client. Elles mentionnent obligatoirement la mention &quot;TVA non applicable, art. 293 B du CGI&quot;.
@@ -74,7 +71,7 @@ export default function CGV() {
               4. Abonnements et reconduction
             </h2>
             <p>
-              Les abonnements AKASHA AI sont souscrits pour une durée mensuelle ou annuelle et se renouvellent automatiquement à l&apos;échéance, sauf résiliation préalable.
+              Les abonnements Vida Langue sont souscrits pour une durée mensuelle ou annuelle et se renouvellent automatiquement à l&apos;échéance, sauf résiliation préalable.
             </p>
             <p className="mt-2">
               Vous recevrez un email de rappel 7 jours avant chaque renouvellement annuel. Vous pouvez modifier ou annuler votre abonnement à tout moment depuis <strong className="text-[var(--text-primary)]">Paramètres → Abonnement</strong>.

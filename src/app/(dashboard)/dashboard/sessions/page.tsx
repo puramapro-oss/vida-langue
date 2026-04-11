@@ -22,12 +22,12 @@ const ICONS = {
 const ROUTES: Record<string, string | null> = {
   phonetic: '/dashboard/sessions/natif-instinct',
   holotalk: '/dashboard/sessions/holotalk',
-  neuroflow: null,
-  sleep: null,
-  hypno: null,
-  reality: null,
-  group: null,
-  spiritual: null,
+  neuroflow: '/dashboard/sessions/neuroflow',
+  sleep: '/dashboard/sessions/sleep',
+  hypno: '/dashboard/sessions/hypno',
+  reality: '/dashboard/sessions/reality',
+  group: '/dashboard/sessions/group',
+  spiritual: '/dashboard/sessions/spiritual',
 }
 
 const COLORS: Record<string, { bg: string; text: string; ring: string }> = {
