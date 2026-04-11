@@ -1,15 +1,15 @@
 {
-  "name": "AKASHA AI",
-  "short_name": "AKASHA",
-  "description": "Le premier ecosysteme IA tout-en-un. 47+ outils pour 7€/mois.",
+  "name": "Vida Langue",
+  "short_name": "Vida",
+  "description": "Apprends une langue comme un natif. 8 modes immersifs, neuro-phonétique, fil de vie linguistique. 16 langues.",
   "start_url": "/dashboard",
   "display": "standalone",
-  "background_color": "#03040a",
-  "theme_color": "#00d4ff",
+  "background_color": "#0A0A0F",
+  "theme_color": "#10B981",
   "orientation": "portrait",
   "scope": "/",
   "lang": "fr",
-  "categories": ["productivity", "utilities"],
+  "categories": ["education", "lifestyle", "productivity"],
   "icons": [
     {
       "src": "/icon.svg",

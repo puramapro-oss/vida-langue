@@ -470,21 +470,21 @@ function Footer() {
 
           <div>
             <div className="font-semibold text-[var(--text-primary)] text-sm mb-3">Produit</div>
-            <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
-              <li><Link href="/pricing" className="hover:text-emerald-400">Tarifs</Link></li>
-              <li><Link href="/how-it-works" className="hover:text-emerald-400">Comment ça marche</Link></li>
-              <li><Link href="/aide" className="hover:text-emerald-400">Aide</Link></li>
-              <li><Link href="/contact" className="hover:text-emerald-400">Contact</Link></li>
+            <ul className="space-y-1 text-sm text-[var(--text-secondary)]">
+              <li><Link href="/pricing" className="block py-2 hover:text-emerald-400">Tarifs</Link></li>
+              <li><Link href="/how-it-works" className="block py-2 hover:text-emerald-400">Comment ça marche</Link></li>
+              <li><Link href="/aide" className="block py-2 hover:text-emerald-400">Aide</Link></li>
+              <li><Link href="/contact" className="block py-2 hover:text-emerald-400">Contact</Link></li>
             </ul>
           </div>
 
           <div>
             <div className="font-semibold text-[var(--text-primary)] text-sm mb-3">Légal</div>
-            <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
-              <li><Link href="/mentions-legales" className="hover:text-emerald-400">Mentions légales</Link></li>
-              <li><Link href="/politique-confidentialite" className="hover:text-emerald-400">Confidentialité</Link></li>
-              <li><Link href="/cgu" className="hover:text-emerald-400">CGU</Link></li>
-              <li><Link href="/cgv" className="hover:text-emerald-400">CGV</Link></li>
+            <ul className="space-y-1 text-sm text-[var(--text-secondary)]">
+              <li><Link href="/mentions-legales" className="block py-2 hover:text-emerald-400">Mentions légales</Link></li>
+              <li><Link href="/politique-confidentialite" className="block py-2 hover:text-emerald-400">Confidentialité</Link></li>
+              <li><Link href="/cgu" className="block py-2 hover:text-emerald-400">CGU</Link></li>
+              <li><Link href="/cgv" className="block py-2 hover:text-emerald-400">CGV</Link></li>
             </ul>
           </div>
         </div>
