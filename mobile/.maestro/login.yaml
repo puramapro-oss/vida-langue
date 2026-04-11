@@ -1,0 +1,19 @@
+appId: dev.purama.vidalangue
+name: Login existing user
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    id: "welcome-login"
+- assertVisible: "Bon retour"
+- tapOn:
+    id: "login-email"
+- inputText: "matiss.frasne@gmail.com"
+- tapOn:
+    id: "login-password"
+- inputText: "wrongpasswordtest"
+- tapOn:
+    id: "login-submit"
+- assertVisible:
+    id: "login-error"
+    timeout: 10000

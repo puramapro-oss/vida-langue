@@ -1,0 +1,17 @@
+appId: dev.purama.vidalangue
+name: Guided session (Neuroflow)
+---
+- launchApp
+- tapOn: "Sessions"
+- tapOn:
+    id: "session-card-neuroflow"
+- assertVisible: "Neuroflow"
+- tapOn:
+    id: "guided-prepare"
+- assertVisible:
+    text: "Phase 1"
+    timeout: 30000
+- tapOn:
+    id: "guided-start"
+- assertVisible:
+    id: "guided-pause"

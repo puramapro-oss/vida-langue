@@ -1,0 +1,11 @@
+appId: dev.purama.vidalangue
+name: Referral copy + share
+---
+- launchApp
+- tapOn: "Profil"
+- assertVisible: "Mon parrainage"
+- assertVisible:
+    id: "profile-referral-link"
+- tapOn:
+    id: "profile-copy"
+- assertVisible: "Copié"

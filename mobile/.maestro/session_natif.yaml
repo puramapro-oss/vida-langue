@@ -1,0 +1,17 @@
+appId: dev.purama.vidalangue
+name: Natif Instinct phonetic
+---
+- launchApp
+- tapOn:
+    id: "dashboard-start-natif"
+- assertVisible: "Natif Instinct"
+- tapOn:
+    id: "lang-es"
+- tapOn:
+    id: "natif-input"
+- inputText: "Bonjour, comment ça va ?"
+- tapOn:
+    id: "natif-decompose"
+- assertVisible:
+    text: "Couche"
+    timeout: 30000

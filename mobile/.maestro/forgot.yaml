@@ -1,0 +1,17 @@
+appId: dev.purama.vidalangue
+name: Forgot password flow
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    id: "welcome-login"
+- tapOn: "Mot de passe oublié"
+- assertVisible: "Mot de passe oublié"
+- tapOn:
+    id: "forgot-email"
+- inputText: "test+forgot@vidalangue.test"
+- tapOn:
+    id: "forgot-submit"
+- assertVisible:
+    text: "Email envoyé"
+    timeout: 15000

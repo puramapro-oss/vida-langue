@@ -1,0 +1,7 @@
+appId: dev.purama.vidalangue
+name: Missions list
+---
+- launchApp
+- tapOn: "Missions"
+- assertVisible: "Missions"
+- assertVisible: "Apprends en aidant"

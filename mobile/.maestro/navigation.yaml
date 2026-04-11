@@ -1,0 +1,16 @@
+appId: dev.purama.vidalangue
+name: Bottom tabs navigation
+---
+- launchApp
+- assertVisible: "Accueil"
+- tapOn: "Sessions"
+- assertVisible: "8 modes de session"
+- tapOn: "Missions"
+- assertVisible: "Missions"
+- tapOn: "Wallet"
+- assertVisible: "Wallet"
+- tapOn: "Profil"
+- assertVisible: "Profil"
+- tapOn: "Accueil"
+- assertVisible:
+    id: "dashboard-start-natif"

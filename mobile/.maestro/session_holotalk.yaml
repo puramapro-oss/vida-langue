@@ -1,0 +1,18 @@
+appId: dev.purama.vidalangue
+name: Holotalk conversation
+---
+- launchApp
+- tapOn:
+    id: "dashboard-start-holotalk"
+- assertVisible: "Holotalk"
+- tapOn:
+    id: "holotalk-persona-lucia-es"
+- tapOn:
+    id: "holotalk-input"
+- inputText: "Hola Lucía, cómo estás?"
+- tapOn:
+    id: "holotalk-send"
+- waitForAnimationToEnd
+- assertVisible:
+    text: "Lucía"
+    timeout: 20000

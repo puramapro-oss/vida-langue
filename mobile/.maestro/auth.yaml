@@ -1,0 +1,25 @@
+appId: dev.purama.vidalangue
+name: Auth signup + login
+---
+- launchApp:
+    clearState: true
+- assertVisible: "Vida Langue"
+- tapOn:
+    id: "welcome-signup"
+- assertVisible: "Bienvenue sur Vida Langue"
+- tapOn:
+    id: "signup-name"
+- inputText: "Maestro Tester"
+- tapOn:
+    id: "signup-email"
+- inputText: "maestro+${output.timestamp}@vidalangue.test"
+- tapOn:
+    id: "signup-password"
+- inputText: "MaestroSecret123"
+- tapOn:
+    id: "signup-cgu"
+- tapOn:
+    id: "signup-submit"
+- assertVisible:
+    id: "dashboard-start-natif"
+    timeout: 15000

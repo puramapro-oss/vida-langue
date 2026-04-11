@@ -1,0 +1,10 @@
+appId: dev.purama.vidalangue
+name: Wallet + Stripe portal
+---
+- launchApp
+- tapOn: "Wallet"
+- assertVisible: "Solde disponible"
+- assertVisible:
+    id: "wallet-portal"
+- assertVisible:
+    id: "wallet-withdraw"

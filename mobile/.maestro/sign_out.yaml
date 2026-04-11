@@ -1,0 +1,9 @@
+appId: dev.purama.vidalangue
+name: Sign out flow
+---
+- launchApp
+- tapOn: "Profil"
+- tapOn:
+    id: "profile-signout"
+- tapOn: "Se déconnecter"
+- assertVisible: "Vida Langue"
