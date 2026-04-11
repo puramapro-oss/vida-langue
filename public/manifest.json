@@ -1,0 +1,21 @@
+{
+  "name": "AKASHA AI",
+  "short_name": "AKASHA",
+  "description": "Le premier ecosysteme IA tout-en-un. 47+ outils pour 7€/mois.",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#03040a",
+  "theme_color": "#00d4ff",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "fr",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
