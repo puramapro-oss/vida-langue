@@ -116,11 +116,12 @@ export async function POST(req: NextRequest) {
       case 'invoice.payment_succeeded': {
         const invoice = event.data.object as Stripe.Invoice
         const customerId = invoice.customer as string
+        const amountPaidCents = invoice.amount_paid ?? 0
 
         // Get user profile to link payment
         const { data: profile } = await db
           .from('profiles')
-          .select('id')
+          .select('id, referred_by')
           .eq('stripe_customer_id', customerId)
           .single()
 
@@ -131,11 +132,61 @@ export async function POST(req: NextRequest) {
             user_id: profile.id,
             stripe_invoice_id: invoice.id,
             invoice_number: invoiceNumber,
-            amount: (invoice.amount_paid ?? 0) / 100,
+            amount: amountPaidCents / 100,
             currency: invoice.currency?.toUpperCase() ?? 'EUR',
             status: 'paid',
             paid_at: new Date(invoice.created * 1000).toISOString(),
           })
+
+          // Commission parrainage : 50% du PREMIER paiement uniquement
+          if (profile.referred_by && amountPaidCents > 0) {
+            const { data: existingReferral } = await db
+              .from('referrals')
+              .select('id, status, referrer_earning_cents')
+              .eq('referrer_id', profile.referred_by)
+              .eq('referred_id', profile.id)
+              .maybeSingle()
+
+            const isFirstPayment = !existingReferral || existingReferral.status !== 'subscribed'
+
+            if (isFirstPayment) {
+              const commissionCents = Math.round(amountPaidCents * 0.5)
+
+              if (existingReferral) {
+                await db
+                  .from('referrals')
+                  .update({
+                    status: 'subscribed',
+                    referrer_earning_cents: (existingReferral.referrer_earning_cents ?? 0) + commissionCents,
+                  })
+                  .eq('id', existingReferral.id)
+              } else {
+                await db.from('referrals').insert({
+                  referrer_id: profile.referred_by,
+                  referred_id: profile.id,
+                  referral_code: '',
+                  status: 'subscribed',
+                  referrer_earning_cents: commissionCents,
+                })
+              }
+
+              // Crédite le wallet du parrain (en EUR)
+              const { data: referrerProfile } = await db
+                .from('profiles')
+                .select('wallet_balance')
+                .eq('id', profile.referred_by)
+                .single()
+
+              if (referrerProfile) {
+                await db
+                  .from('profiles')
+                  .update({
+                    wallet_balance: Number(referrerProfile.wallet_balance ?? 0) + commissionCents / 100,
+                  })
+                  .eq('id', profile.referred_by)
+              }
+            }
+          }
         }
         break
       }

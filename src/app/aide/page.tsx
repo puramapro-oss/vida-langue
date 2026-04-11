@@ -4,22 +4,23 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import {
   Search, ChevronRight, HelpCircle, MessageSquare, CreditCard,
-  Users, Wrench, Sparkles, ArrowLeft, Send, X, Bot, Loader2,
+  Users, Sparkles, ArrowLeft, Send, X, Bot, Loader2, Languages,
+  Mic, Leaf, Heart,
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import { cn } from '@/lib/utils'
 import type { FaqArticle } from '@/types'
 
 const CATEGORIES: { id: string; label: string; icon: React.ReactNode; color: string }[] = [
-  { id: 'general', label: 'General', icon: <HelpCircle className="h-5 w-5" />, color: '#00d4ff' },
-  { id: 'chat', label: 'Chat IA', icon: <MessageSquare className="h-5 w-5" />, color: '#a855f7' },
-  { id: 'creation', label: 'Creation', icon: <Sparkles className="h-5 w-5" />, color: '#f59e0b' },
-  { id: 'agents', label: 'Agents', icon: <Wrench className="h-5 w-5" />, color: '#10b981' },
-  { id: 'billing', label: 'Facturation', icon: <CreditCard className="h-5 w-5" />, color: '#ef4444' },
-  { id: 'referral', label: 'Parrainage', icon: <Users className="h-5 w-5" />, color: '#ec4899' },
+  { id: 'general', label: 'General', icon: <HelpCircle className="h-5 w-5" />, color: '#10b981' },
+  { id: 'apprentissage', label: 'Apprentissage', icon: <Languages className="h-5 w-5" />, color: '#10b981' },
+  { id: 'modes', label: 'Modes', icon: <Sparkles className="h-5 w-5" />, color: '#22c55e' },
+  { id: 'phonetique', label: 'Natif Instinct', icon: <Mic className="h-5 w-5" />, color: '#84cc16' },
+  { id: 'abonnement', label: 'Abonnement', icon: <CreditCard className="h-5 w-5" />, color: '#0ea5e9' },
+  { id: 'parrainage', label: 'Parrainage', icon: <Users className="h-5 w-5" />, color: '#ec4899' },
   { id: 'wallet', label: 'Wallet', icon: <CreditCard className="h-5 w-5" />, color: '#3b82f6' },
-  { id: 'points', label: 'Points', icon: <Sparkles className="h-5 w-5" />, color: '#f97316' },
-  { id: 'support', label: 'Support', icon: <HelpCircle className="h-5 w-5" />, color: '#6366f1' },
+  { id: 'impact', label: 'Impact', icon: <Leaf className="h-5 w-5" />, color: '#14b8a6' },
+  { id: 'compte', label: 'Compte', icon: <Heart className="h-5 w-5" />, color: '#f472b6' },
 ]
 
 interface ChatMessage {
@@ -91,11 +92,11 @@ export default function AidePage() {
       {/* Header */}
       <div className="border-b border-[var(--border)] bg-[var(--bg-nebula)]">
         <div className="mx-auto max-w-4xl px-4 py-12 text-center">
-          <Link href="/" className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--cyan)]">
+          <Link href="/" className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--green)]">
             <ArrowLeft className="h-4 w-4" /> Retour
           </Link>
-          <h1 className="text-3xl font-bold text-[var(--text-primary)]">Centre d&apos;aide AKASHA</h1>
-          <p className="mt-2 text-[var(--text-secondary)]">Trouve rapidement une reponse a ta question</p>
+          <h1 className="text-3xl font-bold text-[var(--text-primary)]">Centre d&apos;aide Vida Langue</h1>
+          <p className="mt-2 text-[var(--text-secondary)]">Trouve une reponse a ta question, ou parle a ton coach</p>
 
           {/* Search */}
           <div className="relative mx-auto mt-6 max-w-lg">
@@ -105,7 +106,7 @@ export default function AidePage() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Rechercher une question..."
-              className="w-full rounded-2xl border border-[var(--border)] bg-white/5 py-3 pl-12 pr-4 text-[var(--text-primary)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-secondary)]"
+              className="w-full rounded-2xl border border-[var(--border)] bg-white/5 py-3 pl-12 pr-4 text-[var(--text-primary)] outline-none focus:border-[var(--green)] placeholder:text-[var(--text-secondary)]"
             />
           </div>
         </div>
@@ -118,7 +119,7 @@ export default function AidePage() {
             onClick={() => setActiveCategory(null)}
             className={cn(
               'rounded-full px-4 py-1.5 text-sm font-medium transition-all',
-              !activeCategory ? 'bg-[var(--cyan)]/10 text-[var(--cyan)]' : 'bg-white/5 text-[var(--text-secondary)] hover:bg-white/10'
+              !activeCategory ? 'bg-[var(--green)]/10 text-[var(--green)]' : 'bg-white/5 text-[var(--text-secondary)] hover:bg-white/10'
             )}
           >
             Tout
@@ -129,7 +130,7 @@ export default function AidePage() {
               onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
               className={cn(
                 'rounded-full px-4 py-1.5 text-sm font-medium transition-all',
-                activeCategory === cat.id ? 'bg-[var(--cyan)]/10 text-[var(--cyan)]' : 'bg-white/5 text-[var(--text-secondary)] hover:bg-white/10'
+                activeCategory === cat.id ? 'bg-[var(--green)]/10 text-[var(--green)]' : 'bg-white/5 text-[var(--text-secondary)] hover:bg-white/10'
               )}
             >
               {cat.label}
@@ -151,7 +152,7 @@ export default function AidePage() {
             <p className="mt-1 text-sm text-[var(--text-secondary)]">Essaie un autre mot-cle ou pose ta question au chatbot</p>
             <button
               onClick={() => setChatOpen(true)}
-              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[var(--cyan)] to-[var(--purple)] px-5 py-2.5 text-sm font-medium text-white hover:opacity-90 transition-opacity"
+              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[var(--green)] to-[var(--purple)] px-5 py-2.5 text-sm font-medium text-white hover:opacity-90 transition-opacity"
             >
               <MessageSquare className="h-4 w-4" /> Demander a l&apos;assistant
             </button>
@@ -173,13 +174,13 @@ export default function AidePage() {
         )}
 
         {/* Contact CTA */}
-        <div className="mt-12 rounded-2xl bg-gradient-to-r from-[var(--cyan)]/10 to-[var(--purple)]/10 p-8 text-center">
+        <div className="mt-12 rounded-2xl bg-gradient-to-r from-[var(--green)]/10 to-[var(--purple)]/10 p-8 text-center">
           <h2 className="text-xl font-bold text-[var(--text-primary)]">Tu n&apos;as pas trouve ta reponse ?</h2>
           <p className="mt-2 text-[var(--text-secondary)]">Notre equipe est la pour t&apos;aider</p>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
             <button
               onClick={() => setChatOpen(true)}
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[var(--cyan)] to-[var(--purple)] px-6 py-3 font-medium text-white hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[var(--green)] to-[var(--purple)] px-6 py-3 font-medium text-white hover:opacity-90 transition-opacity"
             >
               <Bot className="h-4 w-4" /> Assistant IA
             </button>
@@ -197,7 +198,7 @@ export default function AidePage() {
       {!chatOpen && (
         <button
           onClick={() => setChatOpen(true)}
-          className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-[var(--cyan)] to-[var(--purple)] text-white shadow-lg shadow-[var(--cyan)]/20 hover:scale-105 transition-transform"
+          className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-[var(--green)] to-[var(--purple)] text-white shadow-lg shadow-[var(--green)]/20 hover:scale-105 transition-transform"
           aria-label="Ouvrir l'assistant"
         >
           <MessageSquare className="h-6 w-6" />
@@ -210,11 +211,11 @@ export default function AidePage() {
           {/* Chat Header */}
           <div className="flex items-center justify-between border-b border-[var(--border)] px-4 py-3">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-[var(--cyan)] to-[var(--purple)]">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-[var(--green)] to-[var(--purple)]">
                 <Bot className="h-4 w-4 text-white" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-[var(--text-primary)]">Assistant AKASHA</p>
+                <p className="text-sm font-semibold text-[var(--text-primary)]">Coach Vida Langue</p>
                 <p className="text-xs text-[var(--green)]">En ligne</p>
               </div>
             </div>
@@ -231,11 +232,11 @@ export default function AidePage() {
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {chatMessages.length === 0 && (
               <div className="text-center py-8">
-                <Bot className="mx-auto h-10 w-10 text-[var(--cyan)]" />
-                <p className="mt-3 text-sm font-medium text-[var(--text-primary)]">Salut ! Comment puis-je t&apos;aider ?</p>
-                <p className="mt-1 text-xs text-[var(--text-secondary)]">Pose-moi n&apos;importe quelle question sur AKASHA</p>
+                <Bot className="mx-auto h-10 w-10 text-[var(--green)]" />
+                <p className="mt-3 text-sm font-medium text-[var(--text-primary)]">Salut ! Pret a parler une nouvelle langue ?</p>
+                <p className="mt-1 text-xs text-[var(--text-secondary)]">Pose-moi tes questions sur Vida Langue 🌱</p>
                 <div className="mt-4 flex flex-wrap justify-center gap-2">
-                  {['Comment fonctionne le parrainage ?', 'Quels sont les plans ?', 'Comment retirer mes gains ?'].map(q => (
+                  {['Comment marche Natif Instinct ?', 'Combien coute Vida Langue ?', 'Comment fonctionne le parrainage ?'].map(q => (
                     <button
                       key={q}
                       onClick={() => { setChatInput(q); }}
@@ -254,7 +255,7 @@ export default function AidePage() {
                 className={cn(
                   'max-w-[85%] rounded-2xl px-4 py-2.5 text-sm',
                   msg.role === 'user'
-                    ? 'ml-auto bg-gradient-to-r from-[var(--cyan)] to-[var(--purple)] text-white'
+                    ? 'ml-auto bg-gradient-to-r from-[var(--green)] to-[var(--purple)] text-white'
                     : 'bg-white/5 text-[var(--text-primary)]'
                 )}
               >
@@ -264,7 +265,7 @@ export default function AidePage() {
 
             {chatLoading && (
               <div className="flex items-center gap-2 rounded-2xl bg-white/5 px-4 py-2.5">
-                <Loader2 className="h-4 w-4 animate-spin text-[var(--cyan)]" />
+                <Loader2 className="h-4 w-4 animate-spin text-[var(--green)]" />
                 <span className="text-sm text-[var(--text-secondary)]">Reflexion en cours...</span>
               </div>
             )}
@@ -283,13 +284,13 @@ export default function AidePage() {
                 value={chatInput}
                 onChange={e => setChatInput(e.target.value)}
                 placeholder="Pose ta question..."
-                className="flex-1 rounded-xl border border-[var(--border)] bg-white/5 px-4 py-2.5 text-sm text-[var(--text-primary)] outline-none focus:border-[var(--cyan)] placeholder:text-[var(--text-secondary)]"
+                className="flex-1 rounded-xl border border-[var(--border)] bg-white/5 px-4 py-2.5 text-sm text-[var(--text-primary)] outline-none focus:border-[var(--green)] placeholder:text-[var(--text-secondary)]"
                 disabled={chatLoading}
               />
               <button
                 type="submit"
                 disabled={!chatInput.trim() || chatLoading}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-r from-[var(--cyan)] to-[var(--purple)] text-white hover:opacity-90 transition-opacity disabled:opacity-30"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-r from-[var(--green)] to-[var(--purple)] text-white hover:opacity-90 transition-opacity disabled:opacity-30"
                 aria-label="Envoyer"
               >
                 <Send className="h-4 w-4" />

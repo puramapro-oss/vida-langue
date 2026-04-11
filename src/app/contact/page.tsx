@@ -31,7 +31,7 @@ export default function ContactPage() {
         toast.error(data.error ?? 'Erreur lors de l\'envoi. Reessaie.')
         return
       }
-      toast.success('Message envoye ! On te repond sous 24h.')
+      toast.success('Message envoye ! L\'equipe Vida te repond sous 24h 🌱')
       setName('')
       setEmail('')
       setSubject('')
@@ -46,12 +46,12 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[var(--bg-deep)]">
       <div className="mx-auto max-w-2xl px-4 py-12">
-        <Link href="/" className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--cyan)]">
+        <Link href="/" className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--green)]">
           <ArrowLeft className="h-4 w-4" /> Retour
         </Link>
 
-        <h1 className="text-3xl font-bold text-[var(--text-primary)]">Contact</h1>
-        <p className="mt-2 text-[var(--text-secondary)]">Une question ? Un probleme ? Ecris-nous.</p>
+        <h1 className="text-3xl font-bold text-[var(--text-primary)]">Parle-nous 🌱</h1>
+        <p className="mt-2 text-[var(--text-secondary)]">Une question, un bug, une idée pour Vida Langue ? On répond sous 24 h.</p>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">
@@ -62,7 +62,7 @@ export default function ContactPage() {
                 value={name}
                 onChange={e => setName(e.target.value)}
                 required
-                className="w-full rounded-xl border border-[var(--border)] bg-white/5 px-4 py-2.5 text-[var(--text-primary)] outline-none focus:border-[var(--cyan)]"
+                className="w-full rounded-xl border border-[var(--border)] bg-white/5 px-4 py-2.5 text-[var(--text-primary)] outline-none focus:border-[var(--green)]"
               />
             </div>
             <div>
@@ -72,7 +72,7 @@ export default function ContactPage() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
-                className="w-full rounded-xl border border-[var(--border)] bg-white/5 px-4 py-2.5 text-[var(--text-primary)] outline-none focus:border-[var(--cyan)]"
+                className="w-full rounded-xl border border-[var(--border)] bg-white/5 px-4 py-2.5 text-[var(--text-primary)] outline-none focus:border-[var(--green)]"
               />
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function ContactPage() {
               value={subject}
               onChange={e => setSubject(e.target.value)}
               required
-              className="w-full rounded-xl border border-[var(--border)] bg-white/5 px-4 py-2.5 text-[var(--text-primary)] outline-none focus:border-[var(--cyan)]"
+              className="w-full rounded-xl border border-[var(--border)] bg-white/5 px-4 py-2.5 text-[var(--text-primary)] outline-none focus:border-[var(--green)]"
             />
           </div>
           <div>
@@ -93,13 +93,13 @@ export default function ContactPage() {
               onChange={e => setMessage(e.target.value)}
               required
               rows={5}
-              className="w-full rounded-xl border border-[var(--border)] bg-white/5 px-4 py-2.5 text-[var(--text-primary)] outline-none focus:border-[var(--cyan)] resize-none"
+              className="w-full rounded-xl border border-[var(--border)] bg-white/5 px-4 py-2.5 text-[var(--text-primary)] outline-none focus:border-[var(--green)] resize-none"
             />
           </div>
           <button
             type="submit"
             disabled={sending}
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[var(--cyan)] to-[var(--purple)] px-6 py-3 font-medium text-white hover:opacity-90 transition-opacity disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[var(--green)] to-[var(--purple)] px-6 py-3 font-medium text-white hover:opacity-90 transition-opacity disabled:opacity-50"
           >
             {sending ? 'Envoi...' : <><Send className="h-4 w-4" /> Envoyer</>}
           </button>
@@ -107,12 +107,12 @@ export default function ContactPage() {
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2">
           <div className="glass rounded-xl p-5">
-            <Mail className="h-6 w-6 text-[var(--cyan)]" />
+            <Mail className="h-6 w-6 text-[var(--green)]" />
             <p className="mt-2 font-medium text-[var(--text-primary)]">Email</p>
             <p className="text-sm text-[var(--text-secondary)]">contact@purama.dev</p>
           </div>
           <div className="glass rounded-xl p-5">
-            <MapPin className="h-6 w-6 text-[var(--cyan)]" />
+            <MapPin className="h-6 w-6 text-[var(--green)]" />
             <p className="mt-2 font-medium text-[var(--text-primary)]">Adresse</p>
             <p className="text-sm text-[var(--text-secondary)]">{COMPANY_INFO.address}</p>
           </div>

@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'No Stripe customer found' }, { status: 400 })
     }
 
-    const origin = req.headers.get('origin') ?? 'https://akasha.purama.dev'
+    const origin = req.headers.get('origin') ?? 'https://vidalangue.purama.dev'
 
     const session = await stripe.billingPortal.sessions.create({
       customer: profile.stripe_customer_id as string,

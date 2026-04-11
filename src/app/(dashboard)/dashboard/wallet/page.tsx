@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Wallet, ArrowUpRight, ArrowDownRight, CreditCard, Clock, TrendingUp } from 'lucide-react'
+import { Wallet, ArrowUpRight, ArrowDownRight, CreditCard, Clock, TrendingUp, ExternalLink } from 'lucide-react'
 import { toast } from 'sonner'
 import { createClient } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
@@ -35,7 +35,27 @@ export default function WalletPage() {
   const [withdrawAmount, setWithdrawAmount] = useState('')
   const [showWithdraw, setShowWithdraw] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [portalLoading, setPortalLoading] = useState(false)
   const supabase = createClient()
+
+  const handleOpenPortal = async () => {
+    setPortalLoading(true)
+    try {
+      const res = await fetch('/api/stripe/portal', { method: 'POST' })
+      const data = await res.json()
+      if (data.url) {
+        window.location.href = data.url
+        return
+      }
+      toast.error(data.error === 'No Stripe customer found'
+        ? 'Aucun abonnement actif. Souscris d\'abord depuis /pricing.'
+        : 'Impossible d\'ouvrir le portail. Reessaie.')
+    } catch {
+      toast.error('Erreur de connexion. Verifie ta connexion internet.')
+    } finally {
+      setPortalLoading(false)
+    }
+  }
 
   useEffect(() => {
     if (!user) return
@@ -128,13 +148,21 @@ export default function WalletPage() {
             </div>
           </div>
         </Card>
-        <Card className="p-6 flex items-center justify-center">
+        <Card className="p-6 flex flex-col items-center justify-center gap-3">
           <Button
             onClick={() => setShowWithdraw(!showWithdraw)}
             icon={<CreditCard className="h-4 w-4" />}
             disabled={!wallet || wallet.balance < WALLET_MIN_WITHDRAWAL}
           >
             Retirer (min {WALLET_MIN_WITHDRAWAL} EUR)
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={handleOpenPortal}
+            loading={portalLoading}
+            icon={<ExternalLink className="h-4 w-4" />}
+          >
+            Gérer mon abonnement
           </Button>
         </Card>
       </div>

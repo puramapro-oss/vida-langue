@@ -63,7 +63,13 @@ export default function SignupPage() {
       toast.error('Erreur lors de la creation du compte : ' + (error.message ?? 'Reessaie plus tard'))
       return
     }
-    toast.success('Compte cree ! Bienvenue sur AKASHA AI 🎉')
+    // Attribution parrainage : lit cookie vida_ref/vida_inf et lie au parrain
+    try {
+      await fetch('/api/referral/attribute', { method: 'POST' })
+    } catch {
+      // attribution non bloquante
+    }
+    toast.success('Compte cree ! Bienvenue sur Vida Langue 🌱')
     router.push('/onboarding')
   }
 
@@ -73,10 +79,10 @@ export default function SignupPage() {
         {/* Logo */}
         <div className="mb-8 text-center">
           <h1 className="gradient-text font-[family-name:var(--font-display)] text-3xl font-bold">
-            AKASHA AI
+            Vida Langue
           </h1>
           <p className="mt-2 text-sm text-[var(--text-secondary)]">
-            47+ outils IA. Un seul abonnement.
+            Apprends une langue comme un natif. 14 jours gratuits.
           </p>
         </div>
 
