@@ -1,8 +1,93 @@
 {
   "cookie": {
-    "message": "Vida Langue utilise uniquement des cookies essentiels (session, préférences). Aucun tracking publicitaire.",
+    "message": "Vida Langue utilise uniquement des cookies essentiels (session, preferences). Aucun tracking publicitaire.",
     "accept": "Accepter",
     "decline": "Refuser",
-    "settings": "Paramétrer"
+    "settings": "Parametrer"
+  },
+  "common": {
+    "appName": "Vida Langue",
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "retry": "Reessayer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "back": "Retour",
+    "next": "Suivant",
+    "close": "Fermer",
+    "search": "Rechercher",
+    "seeAll": "Voir tout",
+    "noResults": "Aucun resultat",
+    "confirm": "Confirmer"
+  },
+  "nav": {
+    "home": "Accueil",
+    "sessions": "Sessions",
+    "universe": "Mon Univers",
+    "missions": "Missions",
+    "impact": "Impact",
+    "contests": "Concours",
+    "referral": "Parrainage",
+    "influencer": "Influenceur",
+    "wallet": "Gains",
+    "shop": "Boutique",
+    "gratitude": "Gratitude",
+    "breathe": "Respiration",
+    "guide": "Guide",
+    "profile": "Profil",
+    "settings": "Reglages",
+    "admin": "Admin",
+    "help": "Aide",
+    "logout": "Deconnexion"
+  },
+  "auth": {
+    "login": "Se connecter",
+    "signup": "Creer un compte",
+    "loginTitle": "Content de te revoir",
+    "signupTitle": "Commence ton voyage",
+    "email": "Adresse email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "forgotPassword": "Mot de passe oublie ?",
+    "noAccount": "Pas encore de compte ?",
+    "hasAccount": "Deja un compte ?",
+    "continueGoogle": "Continuer avec Google",
+    "orWithEmail": "ou avec email",
+    "stayLogged": "Rester connecte",
+    "welcomeBack": "Reprends ton fil de vie la ou tu l'as laisse."
+  },
+  "pricing": {
+    "title": "Grave la langue dans ton cerveau.",
+    "subtitle": "Un seul abonnement. Toutes les langues. Tous les modes.",
+    "trial": "14 jours d'essai gratuit",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "lifetime": "A vie",
+    "popular": "Populaire",
+    "perMonth": "/mois",
+    "choosePlan": "Choisir ce plan",
+    "financeBanner": "La plupart de nos clients ne paient rien grace aux aides",
+    "financeLink": "Decouvrez celles auxquelles vous avez droit"
+  },
+  "dashboard": {
+    "welcome": "Bonjour",
+    "streak": "Jours consecutifs",
+    "xp": "Experience",
+    "level": "Niveau",
+    "startSession": "Demarrer une session",
+    "missionOfDay": "Mission du jour",
+    "myProgress": "Ma progression",
+    "recentSessions": "Sessions recentes"
+  },
+  "financer": {
+    "title": "Trouvez vos aides en 2 minutes",
+    "subtitle": "45 dispositifs analyses",
+    "step1": "Votre profil",
+    "step2": "Aides trouvees",
+    "step3": "Votre dossier",
+    "step4": "Suivi",
+    "searchAides": "Rechercher mes aides",
+    "cumul": "Cumul potentiel",
+    "aidesFound": "aides identifiees"
   }
 }

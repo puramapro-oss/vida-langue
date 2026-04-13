@@ -117,7 +117,7 @@ export default function FinancerPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--bg-void)] px-4 py-12">
+    <main className="min-h-screen bg-[var(--bg-void)] px-4 py-12">
       <div className="max-w-3xl mx-auto">
         {/* Back link */}
         <Link
@@ -186,7 +186,7 @@ export default function FinancerPage() {
                       key={p.value}
                       onClick={() => setProfil(p.value)}
                       data-testid={`profil-${p.value}`}
-                      className={`px-3 py-2 rounded-xl text-xs font-medium transition-all border ${
+                      className={`px-3 py-2.5 rounded-xl text-xs font-medium transition-all border min-h-[44px] ${
                         profil === p.value
                           ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400'
                           : 'bg-white/[0.03] border-white/[0.06] text-[var(--text-secondary)] hover:bg-white/[0.06]'
@@ -208,7 +208,7 @@ export default function FinancerPage() {
                       key={s.value}
                       onClick={() => setSituation(s.value)}
                       data-testid={`situation-${s.value}`}
-                      className={`px-3 py-2 rounded-xl text-xs font-medium transition-all border ${
+                      className={`px-3 py-2.5 rounded-xl text-xs font-medium transition-all border min-h-[44px] ${
                         situation === s.value
                           ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400'
                           : 'bg-white/[0.03] border-white/[0.06] text-[var(--text-secondary)] hover:bg-white/[0.06]'
@@ -221,14 +221,15 @@ export default function FinancerPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
+                <label htmlFor="financer-region" className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
                   Votre region
                 </label>
                 <select
+                  id="financer-region"
                   value={region}
                   onChange={(e) => setRegion(e.target.value)}
                   data-testid="region-select"
-                  className="w-full rounded-xl bg-white/[0.03] border border-white/[0.06] text-[var(--text-primary)] px-4 py-2.5 text-sm focus:outline-none focus:border-emerald-500/40"
+                  className="w-full rounded-xl bg-white/[0.03] border border-white/[0.06] text-[var(--text-primary)] px-4 py-3 text-sm focus:outline-none focus:border-emerald-500/40 min-h-[44px]"
                 >
                   {REGIONS.map((r) => (
                     <option key={r.value} value={r.value}>{r.label}</option>
@@ -466,6 +467,6 @@ export default function FinancerPage() {
           Consultez les sites officiels pour connaitre les conditions exactes d'eligibilite.
         </p>
       </div>
-    </div>
+    </main>
   )
 }

@@ -1,8 +1,93 @@
 {
+  "common": {
+    "appName": "Vida Langue",
+    "loading": "Laddar...",
+    "error": "Ett fel uppstod",
+    "retry": "Forsok igen",
+    "save": "Spara",
+    "cancel": "Avbryt",
+    "back": "Tillbaka",
+    "next": "Nasta",
+    "close": "Stang",
+    "search": "Sok",
+    "seeAll": "Visa alla",
+    "noResults": "Inga resultat",
+    "confirm": "Bekrafta"
+  },
+  "nav": {
+    "home": "Hem",
+    "sessions": "Sessioner",
+    "universe": "Mitt universum",
+    "missions": "Uppdrag",
+    "impact": "Paverkan",
+    "contests": "Tavlingar",
+    "referral": "Hänvisning",
+    "influencer": "Influencer",
+    "wallet": "Inkomster",
+    "shop": "Butik",
+    "gratitude": "Tacksamhet",
+    "breathe": "Andning",
+    "guide": "Guide",
+    "profile": "Profil",
+    "settings": "Installningar",
+    "admin": "Admin",
+    "help": "Hjalp",
+    "logout": "Logga ut"
+  },
+  "auth": {
+    "login": "Logga in",
+    "signup": "Skapa konto",
+    "loginTitle": "Valkommen tillbaka",
+    "signupTitle": "Borja din resa",
+    "email": "E-postadress",
+    "password": "Losenord",
+    "confirmPassword": "Bekrafta losenord",
+    "forgotPassword": "Glomt losenord?",
+    "noAccount": "Inget konto?",
+    "hasAccount": "Har du redan konto?",
+    "continueGoogle": "Fortsatt med Google",
+    "orWithEmail": "eller med e-post",
+    "stayLogged": "Forbli inloggad",
+    "welcomeBack": "Fortsatt din livstrad dar du slutade."
+  },
+  "pricing": {
+    "title": "Gravera spraket i din hjarna.",
+    "subtitle": "Ett abonnemang. Alla sprak. Alla lagen.",
+    "trial": "14 dagars gratis provperiod",
+    "monthly": "Manad",
+    "yearly": "Ar",
+    "lifetime": "Livstid",
+    "popular": "Popular",
+    "perMonth": "/manad",
+    "choosePlan": "Valj denna plan",
+    "financeBanner": "De flesta av vara kunder betalar inget tack vare bidrag",
+    "financeLink": "Upptack vilka bidrag du har ratt till"
+  },
+  "dashboard": {
+    "welcome": "Hej",
+    "streak": "Dagar i rad",
+    "xp": "Erfarenhet",
+    "level": "Niva",
+    "startSession": "Starta session",
+    "missionOfDay": "Dagens uppdrag",
+    "myProgress": "Min framsteg",
+    "recentSessions": "Senaste sessioner"
+  },
+  "financer": {
+    "title": "Hitta dina bidrag pa 2 minuter",
+    "subtitle": "45 program analyserade",
+    "step1": "Din profil",
+    "step2": "Hittade bidrag",
+    "step3": "Din akt",
+    "step4": "Uppfoljning",
+    "searchAides": "Sok mina bidrag",
+    "cumul": "Potentiell summa",
+    "aidesFound": "program identifierade"
+  },
   "cookie": {
-    "message": "Vida Langue använder endast nödvändiga cookies (session, inställningar). Ingen annonsspårning.",
+    "message": "Vida Langue anvander bara nodvandiga cookies. Ingen annonssparing.",
     "accept": "Acceptera",
     "decline": "Avvisa",
-    "settings": "Inställningar"
+    "settings": "Installningar"
   }
 }

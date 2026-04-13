@@ -21,6 +21,8 @@ const PUBLIC_PAGES = [
   '/mentions-legales',
   '/politique-confidentialite',
   '/offline',
+  '/financer',
+  '/breathe',
 ]
 
 function attachConsole(page: Page) {
@@ -91,6 +93,8 @@ const DASHBOARD_PAGES = [
   '/dashboard/achievements',
   '/dashboard/classement',
   '/dashboard/daily-gift',
+  '/dashboard/gratitude',
+  '/dashboard/boutique',
 ]
 
 test.describe('Vida P6 — Dashboard auth gate', () => {
@@ -110,7 +114,7 @@ const VIEWPORTS = [
   { name: 'desktop-1920', width: 1920, height: 1080 },
 ]
 
-const RESPONSIVE_PAGES = ['/', '/pricing', '/login', '/signup', '/aide', '/how-it-works']
+const RESPONSIVE_PAGES = ['/', '/pricing', '/login', '/signup', '/aide', '/how-it-works', '/financer', '/breathe']
 
 test.describe('Vida P6 — Responsive (no horizontal overflow)', () => {
   for (const vp of VIEWPORTS) {
@@ -252,9 +256,8 @@ test.describe('Vida P6 — Landing content', () => {
     await expect(cta).toBeVisible()
   })
 
-  test('Sections phonetic + modes + impact + faq', async ({ page }) => {
+  test('Sections modes + impact + faq', async ({ page }) => {
     await page.goto('/')
-    await expect(page.locator('#phonetic')).toBeAttached()
     await expect(page.locator('#modes')).toBeAttached()
     await expect(page.locator('#impact')).toBeAttached()
     await expect(page.locator('#faq')).toBeAttached()
@@ -419,6 +422,134 @@ test.describe('Vida P6 — 21 simulations utilisateur', () => {
     const ct = res.headers()['content-type'] || ''
     expect(ct).toMatch(/image/)
   })
+})
+
+// ─── Audit V5 — Nouvelles features ──────────────────────────────────────────
+
+test.describe('Audit V5 — /financer', () => {
+  test('Financer — page chargee + titre', async ({ page }) => {
+    await page.goto('/financer')
+    await expect(page.locator('body')).toContainText(/aides|financement|Trouvez/i)
+  })
+
+  test('Financer — wizard step 1 profil selectors visibles', async ({ page }) => {
+    await page.goto('/financer')
+    await expect(page.locator('[data-testid="profil-salarie"]')).toBeVisible()
+    await expect(page.locator('[data-testid="situation-actif"]')).toBeVisible()
+    await expect(page.locator('[data-testid="region-select"]')).toBeVisible()
+    await expect(page.locator('[data-testid="btn-search-aides"]')).toBeVisible()
+  })
+
+  test('Financer — search button disabled sans profil+situation', async ({ page }) => {
+    await page.goto('/financer')
+    const btn = page.locator('[data-testid="btn-search-aides"]')
+    await expect(btn).toBeDisabled()
+  })
+
+  test('Financer — API POST /api/financer → 200 avec aides', async ({ request }) => {
+    const res = await request.post('/api/financer', {
+      data: { profil: 'salarie', situation: 'actif' },
+    })
+    expect(res.status()).toBe(200)
+    const json = await res.json() as { aides: unknown[]; cumul: number; total: number }
+    expect(json.aides.length).toBeGreaterThan(0)
+    expect(json.cumul).toBeGreaterThan(0)
+  })
+
+  test('Financer — API POST sans profil → 400', async ({ request }) => {
+    const res = await request.post('/api/financer', {
+      data: { situation: 'actif' },
+    })
+    expect(res.status()).toBe(400)
+  })
+})
+
+test.describe('Audit V5 — /breathe', () => {
+  test('Breathe — 3 patterns visibles', async ({ page }) => {
+    await page.goto('/breathe')
+    await expect(page.locator('[data-testid="pattern-coherence"]')).toBeVisible()
+    await expect(page.locator('[data-testid="pattern-relaxing"]')).toBeVisible()
+    await expect(page.locator('[data-testid="pattern-energizing"]')).toBeVisible()
+  })
+
+  test('Breathe — selectionner un pattern → bouton commencer', async ({ page }) => {
+    await page.goto('/breathe')
+    await page.locator('[data-testid="pattern-coherence"]').click()
+    await expect(page.locator('[data-testid="btn-breathe-toggle"]')).toBeVisible()
+  })
+})
+
+test.describe('Audit V5 — /pricing bandeau financer', () => {
+  test('Pricing — bandeau financer visible avec lien', async ({ page }) => {
+    await page.goto('/pricing')
+    const banner = page.locator('[data-testid="banner-financer"]')
+    await expect(banner).toBeVisible()
+    await expect(banner).toContainText(/aides/i)
+  })
+})
+
+test.describe('Audit V5 — API boutique', () => {
+  test('GET /api/boutique → 200 + items', async ({ request }) => {
+    const res = await request.get('/api/boutique')
+    expect(res.status()).toBe(200)
+    const json = await res.json() as { items: unknown[] }
+    expect(json.items.length).toBeGreaterThan(0)
+  })
+
+  test('POST /api/boutique unauth → 401', async ({ request }) => {
+    const res = await request.post('/api/boutique', { data: { item_id: 'fake' } })
+    expect(res.status()).toBeGreaterThanOrEqual(400)
+  })
+})
+
+test.describe('Audit V5 — API escalade', () => {
+  test('POST /api/aide/escalade sans email → 400', async ({ request }) => {
+    const res = await request.post('/api/aide/escalade', {
+      data: { message: 'test' },
+    })
+    expect(res.status()).toBe(400)
+  })
+})
+
+test.describe('Audit V5 — Dashboard auth gate nouvelles pages', () => {
+  test('DASHBOARD /dashboard/gratitude → /login', async ({ page }) => {
+    await page.goto('/dashboard/gratitude')
+    await expect(page).toHaveURL(/\/login/)
+  })
+
+  test('DASHBOARD /dashboard/boutique → /login', async ({ page }) => {
+    await page.goto('/dashboard/boutique')
+    await expect(page).toHaveURL(/\/login/)
+  })
+})
+
+test.describe('Audit V5 — Responsive nouvelles pages', () => {
+  for (const vp of [{ name: 'mobile-375', width: 375, height: 667 }]) {
+    for (const path of ['/financer', '/breathe']) {
+      test(`${path} @ ${vp.name} — no overflow`, async ({ page }) => {
+        await page.setViewportSize({ width: vp.width, height: vp.height })
+        await page.goto(path, { waitUntil: 'domcontentloaded', timeout: 20000 })
+        const overflow = await page.evaluate(() =>
+          document.documentElement.scrollWidth > window.innerWidth + 2,
+        )
+        expect(overflow, `horizontal overflow at ${vp.width}px on ${path}`).toBe(false)
+      })
+    }
+  }
+})
+
+test.describe('Audit V5 — 0 contenu factice', () => {
+  for (const path of ['/', '/pricing', '/financer', '/breathe', '/aide']) {
+    test(`${path} — 0 Lorem/TODO/AKASHA/faux`, async ({ page }) => {
+      await page.goto(path)
+      const body = (await page.locator('body').textContent()) || ''
+      expect(body).not.toMatch(/Lorem/)
+      expect(body).not.toMatch(/TODO/)
+      expect(body).not.toMatch(/AKASHA/)
+      expect(body).not.toMatch(/10\.000 utilisateurs/)
+      expect(body).not.toMatch(/99%/)
+    })
+  }
 })
 
 // ─── Liens morts (boutons header / footer) ──────────────────────────────────

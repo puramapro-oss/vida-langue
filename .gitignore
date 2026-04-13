@@ -17,3 +17,4 @@ AGENT-EMAIL-BRIEF.md
 test-results/
 tsconfig.tsbuildinfo
 playwright-report/
+.lighthouseci/
