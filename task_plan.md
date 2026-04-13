@@ -205,7 +205,17 @@ Vida Langue = app **éducation/langues**, PAS santé/bien-être/sport/fitness/we
 - ✅ Purge refs akasha → vida dans claude.ts + checkout
 - ✅ 0 refs akasha, 0 console.log, 0 TODO, 0 Lorem
 
-### Deploy  ✅
+### Deploy Audit V5  ✅
 - ✅ tsc 0, build OK (80 routes vs 65 avant)
 - ✅ Deploy Vercel prod → https://vidalangue.purama.dev
 - ✅ Smoke tests : / /pricing /financer /breathe → 200
+
+### Phase F — i18n + Playwright + Lighthouse + Test humain  ✅ 2026-04-13
+- ✅ i18n 16 langues enrichi (7 namespaces : cookie, common, nav, auth, pricing, dashboard, financer)
+- ✅ Playwright **136/136** tests passes (30 nouveaux tests V5)
+- ✅ Lighthouse > 90 sur 3 pages : Landing 94/96/100/100 | Pricing 93/98/100/92 | Financer 99/96/100/92
+- ✅ Fix a11y /financer : main landmark, select label, touch targets 44px
+- ✅ Test humain 23 checks : tous ✅
+- ✅ Deploy final Vercel prod
+- ✅ 0 Lorem, 0 TODO, 0 AKASHA, 0 console.log, 0 faux contenu
+- ✅ Commit 118f0c2

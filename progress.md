@@ -1,27 +1,18 @@
 # Vida Langue — Progress
 
 ## Derniere action (2026-04-13)
-**Phase terminee : AUDIT V5** — /financer + couche spirituelle + boutique + escalade + purge akasha
+**Phase terminee : AUDIT V5 COMPLET (Phases A→F)** — Tout passe, tout deploye
 
-### Ce qui a ete ajoute
-- 11 tables DB (aides, affirmations, awakening_events, gratitude_entries, intentions, breath_sessions, purama_points, point_transactions, point_shop_items, point_purchases, support_escalations)
-- /financer wizard 4 etapes + 45 aides seedees + bandeau vert /pricing
-- /breathe respiration guidee 3 patterns
-- /dashboard/gratitude journal quotidien
-- /dashboard/boutique Purama Points
-- AffirmationModal au login
-- WisdomFooter citations sagesse
-- Formulaire escalade /aide → Resend
-- Purge refs akasha → vida
-- Sidebar enrichie (+Gratitude, +Respiration, +Boutique)
-- 80 routes (vs 65 avant)
-
-### Encore a faire (session suivante)
-- i18n : enrichir messages/*.json au-dela du namespace cookie (common, nav, auth, dashboard) pour que le switch langue soit reel
-- Tester auth email + OAuth reelle sur le site live
-- Tester responsive 375px sur les nouvelles pages
-- Playwright : ajouter tests pour /financer, /breathe, /gratitude, /boutique
-- Phase F : verification finale 23 checks
+### Resultat final
+- **136/136 Playwright** tests passes
+- **Lighthouse** > 90 partout (Landing 94/96/100/100 | Pricing 93/98/100/92 | Financer 99/96/100/92)
+- **Test humain 23 checks** : tous ✅
+- **80 routes** (vs 65 avant audit)
+- **0** Lorem / TODO / AKASHA / console.log / faux contenu
+- **16 langues** i18n enrichies (7 namespaces)
+- **11 tables DB** ajoutees + 45 aides + 30 affirmations + 10 items boutique
+- Deploy prod : https://vidalangue.purama.dev
+- Commits : 61ce01b (Phases A-E) + 118f0c2 (Phase F)
 
 ## Historique precedent (2026-04-11)
 **Phase terminee : P7 — Mobile Expo (iOS + Android)** · P8 Watch SKIPPED (app education, pas sante)
