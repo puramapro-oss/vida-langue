@@ -1,6 +1,7 @@
 import Sidebar from '@/components/layout/Sidebar'
 import Topbar from '@/components/layout/Topbar'
 import BottomTabBar from '@/components/layout/BottomTabBar'
+import WisdomFooter from '@/components/shared/WisdomFooter'
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -10,6 +11,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <Topbar />
         <main className="min-h-[calc(100vh-4rem)] p-4 pb-20 lg:p-8 lg:pb-8">
           {children}
+          <WisdomFooter />
         </main>
       </div>
       <BottomTabBar />

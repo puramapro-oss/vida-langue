@@ -1,7 +1,30 @@
 # Vida Langue — Progress
 
-## Dernière action (2026-04-11)
-**Phase terminée : P7 — Mobile Expo (iOS + Android)** · P8 Watch SKIPPED (app éducation, pas santé)
+## Derniere action (2026-04-13)
+**Phase terminee : AUDIT V5** — /financer + couche spirituelle + boutique + escalade + purge akasha
+
+### Ce qui a ete ajoute
+- 11 tables DB (aides, affirmations, awakening_events, gratitude_entries, intentions, breath_sessions, purama_points, point_transactions, point_shop_items, point_purchases, support_escalations)
+- /financer wizard 4 etapes + 45 aides seedees + bandeau vert /pricing
+- /breathe respiration guidee 3 patterns
+- /dashboard/gratitude journal quotidien
+- /dashboard/boutique Purama Points
+- AffirmationModal au login
+- WisdomFooter citations sagesse
+- Formulaire escalade /aide → Resend
+- Purge refs akasha → vida
+- Sidebar enrichie (+Gratitude, +Respiration, +Boutique)
+- 80 routes (vs 65 avant)
+
+### Encore a faire (session suivante)
+- i18n : enrichir messages/*.json au-dela du namespace cookie (common, nav, auth, dashboard) pour que le switch langue soit reel
+- Tester auth email + OAuth reelle sur le site live
+- Tester responsive 375px sur les nouvelles pages
+- Playwright : ajouter tests pour /financer, /breathe, /gratitude, /boutique
+- Phase F : verification finale 23 checks
+
+## Historique precedent (2026-04-11)
+**Phase terminee : P7 — Mobile Expo (iOS + Android)** · P8 Watch SKIPPED (app education, pas sante)
 
 ### État
 - ✅ App Expo SDK 54 / TypeScript scaffoldée dans `~/purama/vida-langue/mobile/`

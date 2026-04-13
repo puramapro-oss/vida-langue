@@ -129,6 +129,22 @@ export default function PricingPage() {
         </Link>
       </div>
 
+      {/* Bandeau financement */}
+      <div className="max-w-3xl mx-auto mb-8">
+        <Link
+          href="/financer"
+          data-testid="banner-financer"
+          className="block w-full rounded-2xl bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 p-4 text-center hover:border-emerald-500/40 transition-all group"
+        >
+          <p className="text-sm font-medium text-emerald-400 mb-0.5">
+            La plupart de nos clients ne paient rien grace aux aides
+          </p>
+          <p className="text-xs text-[var(--text-muted)] group-hover:text-[var(--text-secondary)] transition-colors">
+            45 aides analysees — Decouvrez celles auxquelles vous avez droit →
+          </p>
+        </Link>
+      </div>
+
       <div className="max-w-3xl mx-auto text-center mb-14">
         <div className="inline-flex items-center gap-2 bg-[var(--green)]/10 border border-[var(--green)]/30 rounded-full px-4 py-1.5 text-[var(--green)] text-sm font-medium mb-6">
           <Sparkles className="w-3.5 h-3.5" />

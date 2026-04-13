@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import {
   Home, Sparkles, Globe2, Compass, Megaphone, Users,
   Wallet, Trophy, Settings, ChevronLeft, ChevronRight,
-  LogOut, User, Shield, BookOpen, Heart, Leaf,
+  LogOut, User, Shield, BookOpen, Heart, Leaf, Wind, ShoppingBag,
 } from 'lucide-react'
 import { cn, getInitials } from '@/lib/utils'
 import { useAuth } from '@/hooks/useAuth'
@@ -23,6 +23,9 @@ const NAV_ITEMS = [
   { href: '/dashboard/referral', icon: Users, label: 'Parrainage' },
   { href: '/dashboard/influenceur', icon: Megaphone, label: 'Influenceur' },
   { href: '/dashboard/wallet', icon: Wallet, label: 'Gains' },
+  { href: '/dashboard/boutique', icon: ShoppingBag, label: 'Boutique' },
+  { href: '/dashboard/gratitude', icon: Heart, label: 'Gratitude' },
+  { href: '/breathe', icon: Wind, label: 'Respiration' },
   { href: '/dashboard/guide', icon: BookOpen, label: 'Guide' },
   { href: '/dashboard/profile', icon: User, label: 'Profil' },
   { href: '/dashboard/settings', icon: Settings, label: 'Réglages' },

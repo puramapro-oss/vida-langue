@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
       legacyPlan = cfg.legacyPlan
       withTrial = cfg.trial
     } else {
-      // Legacy mapping (compat akasha-style routes)
+      // Legacy mapping (compat older routes)
       legacyPlan = plan as Exclude<Plan, 'free'>
       priceId = STRIPE_PRICE_IDS[legacyPlan][(tier ?? 'essential') as PlanTier]
       withTrial = legacyPlan === 'create' || legacyPlan === 'build' || legacyPlan === 'automate'

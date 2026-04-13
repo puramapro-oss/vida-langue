@@ -39,6 +39,12 @@ export default function AidePage() {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([])
   const [chatInput, setChatInput] = useState('')
   const [chatLoading, setChatLoading] = useState(false)
+  const [showEscalation, setShowEscalation] = useState(false)
+  const [escName, setEscName] = useState('')
+  const [escEmail, setEscEmail] = useState('')
+  const [escMessage, setEscMessage] = useState('')
+  const [escLoading, setEscLoading] = useState(false)
+  const [escSent, setEscSent] = useState(false)
   const chatEndRef = useRef<HTMLDivElement>(null)
   const supabase = createClient()
 
@@ -267,6 +273,74 @@ export default function AidePage() {
               <div className="flex items-center gap-2 rounded-2xl bg-white/5 px-4 py-2.5">
                 <Loader2 className="h-4 w-4 animate-spin text-[var(--green)]" />
                 <span className="text-sm text-[var(--text-secondary)]">Reflexion en cours...</span>
+              </div>
+            )}
+
+            {/* Escalation prompt after 3+ messages */}
+            {chatMessages.length >= 3 && !showEscalation && !escSent && (
+              <div className="text-center py-2">
+                <button
+                  onClick={() => setShowEscalation(true)}
+                  className="text-xs text-[var(--text-muted)] hover:text-[var(--green)] transition-colors underline"
+                  data-testid="btn-escalade"
+                >
+                  Le chatbot ne resout pas ton probleme ? Contacte un humain
+                </button>
+              </div>
+            )}
+
+            {/* Escalation form */}
+            {showEscalation && !escSent && (
+              <div className="rounded-xl bg-white/5 border border-[var(--border)] p-3 space-y-2">
+                <p className="text-xs font-medium text-[var(--text-primary)]">Contacter l&apos;equipe</p>
+                <input
+                  type="text"
+                  placeholder="Ton nom"
+                  value={escName}
+                  onChange={(e) => setEscName(e.target.value)}
+                  className="w-full rounded-lg border border-[var(--border)] bg-white/5 px-3 py-1.5 text-xs text-[var(--text-primary)] outline-none"
+                />
+                <input
+                  type="email"
+                  placeholder="Ton email"
+                  value={escEmail}
+                  onChange={(e) => setEscEmail(e.target.value)}
+                  className="w-full rounded-lg border border-[var(--border)] bg-white/5 px-3 py-1.5 text-xs text-[var(--text-primary)] outline-none"
+                  data-testid="esc-email"
+                />
+                <textarea
+                  placeholder="Decris ton probleme..."
+                  value={escMessage}
+                  onChange={(e) => setEscMessage(e.target.value)}
+                  rows={2}
+                  className="w-full rounded-lg border border-[var(--border)] bg-white/5 px-3 py-1.5 text-xs text-[var(--text-primary)] outline-none resize-none"
+                  data-testid="esc-message"
+                />
+                <button
+                  onClick={async () => {
+                    if (!escEmail || !escMessage) return
+                    setEscLoading(true)
+                    await fetch('/api/aide/escalade', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ name: escName, email: escEmail, message: escMessage }),
+                    })
+                    setEscLoading(false)
+                    setEscSent(true)
+                    setShowEscalation(false)
+                  }}
+                  disabled={!escEmail || !escMessage || escLoading}
+                  className="w-full rounded-lg bg-gradient-to-r from-[var(--green)] to-[var(--purple)] px-3 py-1.5 text-xs font-medium text-white disabled:opacity-40"
+                  data-testid="btn-send-escalade"
+                >
+                  {escLoading ? 'Envoi...' : 'Envoyer'}
+                </button>
+              </div>
+            )}
+
+            {escSent && (
+              <div className="rounded-xl bg-[var(--green)]/10 border border-[var(--green)]/20 p-3 text-center">
+                <p className="text-xs text-[var(--green)]">Message envoye ! Nous te repondrons sous 24h 🌱</p>
               </div>
             )}
 

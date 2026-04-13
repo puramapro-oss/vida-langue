@@ -8,6 +8,7 @@ import { ArrowLeft, Leaf } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
+import AffirmationModal from '@/components/shared/AffirmationModal'
 
 function LoginForm() {
   const router = useRouter()
@@ -20,6 +21,7 @@ function LoginForm() {
   const [rememberMe, setRememberMe] = useState(true)
   const [loading, setLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
+  const [showAffirmation, setShowAffirmation] = useState(false)
 
   async function handleGoogleLogin() {
     setGoogleLoading(true)
@@ -40,11 +42,15 @@ function LoginForm() {
       toast.error('Identifiants incorrects. Vérifie ton email et mot de passe.')
       return
     }
-    router.push(next)
+    setShowAffirmation(true)
+    setTimeout(() => router.push(next), 4000)
   }
 
   return (
     <div className="relative min-h-screen overflow-hidden">
+      {showAffirmation && (
+        <AffirmationModal onClose={() => { setShowAffirmation(false); router.push(next) }} />
+      )}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute top-0 left-1/3 h-[480px] w-[480px] rounded-full bg-emerald-500/15 blur-[140px]" />
         <div className="absolute bottom-0 right-1/3 h-[400px] w-[400px] rounded-full bg-teal-400/12 blur-[140px]" />

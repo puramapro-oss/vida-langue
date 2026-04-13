@@ -171,3 +171,41 @@
 
 ## P8 — Watch (Apple Watch + Wear OS) — SKIPPED
 Vida Langue = app **éducation/langues**, PAS santé/bien-être/sport/fitness/wellness. Per CLAUDE.md MOBILE/WATCH section : Watch n'est obligatoire QUE pour le domaine santé. Skip P8.
+
+## AUDIT V5 — Mise a jour CLAUDE.md  ✅ 2026-04-13
+### Phase A — DB + Fondations  ✅
+- ✅ 11 nouvelles tables : aides, affirmations, awakening_events, gratitude_entries, intentions, breath_sessions, purama_points, point_transactions, point_shop_items, point_purchases, support_escalations
+- ✅ ALTER profiles : +3 colonnes (awakening_level, affirmations_seen, purama_points)
+- ✅ RLS + policies toutes tables
+- ✅ Seed : 45 aides, 30 affirmations, 10 items boutique
+- ✅ PostgREST : aides/affirmations/point_shop_items → 200
+
+### Phase B — Module /financer  ✅
+- ✅ /financer : wizard 4 etapes (profil → matching → dossier → suivi)
+- ✅ /api/financer : POST match profil/situation/region/handicap → aides + cumul
+- ✅ Bandeau vert /pricing → lien /financer
+- ✅ Routes publiques middleware + constants
+
+### Phase C — Couche spirituelle  ✅
+- ✅ /breathe : 3 patterns respiration (coherence 5-5, relaxante 4-7-8, energisante 2-2-4), cercle anime
+- ✅ /dashboard/gratitude : journal quotidien, insertion DB, historique 30j
+- ✅ AffirmationModal : apres login, fetch DB, modal glass anime, auto-redirect 4s
+- ✅ WisdomFooter : citation sagesse rotative dans layout dashboard
+- ✅ Sidebar : +Gratitude +Respiration
+
+### Phase D — Boutique Points  ✅
+- ✅ /dashboard/boutique : catalogue items par categorie, solde points, achat
+- ✅ /api/boutique : GET items + POST achat (verif points, deduction, transaction)
+- ✅ Sidebar : +Boutique
+- ✅ Type Profile : +purama_points, +awakening_level, +affirmations_seen
+
+### Phase E — Corrections mineures  ✅
+- ✅ /api/aide/escalade : formulaire escalade → DB support_escalations + Resend email
+- ✅ /aide : bouton escalade apres 3+ messages chatbot
+- ✅ Purge refs akasha → vida dans claude.ts + checkout
+- ✅ 0 refs akasha, 0 console.log, 0 TODO, 0 Lorem
+
+### Deploy  ✅
+- ✅ tsc 0, build OK (80 routes vs 65 avant)
+- ✅ Deploy Vercel prod → https://vidalangue.purama.dev
+- ✅ Smoke tests : / /pricing /financer /breathe → 200

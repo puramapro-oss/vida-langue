@@ -24,6 +24,9 @@ export interface Profile {
   referral_code: string | null
   daily_questions: number
   streak_count: number
+  purama_points: number
+  awakening_level: number
+  affirmations_seen: number
   created_at: string
   updated_at: string
 }

@@ -26,18 +26,18 @@ const MODEL_MAP: Record<Plan, string> = {
   complete: 'claude-sonnet-4-20250514',
 }
 
-// Alias historiques (akasha template) → map vers les vrais modèles pour compat
+// Alias internes pour compat routes existantes
 const LEGACY_MODEL_MAP: Record<string, string> = {
-  'akasha-sonnet': 'claude-sonnet-4-20250514',
-  'akasha-opus': 'claude-opus-4-20250514',
-  'akasha-haiku': 'claude-haiku-4-5-20251001',
   'vida-main': 'claude-sonnet-4-20250514',
+  'vida-sonnet': 'claude-sonnet-4-20250514',
+  'vida-opus': 'claude-opus-4-20250514',
+  'vida-haiku': 'claude-haiku-4-5-20251001',
 }
 
 export function resolveModel(modelAlias: string | undefined, plan: Plan): string {
   if (modelAlias && LEGACY_MODEL_MAP[modelAlias]) {
-    if (modelAlias === 'akasha-opus' && plan === 'free') {
-      return LEGACY_MODEL_MAP['akasha-sonnet']
+    if (modelAlias === 'vida-opus' && plan === 'free') {
+      return LEGACY_MODEL_MAP['vida-sonnet']
     }
     return LEGACY_MODEL_MAP[modelAlias]
   }
