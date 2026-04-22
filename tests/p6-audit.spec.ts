@@ -161,11 +161,11 @@ test.describe('Vida P6 — API routes', () => {
     expect(res.status()).toBe(200)
   })
 
-  test('GET /manifest.json → Vida Langue', async ({ request }) => {
+  test('GET /manifest.json → VEDA', async ({ request }) => {
     const res = await request.get('/manifest.json')
     expect(res.status()).toBe(200)
     const json = await res.json()
-    expect(json.name).toMatch(/Vida/i)
+    expect(json.name).toMatch(/VEDA/i)
     expect(json.theme_color).toBe('#10B981')
   })
 
@@ -238,28 +238,28 @@ test.describe('Vida P6 — Forms', () => {
     await expect(body).toContainText(/Contact/i)
   })
 
-  test('Aide — coach Vida présent', async ({ page }) => {
+  test('Aide — coach VEDA/NAMA présent', async ({ page }) => {
     await page.goto('/aide')
     const body = page.locator('body')
-    await expect(body).toContainText(/Vida/i)
+    await expect(body).toContainText(/VEDA|NAMA/i)
   })
 })
 
 // ─── Landing content ─────────────────────────────────────────────────────────
 
 test.describe('Vida P6 — Landing content', () => {
-  test('Hero + CTA + branding Vida', async ({ page }) => {
+  test('Hero + CTA + branding VEDA', async ({ page }) => {
     await page.goto('/')
     const body = page.locator('body')
-    await expect(body).toContainText('Vida Langue')
+    await expect(body).toContainText('VEDA')
     const cta = page.locator('a[href="/signup"]').first()
     await expect(cta).toBeVisible()
   })
 
-  test('Sections modes + impact + faq', async ({ page }) => {
+  test('Sections modes + méthode + faq', async ({ page }) => {
     await page.goto('/')
     await expect(page.locator('#modes')).toBeAttached()
-    await expect(page.locator('#impact')).toBeAttached()
+    await expect(page.locator('#method')).toBeAttached()
     await expect(page.locator('#faq')).toBeAttached()
   })
 
@@ -293,9 +293,9 @@ test.describe('Vida P6 — Landing content', () => {
 // ─── 21 simulations utilisateur ──────────────────────────────────────────────
 
 test.describe('Vida P6 — 21 simulations utilisateur', () => {
-  test('SIM01 — visiteur arrive sur landing → voit hero Vida', async ({ page }) => {
+  test('SIM01 — visiteur arrive sur landing → voit hero VEDA', async ({ page }) => {
     await page.goto('/')
-    await expect(page.locator('body')).toContainText('Vida Langue')
+    await expect(page.locator('body')).toContainText('VEDA')
   })
 
   test('SIM02 — visiteur clique CTA → /signup', async ({ page }) => {
@@ -317,7 +317,7 @@ test.describe('Vida P6 — 21 simulations utilisateur', () => {
 
   test('SIM05 — visiteur ouvre /aide pour chercher aide', async ({ page }) => {
     await page.goto('/aide')
-    await expect(page.locator('body')).toContainText(/Vida/)
+    await expect(page.locator('body')).toContainText(/VEDA|NAMA/)
   })
 
   test('SIM06 — visiteur va sur /contact', async ({ page }) => {
@@ -341,12 +341,12 @@ test.describe('Vida P6 — 21 simulations utilisateur', () => {
 
   test('SIM09 — visiteur va sur /ecosystem (cross-promo)', async ({ page }) => {
     await page.goto('/ecosystem')
-    await expect(page.locator('body')).toContainText(/Vida/)
+    await expect(page.locator('body')).toContainText(/VEDA|Purama/)
   })
 
   test('SIM10 — visiteur consulte /how-it-works', async ({ page }) => {
     await page.goto('/how-it-works')
-    await expect(page.locator('body')).toContainText(/Vida|Natif|HoloTalk/i)
+    await expect(page.locator('body')).toContainText(/VEDA|NAMA|Natif|HoloTalk/i)
   })
 
   test('SIM11 — visiteur essaie de forcer /dashboard sans auth → /login', async ({ page }) => {
