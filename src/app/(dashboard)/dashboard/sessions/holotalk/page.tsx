@@ -85,7 +85,7 @@ export default function HoloTalkPage() {
       })
       if (!res.ok || !res.body) {
         const err = await res.json().catch(() => ({ error: 'Erreur' }))
-        toast.error(err.error ?? 'Vida a perdu le souffle.')
+        toast.error(err.error ?? 'VEDA a perdu le souffle.')
         setMessages(newMessages)
         return
       }
@@ -145,7 +145,7 @@ export default function HoloTalkPage() {
       const t = e.results[0]?.[0]?.transcript ?? ''
       if (t) setInput(t)
     }
-    rec.onerror = () => toast.error('Vida n\'a pas capté ta voix.')
+    rec.onerror = () => toast.error('VEDA n\'a pas capté ta voix.')
     rec.start()
   }
 
@@ -218,8 +218,8 @@ export default function HoloTalkPage() {
         <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto p-4">
           {messages.length === 0 && (
             <div className="flex h-full flex-col items-center justify-center gap-2 text-center text-sm text-[var(--text-muted)]">
-              <p>Lance la conversation. Vida t&apos;écoute.</p>
-              <p className="text-xs">Si tu écris dans ta langue, Vida répondra dans la langue cible et te traduira.</p>
+              <p>Lance la conversation. VEDA t&apos;écoute.</p>
+              <p className="text-xs">Si tu écris dans ta langue, VEDA répondra dans la langue cible et te traduira.</p>
             </div>
           )}
           <AnimatePresence initial={false}>

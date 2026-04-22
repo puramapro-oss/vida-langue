@@ -76,7 +76,7 @@ export default function Signup() {
             </Pressable>
 
             <Text className="text-3xl font-bold text-emerald-50">
-              Bienvenue sur Vida Langue 🌱
+              Bienvenue sur VEDA 🌱
             </Text>
             <Text className="mt-2 text-emerald-200/70">
               14 jours d'essai gratuit. Annule en 1 clic.
@@ -124,7 +124,7 @@ export default function Signup() {
                   ) : null}
                 </View>
                 <Text className="flex-1 text-sm text-emerald-100/80">
-                  J'accepte les CGU et la politique de confidentialité de Vida Langue.
+                  J'accepte les CGU et la politique de confidentialité de VEDA.
                 </Text>
               </Pressable>
 

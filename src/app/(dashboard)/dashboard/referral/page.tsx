@@ -29,9 +29,9 @@ interface VidaReferral {
 const TIERS = [
   { tier: 'graine', min: 0, label: 'Graine', color: '#94a3b8', perk: 'Tu commences ton chemin' },
   { tier: 'bronze', min: 5, label: 'Bronze', color: '#CD7F32', perk: '+5 vida_credits offerts' },
-  { tier: 'argent', min: 10, label: 'Argent', color: '#C0C0C0', perk: '1 mois Vida offert' },
+  { tier: 'argent', min: 10, label: 'Argent', color: '#C0C0C0', perk: '1 mois VEDA offert' },
   { tier: 'or', min: 25, label: 'Or', color: '#FFD700', perk: 'Prix gelé à -20% à vie' },
-  { tier: 'platine', min: 50, label: 'Platine', color: '#E5E4E2', perk: 'Statut Vida Voyageur' },
+  { tier: 'platine', min: 50, label: 'Platine', color: '#E5E4E2', perk: 'Statut VEDA Voyageur' },
   { tier: 'diamant', min: 75, label: 'Diamant', color: '#B9F2FF', perk: 'Page perso vidalangue.purama.dev/p/' },
   { tier: 'legende', min: 100, label: 'Légende', color: '#10B981', perk: 'Commissions héréditaires + cadeaux' },
 ] as const
@@ -107,9 +107,9 @@ export default function ReferralPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Parrainage Vida</h1>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Parrainage VEDA</h1>
         <p className="mt-1 text-[var(--text-secondary)]">
-          Partage Vida Langue. Gagne <span className="text-[var(--green)] font-semibold">50%</span> du
+          Partage VEDA. Gagne <span className="text-[var(--green)] font-semibold">50%</span> du
           1er paiement + <span className="text-[var(--green)] font-semibold">10%</span> à vie tant que ton filleul reste abonné.
         </p>
       </div>
@@ -174,7 +174,7 @@ export default function ReferralPage() {
               <Globe className="h-3.5 w-3.5" /> Facebook
             </a>
             <a
-              href={`mailto:?subject=${encodeURIComponent('Vida Langue — 14 jours offerts')}&body=${encodeURIComponent(shareMessage)}`}
+              href={`mailto:?subject=${encodeURIComponent('VEDA — 14 jours offerts')}&body=${encodeURIComponent(shareMessage)}`}
               className="inline-flex items-center gap-2 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.06] px-3 py-2 text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
             >
               <Mail className="h-3.5 w-3.5" /> Email
@@ -205,7 +205,7 @@ export default function ReferralPage() {
             <div>
               <p className="text-sm text-[var(--text-secondary)]">Gains</p>
               <p className="text-xl font-bold text-[var(--text-primary)]">{totalEarnings.toFixed(2)}€</p>
-              <p className="text-xs text-[var(--text-muted)]">Versé sur ton wallet Vida</p>
+              <p className="text-xs text-[var(--text-muted)]">Versé sur ton wallet VEDA</p>
             </div>
           </div>
         </Card>
@@ -254,7 +254,7 @@ export default function ReferralPage() {
       </div>
 
       <Card className="p-6">
-        <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Paliers Vida</h2>
+        <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Paliers VEDA</h2>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {TIERS.map((t) => {
             const reached = subscribed >= t.min

@@ -1,6 +1,6 @@
 import GuidedSession from '@/components/sessions/GuidedSession'
 
-export const metadata = { title: 'NeuroFlow™ — Vida Langue' }
+export const metadata = { title: 'NeuroFlow™ — VEDA' }
 
 export default function NeuroFlowPage() {
   return (
@@ -16,11 +16,11 @@ export default function NeuroFlowPage() {
       phases={[
         {
           title: 'Respiration 4-7-8',
-          description: 'Inspire 4 secondes, retiens 7 secondes, expire 8 secondes. Vida te donne une phrase d\'ancrage à répéter en boucle.',
+          description: 'Inspire 4 secondes, retiens 7 secondes, expire 8 secondes. VEDA te donne une phrase d\'ancrage à répéter en boucle.',
         },
         {
           title: 'Immersion double canal',
-          description: 'Vida te lit un mini-paragraphe sensoriel dans la langue cible. Laisse les images monter sans traduire dans ta tête.',
+          description: 'VEDA te lit un mini-paragraphe sensoriel dans la langue cible. Laisse les images monter sans traduire dans ta tête.',
         },
         {
           title: 'Scellage neurologique',

@@ -1,6 +1,6 @@
 import GuidedSession from '@/components/sessions/GuidedSession'
 
-export const metadata = { title: 'Hypno-Immersif™ — Vida Langue' }
+export const metadata = { title: 'Hypno-Immersif™ — VEDA' }
 
 export default function HypnoImmersifPage() {
   return (
@@ -8,7 +8,7 @@ export default function HypnoImmersifPage() {
       mode="hypno"
       badge="✦ Hypno-Immersif™"
       title="Double canal, un mot ancré pour la vie"
-      intro="20 minutes de répétition douce et contextuelle d\'un mot-clé. Le subconscient absorbe par fréquence. Mets tes écouteurs, ferme les yeux, laisse Vida faire le travail."
+      intro="20 minutes de répétition douce et contextuelle d\'un mot-clé. Le subconscient absorbe par fréquence. Mets tes écouteurs, ferme les yeux, laisse VEDA faire le travail."
       durationMin={20}
       accentColor="#e879f9"
       accentBg="bg-fuchsia-500/10"
@@ -24,7 +24,7 @@ export default function HypnoImmersifPage() {
       phases={[
         {
           title: 'Induction',
-          description: 'Vida te donne 4 phrases qui contiennent le mot-clé dans 4 contextes différents. Écoute-les sans analyser.',
+          description: 'VEDA te donne 4 phrases qui contiennent le mot-clé dans 4 contextes différents. Écoute-les sans analyser.',
         },
         {
           title: 'Ancrage',

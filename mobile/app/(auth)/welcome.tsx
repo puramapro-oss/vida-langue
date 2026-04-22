@@ -24,11 +24,11 @@ export default function Welcome() {
             </View>
 
             <Text className="mt-8 text-center text-4xl font-bold text-emerald-50">
-              Vida Langue
+              VEDA
             </Text>
             <Text className="mt-3 text-center text-base text-emerald-200/80">
               Apprends une langue comme un natif. Phonétique 3 couches, voix réelles,
-              16 langues.
+              50+ langues. Guidé par NAMA.
             </Text>
 
             <View className="mt-10 w-full gap-3">

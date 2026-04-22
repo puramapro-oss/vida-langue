@@ -140,7 +140,7 @@ export default function ImpactPage() {
           Mon Impact
         </h1>
         <p className="mt-1 text-[var(--text-secondary)]">
-          Chaque action que tu fais avec Vida laisse une trace dans le monde réel.
+          Chaque action que tu fais avec VEDA laisse une trace dans le monde réel.
         </p>
       </div>
 
@@ -216,10 +216,10 @@ export default function ImpactPage() {
         <Card className="p-6">
           <div className="flex items-center gap-2 mb-2">
             <Users className="h-5 w-5 text-[var(--text-secondary)]" />
-            <h3 className="font-semibold text-[var(--text-primary)]">Impact collectif Vida</h3>
+            <h3 className="font-semibold text-[var(--text-primary)]">Impact collectif VEDA</h3>
           </div>
           <p className="text-[var(--text-secondary)] text-sm mb-4">
-            Toutes les actions de tous les apprenants Vida cumulées :
+            Toutes les actions de tous les apprenants VEDA cumulées :
           </p>
           <p className="text-4xl font-bold text-[var(--text-primary)]">
             {collectiveTotal.toLocaleString('fr-FR')}

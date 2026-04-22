@@ -1,12 +1,12 @@
 {
   "cookie": {
-    "message": "Vida Langue only uses essential cookies (session, preferences). No advertising tracking.",
+    "message": "VEDA only uses essential cookies (session, preferences). No advertising tracking.",
     "accept": "Accept",
     "decline": "Decline",
     "settings": "Settings"
   },
   "common": {
-    "appName": "Vida Langue",
+    "appName": "VEDA",
     "loading": "Loading...",
     "error": "An error occurred",
     "retry": "Retry",

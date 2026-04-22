@@ -110,7 +110,7 @@ export default function DashboardHomePage() {
         </Card>
         <Card className="p-4" data-testid="stat-energy">
           <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
-            <Heart className="h-4 w-4 text-emerald-400" /> Énergie Vida
+            <Heart className="h-4 w-4 text-emerald-400" /> Énergie VEDA
           </div>
           <p className="mt-2 text-2xl font-bold text-emerald-300">{energy}%</p>
         </Card>
@@ -147,7 +147,7 @@ export default function DashboardHomePage() {
               <div className="flex-1">
                 <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold">Natif Instinct™</h3>
                 <p className="mt-1 text-sm text-[var(--text-secondary)]">
-                  Tape une phrase, vois la phonétique Vida adaptée à ton {nativeMeta?.name ?? 'français'}. 3 couches, 0 traduction mentale.
+                  Tape une phrase, vois la phonétique VEDA adaptée à ton {nativeMeta?.name ?? 'français'}. 3 couches, 0 traduction mentale.
                 </p>
                 <div className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-emerald-400">
                   Lancer une couche <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
@@ -210,7 +210,7 @@ export default function DashboardHomePage() {
         </motion.div>
       )}
 
-      {loading && <p className="text-center text-sm text-[var(--text-muted)]">Vida prépare ton espace…</p>}
+      {loading && <p className="text-center text-sm text-[var(--text-muted)]">VEDA prépare ton espace…</p>}
     </motion.div>
   )
 }

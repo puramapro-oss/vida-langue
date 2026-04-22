@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     const { data: { user }, error: authError } = await supabase.auth.getUser()
 
     if (authError || !user) {
-      return NextResponse.json({ error: 'Connecte-toi pour souscrire à Vida Langue.' }, { status: 401 })
+      return NextResponse.json({ error: 'Connecte-toi pour souscrire à VEDA.' }, { status: 401 })
     }
 
     const body = await req.json() as unknown

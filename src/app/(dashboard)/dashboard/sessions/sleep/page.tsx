@@ -1,6 +1,6 @@
 import GuidedSession from '@/components/sessions/GuidedSession'
 
-export const metadata = { title: 'SleepSync™ — Vida Langue' }
+export const metadata = { title: 'SleepSync™ — VEDA' }
 
 export default function SleepSyncPage() {
   return (
@@ -23,7 +23,7 @@ export default function SleepSyncPage() {
       phases={[
         {
           title: 'Apaisement',
-          description: 'Ferme les yeux. Vida murmure une scène apaisante en 5 phrases courtes.',
+          description: 'Ferme les yeux. VEDA murmure une scène apaisante en 5 phrases courtes.',
         },
         {
           title: 'Dépose',

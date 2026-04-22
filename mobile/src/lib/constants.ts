@@ -1,4 +1,5 @@
-export const APP_NAME = 'Vida Langue';
+export const APP_NAME = 'VEDA';
+export const APP_AI_NAME = 'NAMA-Polyglotte';
 export const APP_SLUG = 'vida-langue';
 export const APP_COLOR = '#10B981';
 export const APP_BG = '#0A0A0F';

@@ -69,7 +69,7 @@ export default function OnboardingPage() {
         .eq('id', user.id)
 
       if (error) {
-        toast.error('Vida n\'a pas pu graver ton choix. Retente.')
+        toast.error('VEDA n\'a pas pu graver ton choix. Retente.')
         setSaving(false)
         setStep('identity')
         return
@@ -153,7 +153,7 @@ export default function OnboardingPage() {
                   Quelle langue est ton chez-toi ?
                 </h2>
                 <p className="mt-2 text-sm text-[var(--text-secondary)]">
-                  Vida adapte la phonétique à ta langue maternelle.
+                  VEDA adapte la phonétique à ta langue maternelle.
                 </p>
               </div>
               <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
@@ -246,7 +246,7 @@ export default function OnboardingPage() {
                   Ton identité linguistique
                 </h2>
                 <p className="mt-2 text-sm text-[var(--text-secondary)]">
-                  Choisis ou écris la phrase qui te définit en {learningMeta?.name}. Vida la grave.
+                  Choisis ou écris la phrase qui te définit en {learningMeta?.name}. VEDA la grave.
                 </p>
               </div>
               <Card className="p-5">
@@ -303,7 +303,7 @@ export default function OnboardingPage() {
                 )}
               </div>
               <h2 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight">
-                Vida grave ton univers…
+                VEDA grave ton univers…
               </h2>
               <p className="mt-2 text-[var(--text-secondary)]">Quelques secondes.</p>
             </motion.div>

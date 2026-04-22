@@ -4,7 +4,7 @@ export const runtime = 'edge'
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const title = searchParams.get('title') ?? 'Vida Langue'
+  const title = searchParams.get('title') ?? 'VEDA'
   const subtitle = searchParams.get('subtitle') ?? 'Apprends une langue 5x plus vite avec la méthode Natif Instinct™.'
 
   return new ImageResponse(

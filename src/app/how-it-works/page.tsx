@@ -3,8 +3,8 @@ import { ArrowLeft, Brain, Mic, Sparkles, Heart, Trophy, BarChart3 } from 'lucid
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Comment ça marche — Vida Langue',
-  description: 'Découvre comment Vida Langue grave une langue dans ton cerveau en 30 jours.',
+  title: 'Comment ça marche — VEDA',
+  description: 'Découvre comment VEDA grave une langue dans ton cerveau en 30 jours.',
 }
 
 const STEPS = [
@@ -36,13 +36,13 @@ const STEPS = [
     icon: Trophy,
     color: '#34D399',
     title: '5. Vis des missions',
-    description: 'Fini les exercices artificiels. Commande un café, lis un menu, regarde une série. Chaque mission accomplie nourrit ton fil de vie et ton XP Vida.',
+    description: 'Fini les exercices artificiels. Commande un café, lis un menu, regarde une série. Chaque mission accomplie nourrit ton fil de vie et ton XP VEDA.',
   },
   {
     icon: BarChart3,
     color: '#6EE7B7',
     title: '6. Suis ta progression',
-    description: 'Ton univers Vida grandit visuellement à chaque session. Streaks, paliers, vocabulaire ancré, conversations tenues — tout est mesurable, tout est visible.',
+    description: 'Ton univers VEDA grandit visuellement à chaque session. Streaks, paliers, vocabulaire ancré, conversations tenues — tout est mesurable, tout est visible.',
   },
 ]
 
@@ -56,7 +56,7 @@ export default function HowItWorksPage() {
 
         <h1 className="text-3xl font-bold text-[var(--text-primary)]">Comment ça marche</h1>
         <p className="mt-2 text-lg text-[var(--text-secondary)]">
-          Vida Langue grave une langue dans ton cerveau en 30 jours, sans cours, sans théorie. 6 étapes.
+          VEDA grave une langue dans ton cerveau en 30 jours, sans cours, sans théorie. 6 étapes.
         </p>
 
         <div className="mt-12 space-y-8">

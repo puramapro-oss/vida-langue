@@ -75,7 +75,7 @@ function LoginForm() {
                   <Leaf className="h-4 w-4 text-emerald-950" strokeWidth={2.5} />
                 </div>
                 <span className="font-[family-name:var(--font-display)] text-2xl font-bold gradient-text">
-                  Vida Langue
+                  VEDA
                 </span>
               </div>
               <h1 className="font-[family-name:var(--font-display)] text-2xl font-bold text-[var(--text-primary)]">

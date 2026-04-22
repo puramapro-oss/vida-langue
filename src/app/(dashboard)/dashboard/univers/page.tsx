@@ -86,7 +86,7 @@ export default function UniversPage() {
   return (
     <div className="mx-auto max-w-5xl space-y-6" data-testid="univers-page">
       <header className="space-y-2">
-        <p className="text-sm uppercase tracking-wider text-emerald-400">Mon Univers Vida</p>
+        <p className="text-sm uppercase tracking-wider text-emerald-400">Mon Univers VEDA</p>
         <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight md:text-4xl">
           Le fil de ta langue
         </h1>
@@ -116,7 +116,7 @@ export default function UniversPage() {
         </Card>
         <Card className="p-4">
           <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
-            <Heart className="h-4 w-4 text-rose-400" /> Énergie Vida
+            <Heart className="h-4 w-4 text-rose-400" /> Énergie VEDA
           </div>
           <p className="mt-2 text-2xl font-bold text-rose-300">{energy}%</p>
         </Card>
@@ -129,7 +129,7 @@ export default function UniversPage() {
         </div>
         {loading ? (
           <div className="flex items-center gap-2 py-6 text-sm text-[var(--text-muted)]">
-            <Loader2 className="h-4 w-4 animate-spin" /> Vida charge…
+            <Loader2 className="h-4 w-4 animate-spin" /> VEDA charge…
           </div>
         ) : progress.length === 0 ? (
           <p className="py-6 text-center text-sm text-[var(--text-muted)]">

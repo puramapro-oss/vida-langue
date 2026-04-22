@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Vida Langue",
+    "appName": "VEDA",
     "loading": "Загрузка...",
     "error": "Произошла ошибка",
     "retry": "Повторить",
@@ -85,7 +85,7 @@
     "aidesFound": "программ определено"
   },
   "cookie": {
-    "message": "Vida Langue использует только основные файлы cookie. Без рекламного отслеживания.",
+    "message": "VEDA использует только основные файлы cookie. Без рекламного отслеживания.",
     "accept": "Принять",
     "decline": "Отклонить",
     "settings": "Настройки"

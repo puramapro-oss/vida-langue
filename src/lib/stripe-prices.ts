@@ -1,9 +1,9 @@
 import type { Plan, PlanTier } from '@/types'
 
-// Vida Langue n'expose qu'un seul abonnement (mensuel ou annuel) + l'offre
+// VEDA n'expose qu'un seul abonnement (mensuel ou annuel) + l'offre
 // "moitié prix à vie" anti-désabonnement. Le type Plan/PlanTier hérité
 // d'Akasha est conservé pour ne pas casser les routes API existantes —
-// les tiers (essential/pro/max) pointent tous vers le même price ID Vida.
+// les tiers (essential/pro/max) pointent tous vers le même price ID VEDA.
 //
 // Mapping métier (cf. constants.ts PLAN_LIMITS) :
 //   automate → essai 14 jours (pas de checkout, on utilise create par défaut)

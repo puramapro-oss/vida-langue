@@ -41,8 +41,8 @@ const GUIDES = [
       'Va dans Missions',
       'Choisis une mission (vocabulaire, conversation, écoute, partage)',
       'Accepte-la — elle apparaît dans ton dashboard',
-      'Termine-la pour gagner XP, énergie Vida et impact réel',
-      'Tes missions alimentent l\'arbre Vida (1 mission = 1 graine plantée)',
+      'Termine-la pour gagner XP, énergie VEDA et impact réel',
+      'Tes missions alimentent l\'arbre VEDA (1 mission = 1 graine plantée)',
     ],
   },
   {
@@ -95,7 +95,7 @@ export default function GuidePage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-[var(--text-primary)]">Guide</h1>
-        <p className="mt-1 text-[var(--text-secondary)]">Apprends à utiliser toutes les fonctionnalités de Vida Langue</p>
+        <p className="mt-1 text-[var(--text-secondary)]">Apprends à utiliser toutes les fonctionnalités de VEDA</p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-4">

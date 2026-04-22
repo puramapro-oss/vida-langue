@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Vida Langue",
+    "appName": "VEDA",
     "loading": "Laddar...",
     "error": "Ett fel uppstod",
     "retry": "Forsok igen",
@@ -85,7 +85,7 @@
     "aidesFound": "program identifierade"
   },
   "cookie": {
-    "message": "Vida Langue anvander bara nodvandiga cookies. Ingen annonssparing.",
+    "message": "VEDA anvander bara nodvandiga cookies. Ingen annonssparing.",
     "accept": "Acceptera",
     "decline": "Avvisa",
     "settings": "Installningar"

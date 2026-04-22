@@ -115,7 +115,7 @@ export default function WalletPage() {
           id: `pay-${p.id}`,
           amount: -Number(p.amount_cents) / 100,
           type: 'subscription',
-          description: 'Abonnement Vida Langue (Stripe)',
+          description: 'Abonnement VEDA (Stripe)',
           created_at: p.created_at,
         })
       }
@@ -175,7 +175,7 @@ export default function WalletPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Wallet Vida</h1>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)]">Wallet VEDA</h1>
         <p className="mt-1 text-[var(--text-secondary)]">Tes commissions de parrainage, ton abonnement et tes retraits IBAN.</p>
       </div>
 

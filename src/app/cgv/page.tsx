@@ -2,8 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Conditions Générales de Vente — Vida Langue',
-  description: 'CGV de Vida Langue par SASU PURAMA.',
+  title: 'Conditions Générales de Vente — VEDA',
+  description: 'CGV de VEDA par SASU PURAMA.',
 }
 
 export default function CGV() {
@@ -26,7 +26,7 @@ export default function CGV() {
               1. Objet
             </h2>
             <p>
-              Les présentes Conditions Générales de Vente (CGV) régissent les relations commerciales entre SASU PURAMA (ci-après &quot;le Prestataire&quot;) et tout utilisateur souscrivant à un abonnement payant sur la plateforme Vida Langue (ci-après &quot;le Client&quot;).
+              Les présentes Conditions Générales de Vente (CGV) régissent les relations commerciales entre SASU PURAMA (ci-après &quot;le Prestataire&quot;) et tout utilisateur souscrivant à un abonnement payant sur la plateforme VEDA (ci-après &quot;le Client&quot;).
             </p>
           </section>
 
@@ -40,9 +40,9 @@ export default function CGV() {
             <p className="mt-2">Les abonnements disponibles sont :</p>
             <ul className="mt-3 space-y-1.5 ml-4 list-disc">
               <li>Essai gratuit : 14 jours offerts (sans CB)</li>
-              <li>Vida Mensuel : 12,90 €/mois — accès illimité à tous les modes</li>
-              <li>Vida Annuel : 108 €/an (soit 9 €/mois) — économie de 30%</li>
-              <li>Vida à vie moitié prix : 6,45 €/mois facturés à vie après lock-in</li>
+              <li>VEDA Mensuel : 12,90 €/mois — accès illimité à tous les modes</li>
+              <li>VEDA Annuel : 108 €/an (soit 9 €/mois) — économie de 30%</li>
+              <li>VEDA à vie moitié prix : 6,45 €/mois facturés à vie après lock-in</li>
             </ul>
             <p className="mt-3">
               Une remise de 30% est appliquée pour les abonnements annuels par rapport au tarif mensuel.
@@ -71,7 +71,7 @@ export default function CGV() {
               4. Abonnements et reconduction
             </h2>
             <p>
-              Les abonnements Vida Langue sont souscrits pour une durée mensuelle ou annuelle et se renouvellent automatiquement à l&apos;échéance, sauf résiliation préalable.
+              Les abonnements VEDA sont souscrits pour une durée mensuelle ou annuelle et se renouvellent automatiquement à l&apos;échéance, sauf résiliation préalable.
             </p>
             <p className="mt-2">
               Vous recevrez un email de rappel 7 jours avant chaque renouvellement annuel. Vous pouvez modifier ou annuler votre abonnement à tout moment depuis <strong className="text-[var(--text-primary)]">Paramètres → Abonnement</strong>.

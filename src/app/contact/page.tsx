@@ -31,7 +31,7 @@ export default function ContactPage() {
         toast.error(data.error ?? 'Erreur lors de l\'envoi. Reessaie.')
         return
       }
-      toast.success('Message envoye ! L\'equipe Vida te repond sous 24h 🌱')
+      toast.success('Message envoye ! L\'equipe VEDA te repond sous 24h 🌱')
       setName('')
       setEmail('')
       setSubject('')
@@ -51,7 +51,7 @@ export default function ContactPage() {
         </Link>
 
         <h1 className="text-3xl font-bold text-[var(--text-primary)]">Parle-nous 🌱</h1>
-        <p className="mt-2 text-[var(--text-secondary)]">Une question, un bug, une idée pour Vida Langue ? On répond sous 24 h.</p>
+        <p className="mt-2 text-[var(--text-secondary)]">Une question, un bug, une idée pour VEDA ? On répond sous 24 h.</p>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">

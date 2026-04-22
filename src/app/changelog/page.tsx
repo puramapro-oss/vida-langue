@@ -3,8 +3,8 @@ import { ArrowLeft, Sparkles, Bug, Zap } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Changelog — Vida Langue',
-  description: 'Historique des mises à jour Vida Langue',
+  title: 'Changelog — VEDA',
+  description: 'Historique des mises à jour VEDA',
 }
 
 const ENTRIES = [
@@ -12,13 +12,13 @@ const ENTRIES = [
     date: '11 avril 2026',
     version: 'v0.5',
     changes: [
-      { type: 'feature', text: 'Design vert émeraude + animations Vida' },
+      { type: 'feature', text: 'Design vert émeraude + animations VEDA' },
       { type: 'feature', text: 'i18n 16 langues (purge complète des contenus legacy)' },
-      { type: 'feature', text: 'Centre d\'aide rebrandé avec coach Vida Langue' },
+      { type: 'feature', text: 'Centre d\'aide rebrandé avec coach VEDA' },
       { type: 'feature', text: 'Admin dashboard avec stats apprenants' },
       { type: 'improvement', text: 'Pages légales (CGU/CGV/Mentions/RGPD) adaptées au domaine langues' },
-      { type: 'improvement', text: 'Templates emails Resend rebrandés Vida (10 séquences)' },
-      { type: 'bugfix', text: 'Refactor wallet sur tables Vida (profiles + payments)' },
+      { type: 'improvement', text: 'Templates emails Resend rebrandés VEDA (10 séquences)' },
+      { type: 'bugfix', text: 'Refactor wallet sur tables VEDA (profiles + payments)' },
     ],
   },
   {
@@ -27,7 +27,7 @@ const ENTRIES = [
     changes: [
       { type: 'feature', text: 'Système de parrainage (Graine → Légende, 50% du 1er paiement)' },
       { type: 'feature', text: 'Programme influenceur 1 clic + dashboard' },
-      { type: 'feature', text: 'Pricing Vida concret (Mensuel / Annuel / À vie moitié prix)' },
+      { type: 'feature', text: 'Pricing VEDA concret (Mensuel / Annuel / À vie moitié prix)' },
       { type: 'feature', text: 'Stripe checkout + webhook commission auto' },
       { type: 'feature', text: 'Page Impact (4 dimensions, équivalents réels)' },
       { type: 'feature', text: 'Attribution parrainage cookie httpOnly + auth.callback' },
@@ -41,7 +41,7 @@ const ENTRIES = [
       { type: 'feature', text: 'HoloTalk : 6 personas natifs en streaming Claude' },
       { type: 'feature', text: 'Vocabulaire à répétition espacée (intervalles 1→120j)' },
       { type: 'feature', text: 'Missions impact + fil de vie multilingue' },
-      { type: 'feature', text: 'Onboarding Vida (welcome → native → trial 14j)' },
+      { type: 'feature', text: 'Onboarding VEDA (welcome → native → trial 14j)' },
     ],
   },
   {
@@ -50,8 +50,8 @@ const ENTRIES = [
     changes: [
       { type: 'feature', text: 'Schéma vida_langue : 30+ tables avec RLS' },
       { type: 'feature', text: 'Auth email + Google OAuth + trial 14j auto' },
-      { type: 'feature', text: 'Landing page Vida (Hero + 8 modes + Impact + FAQ)' },
-      { type: 'feature', text: 'Identité Coach IA Vida (linguiste neuro-cognitive)' },
+      { type: 'feature', text: 'Landing page VEDA (Hero + 8 modes + Impact + FAQ)' },
+      { type: 'feature', text: 'Identité Coach IA VEDA (linguiste neuro-cognitive)' },
       { type: 'feature', text: 'Theme émeraude #10B981 + fonts Syne/DM Sans' },
     ],
   },
@@ -77,7 +77,7 @@ export default function ChangelogPage() {
         </Link>
 
         <h1 className="text-3xl font-bold text-[var(--text-primary)]">Changelog</h1>
-        <p className="mt-2 text-[var(--text-secondary)]">Historique des mises à jour Vida Langue</p>
+        <p className="mt-2 text-[var(--text-secondary)]">Historique des mises à jour VEDA</p>
 
         <div className="mt-8 space-y-10">
           {ENTRIES.map(entry => (

@@ -39,7 +39,7 @@ const TYPE_META: Record<string, { icon: typeof Sparkles; color: string; bg: stri
 
 const REWARD_LABEL: Record<string, string> = {
   euros: '€',
-  vida_credits: 'crédits Vida',
+  vida_credits: 'crédits VEDA',
   contest_entries: 'tickets concours',
   light_points: 'pts lumière',
   cashback: 'cashback',
@@ -92,7 +92,7 @@ export default function MissionsPage() {
         }, { onConflict: 'user_id,mission_id' as never })
 
       if (error) {
-        toast.error('Vida n\'a pas pu démarrer la mission.')
+        toast.error('VEDA n\'a pas pu démarrer la mission.')
         return
       }
       setUserMissions(prev => {
@@ -108,7 +108,7 @@ export default function MissionsPage() {
   return (
     <div className="mx-auto max-w-5xl space-y-6" data-testid="missions-page">
       <header className="space-y-2">
-        <p className="text-sm uppercase tracking-wider text-emerald-400">Missions Vida</p>
+        <p className="text-sm uppercase tracking-wider text-emerald-400">Missions VEDA</p>
         <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight md:text-4xl">
           Apprendre, c&apos;est aussi changer le monde
         </h1>
@@ -120,11 +120,11 @@ export default function MissionsPage() {
 
       {loading ? (
         <div className="flex items-center justify-center gap-2 py-12 text-[var(--text-muted)]">
-          <Loader2 className="h-4 w-4 animate-spin" /> Vida charge tes missions…
+          <Loader2 className="h-4 w-4 animate-spin" /> VEDA charge tes missions…
         </div>
       ) : missions.length === 0 ? (
         <Card className="p-12 text-center text-[var(--text-muted)]">
-          Aucune mission active pour l&apos;instant. Vida prépare la prochaine vague.
+          Aucune mission active pour l&apos;instant. VEDA prépare la prochaine vague.
         </Card>
       ) : (
         <div className="grid gap-4 md:grid-cols-2">

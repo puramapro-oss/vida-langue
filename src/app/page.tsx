@@ -1,23 +1,38 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   Brain, Mic, Volume2, Moon, Sparkles, Globe, Users, Heart,
-  Check, ChevronDown, Menu, X, Leaf, Zap, Sun, ArrowRight,
-  Headphones, Wand2, Languages,
+  Check, ChevronDown, Menu, X, Leaf, ArrowRight,
 } from 'lucide-react'
 
-// ──────────────────────────────────────────────────────────────────
-// NAV — sticky glass, mobile sheet
-// ──────────────────────────────────────────────────────────────────
+const MODES = [
+  { icon: Brain, name: 'NeuroFlow', desc: 'Respiration → immersion double canal → scellage neurologique.', duration: '25 min' },
+  { icon: Mic, name: 'HoloTalk', desc: 'Conversations vocales avec personnages IA. Voix émotionnelles, mémoire longue.', duration: '10 min' },
+  { icon: Volume2, name: 'Natif Instinct', desc: 'Phonétique VEDA adaptée à ta langue maternelle. Phrase → son → sens.', duration: '5 min' },
+  { icon: Moon, name: 'SleepSync', desc: 'Avant de dormir. Voix lente, consolidation sommeil léger.', duration: '8 min' },
+  { icon: Sparkles, name: 'Hypno-Immersif', desc: 'Voix binaurale + micro-vibrations. Double canal conscient/inconscient.', duration: '20 min' },
+  { icon: Globe, name: 'Réalité Parallèle', desc: 'Monde vocal immersif : voyages, négociations, conflits. 100% voix.', duration: '15 min' },
+  { icon: Users, name: 'Groupe', desc: 'Parle avec une personne réelle. Groupes auto-créés par niveau.', duration: '30 min' },
+  { icon: Heart, name: 'Spirituel', desc: 'Méditation, gratitude, langues sacrées (angélique, kundalini).', duration: '15 min' },
+] as const
+
+const FAQ = [
+  { q: 'Ça marche vraiment en 30 jours ?', a: 'La phonétique VEDA adapte chaque son à ta langue maternelle. En 30 jours à raison de 15 min/jour, tu tiens une conversation fluide sur les sujets du quotidien.' },
+  { q: 'Sans cours, sans théorie ?', a: 'Zéro grammaire explicite. Ton cerveau absorbe les structures comme un enfant — par exposition guidée, répétition contextuelle et émotion.' },
+  { q: 'Quelles langues sont disponibles ?', a: '16 langues au lancement : anglais, espagnol, italien, allemand, portugais, japonais, chinois, coréen, arabe, russe, hindi, turc, néerlandais, polonais, suédois, français.' },
+  { q: 'Je peux essayer avant de payer ?', a: '14 jours offerts, sans carte. Accès complet à tous les modes. Si tu n\'es pas conquis, tu pars sans rien payer.' },
+  { q: 'Comment se passe l\'annulation ?', a: 'Un clic dans ton espace. Pas d\'appel, pas de mail, pas de justification. Tu gardes l\'accès jusqu\'à la fin de la période déjà payée.' },
+] as const
+
 function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16)
+    const onScroll = () => setScrolled(window.scrollY > 12)
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
     return () => window.removeEventListener('scroll', onScroll)
@@ -30,49 +45,48 @@ function Nav() {
 
   return (
     <nav
-      className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'backdrop-blur-2xl bg-[rgba(4,10,7,0.78)] border-b border-emerald-400/[0.08]'
+          ? 'backdrop-blur-2xl bg-[rgba(4,10,7,0.72)] border-b border-white/[0.06]'
           : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative h-8 w-8 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 grid place-items-center shadow-[0_0_24px_rgba(16,185,129,0.45)] group-hover:shadow-[0_0_32px_rgba(16,185,129,0.7)] transition-shadow">
+          <Link href="/" className="flex items-center gap-2.5">
+            <div className="h-8 w-8 rounded-[10px] bg-gradient-to-br from-emerald-400 to-teal-500 grid place-items-center shadow-[0_0_20px_rgba(16,185,129,0.35)]">
               <Leaf className="h-4 w-4 text-emerald-950" strokeWidth={2.5} />
             </div>
-            <span className="font-[family-name:var(--font-display)] text-xl font-bold tracking-tight gradient-text">
-              Vida Langue
+            <span className="font-[family-name:var(--font-display)] text-lg font-bold tracking-tight">
+              VEDA
             </span>
           </Link>
 
           <div className="hidden md:flex items-center gap-8 text-sm text-[var(--text-secondary)]">
-            <a href="#how" className="hover:text-[var(--text-primary)] transition-colors">Méthode</a>
-            <a href="#modes" className="hover:text-[var(--text-primary)] transition-colors">Modes</a>
-            <a href="#impact" className="hover:text-[var(--text-primary)] transition-colors">Impact</a>
-            <Link href="/pricing" className="hover:text-[var(--text-primary)] transition-colors">Tarifs</Link>
-            <a href="#faq" className="hover:text-[var(--text-primary)] transition-colors">FAQ</a>
+            <a href="#modes" className="hover:text-white transition-colors">Modes</a>
+            <a href="#method" className="hover:text-white transition-colors">Méthode</a>
+            <Link href="/pricing" className="hover:text-white transition-colors">Tarifs</Link>
+            <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <Link href="/login" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+            <Link href="/login" className="text-sm text-[var(--text-secondary)] hover:text-white transition-colors">
               Connexion
             </Link>
             <Link
               href="/signup"
-              className="rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 px-5 py-2 text-sm font-semibold text-emerald-950 shadow-[0_0_24px_rgba(16,185,129,0.4)] hover:shadow-[0_0_36px_rgba(16,185,129,0.65)] hover:scale-[1.02] transition-all"
+              className="rounded-full bg-white text-emerald-950 px-4 py-2 text-sm font-semibold hover:bg-emerald-50 transition-colors"
             >
-              Essai 14 jours
+              Commencer
             </Link>
           </div>
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-400/15 bg-emerald-500/5 text-[var(--text-primary)]"
+            className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white"
             aria-label="Menu"
           >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            {menuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
       </div>
@@ -84,13 +98,12 @@ function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden backdrop-blur-2xl bg-[rgba(4,10,7,0.97)] border-t border-emerald-400/10"
+            className="md:hidden backdrop-blur-2xl bg-[rgba(4,10,7,0.96)] border-t border-white/[0.06]"
           >
-            <div className="flex flex-col gap-1 px-4 py-6">
+            <div className="flex flex-col gap-1 px-6 py-6">
               {[
-                { href: '#how', label: 'Méthode' },
                 { href: '#modes', label: 'Modes' },
-                { href: '#impact', label: 'Impact' },
+                { href: '#method', label: 'Méthode' },
                 { href: '/pricing', label: 'Tarifs' },
                 { href: '#faq', label: 'FAQ' },
               ].map((l) => (
@@ -98,26 +111,25 @@ function Nav() {
                   key={l.label}
                   href={l.href}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-xl px-4 py-3 text-base text-[var(--text-secondary)] hover:bg-emerald-500/8 hover:text-[var(--text-primary)] transition-colors"
+                  className="py-3 text-base text-white/90 hover:text-white"
                 >
                   {l.label}
                 </a>
               ))}
-              <div className="my-3 h-px bg-emerald-400/10" />
-              <Link
-                href="/login"
-                onClick={() => setMenuOpen(false)}
-                className="rounded-xl border border-emerald-400/20 px-4 py-3 text-center text-base font-medium text-[var(--text-primary)]"
-              >
-                Connexion
-              </Link>
-              <Link
-                href="/signup"
-                onClick={() => setMenuOpen(false)}
-                className="rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 px-4 py-3 text-center text-base font-semibold text-emerald-950 shadow-[0_0_30px_rgba(16,185,129,0.45)]"
-              >
-                Essai 14 jours
-              </Link>
+              <div className="mt-4 flex flex-col gap-2">
+                <Link
+                  href="/login"
+                  className="rounded-full border border-white/15 px-4 py-3 text-center text-sm text-white"
+                >
+                  Connexion
+                </Link>
+                <Link
+                  href="/signup"
+                  className="rounded-full bg-white px-4 py-3 text-center text-sm font-semibold text-emerald-950"
+                >
+                  Commencer
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
@@ -126,509 +138,253 @@ function Nav() {
   )
 }
 
-// ──────────────────────────────────────────────────────────────────
-// HERO — animated phonetic demo + dual CTA
-// ──────────────────────────────────────────────────────────────────
-const PHONETIC_SAMPLES = [
-  { lang: 'EN', flag: '🇬🇧', original: 'How are you?', vida: 'HAOU AR YOU', meaning: 'Comment ça va ?' },
-  { lang: 'ES', flag: '🇪🇸', original: '¿Qué tal?', vida: 'KÉ TAL', meaning: 'Quoi de neuf ?' },
-  { lang: 'IT', flag: '🇮🇹', original: 'Come stai?', vida: 'KOMÉ STAÏ', meaning: 'Comment vas-tu ?' },
-  { lang: 'JP', flag: '🇯🇵', original: 'お元気ですか？', vida: 'O-GUEN-KI DESS-KA', meaning: 'Tu vas bien ?' },
-  { lang: 'DE', flag: '🇩🇪', original: 'Wie geht\'s?', vida: 'VIE GUÉTSS', meaning: 'Ça roule ?' },
-  { lang: 'PT', flag: '🇵🇹', original: 'Tudo bem?', vida: 'TOUDOU BEÏN', meaning: 'Tout va bien ?' },
-]
-
-function HeroPhoneticDemo() {
-  const [idx, setIdx] = useState(0)
-
-  useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % PHONETIC_SAMPLES.length), 2800)
-    return () => clearInterval(t)
-  }, [])
-
-  const sample = PHONETIC_SAMPLES[idx]
-
-  return (
-    <div className="relative mx-auto mt-14 w-full max-w-xl">
-      {/* Glow */}
-      <div className="absolute inset-0 -z-10 rounded-[28px] bg-gradient-to-br from-emerald-500/30 via-teal-400/20 to-emerald-300/20 blur-3xl opacity-70" />
-
-      <div className="glass rounded-3xl p-5 sm:p-7 border border-emerald-400/15">
-        <div className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-2">
-            <div className="flex gap-1.5">
-              <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
-            </div>
-            <span className="ml-2 text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">
-              Natif Instinct™
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-500/5 px-2.5 py-1 text-[10px] font-medium text-emerald-300">
-            <span>{sample.flag}</span>
-            <span>{sample.lang}</span>
-          </div>
-        </div>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.4 }}
-            className="space-y-4"
-          >
-            <div>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 mb-1">01 · Original</div>
-              <div className="font-[family-name:var(--font-display)] text-2xl sm:text-3xl font-semibold text-[var(--text-primary)]">
-                {sample.original}
-              </div>
-            </div>
-            <div className="h-px bg-emerald-400/10" />
-            <div>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 mb-1">02 · Phonétique Vida</div>
-              <div className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-bold gradient-text break-words">
-                {sample.vida}
-              </div>
-            </div>
-            <div className="h-px bg-emerald-400/10" />
-            <div>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 mb-1">03 · Sens FR</div>
-              <div className="text-base sm:text-lg text-[var(--text-secondary)] italic">
-                « {sample.meaning} »
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        <div className="mt-6 flex items-center justify-between text-[10px] text-[var(--text-muted)]">
-          <div className="flex gap-1">
-            {PHONETIC_SAMPLES.map((_, i) => (
-              <span
-                key={i}
-                className={`h-1 rounded-full transition-all duration-300 ${
-                  i === idx ? 'w-6 bg-emerald-400' : 'w-1.5 bg-emerald-400/20'
-                }`}
-              />
-            ))}
-          </div>
-          <span className="font-mono">vida.audio · prononciation native</span>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 function Hero() {
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
-      {/* Aurora ambiance */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-0 left-1/3 h-[480px] w-[480px] rounded-full bg-emerald-500/15 blur-[140px]" />
-        <div className="absolute top-40 right-1/4 h-[400px] w-[400px] rounded-full bg-teal-400/15 blur-[140px]" />
-        <div className="absolute bottom-0 left-1/4 h-[300px] w-[300px] rounded-full bg-lime-400/10 blur-[120px]" />
+    <section className="relative isolate overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32">
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/2 top-0 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-emerald-500/20 blur-[140px]" />
+        <div className="absolute right-[-10%] top-1/3 h-[420px] w-[420px] rounded-full bg-teal-400/15 blur-[120px]" />
+        <div className="absolute left-[-10%] bottom-0 h-[380px] w-[380px] rounded-full bg-cyan-500/10 blur-[120px]" />
       </div>
 
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/5 px-4 py-2 text-xs font-medium text-emerald-300"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-          </span>
-          Apprendre une langue, complètement repensé
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.08 }}
-          className="mt-6 font-[family-name:var(--font-display)] text-[44px] sm:text-6xl md:text-7xl lg:text-[88px] font-bold tracking-[-0.025em] leading-[1.02]"
-        >
-          <span className="block text-[var(--text-primary)]">Parle une langue.</span>
-          <span className="block gradient-text">Pas l&apos;inverse.</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.16 }}
-          className="mt-6 max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed"
-        >
-          La phonétique <span className="text-emerald-300">Vida</span> s&apos;adapte à ta langue maternelle.
-          Sans cours, sans grammaire, sans honte. Juste ta voix et ton instinct.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.24 }}
-          className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
-        >
-          <Link
-            href="/signup"
-            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 px-7 py-4 text-base font-semibold text-emerald-950 shadow-[0_0_40px_rgba(16,185,129,0.45)] hover:shadow-[0_0_60px_rgba(16,185,129,0.7)] hover:scale-[1.02] transition-all"
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-emerald-300"
           >
-            Commencer 14 jours gratuits
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-          <Link
-            href="#how"
-            className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-emerald-400/25 bg-emerald-500/[0.04] px-7 py-4 text-base font-semibold text-[var(--text-primary)] hover:bg-emerald-500/10 hover:border-emerald-400/40 transition-all"
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            Nouvelle méthode — 14 jours offerts
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.05 }}
+            className="mt-8 font-[family-name:var(--font-display)] text-5xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl"
           >
-            Voir la méthode
-          </Link>
-        </motion.div>
+            Parle une langue<br />
+            <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent">
+              en 30 jours.
+            </span>
+          </motion.h1>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.36 }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[var(--text-muted)]"
-        >
-          <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" /> Sans carte bancaire</span>
-          <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" /> Toutes les langues</span>
-          <span className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-emerald-400" /> Annule en 1 clic</span>
-        </motion.div>
-
-        <HeroPhoneticDemo />
-      </div>
-    </section>
-  )
-}
-
-// ──────────────────────────────────────────────────────────────────
-// HOW IT WORKS — 3 step timeline
-// ──────────────────────────────────────────────────────────────────
-function HowItWorks() {
-  const steps = [
-    {
-      n: '01',
-      icon: Languages,
-      title: 'Choisis la langue à vivre',
-      desc: 'Anglais, japonais, arabe, occitan, lakota… toutes les langues du monde sont là. Tu choisis ta langue maternelle pour calibrer la phonétique Vida.',
-    },
-    {
-      n: '02',
-      icon: Wand2,
-      title: 'Vis tes premiers mots en 30 secondes',
-      desc: 'Pas de cours. Pas de tableau. Tu appuies, Vida parle, tu répètes. Le mode Natif Instinct™ te montre la phrase sur 3 couches — ton cerveau absorbe, sans traduire.',
-    },
-    {
-      n: '03',
-      icon: Headphones,
-      title: 'Mène une vraie conversation',
-      desc: 'HoloTalk™ te met face à 6 personas vocaux qui répondent comme des vrais humains. Tu négocies, tu plaisantes, tu sors de ta zone — sans jugement.',
-    },
-  ]
-
-  return (
-    <section id="how" className="relative py-20 md:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/5 px-4 py-2 text-xs font-medium text-emerald-300 mb-4">
-            <Sparkles className="h-3 w-3" />
-            La méthode Vida
-          </div>
-          <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl md:text-6xl font-bold tracking-[-0.02em]">
-            Trois pas. Zéro friction.
-          </h2>
-          <p className="mt-4 text-[var(--text-secondary)] max-w-2xl mx-auto text-base sm:text-lg">
-            Pas besoin de motivation. Pas besoin de discipline. Juste d&apos;ouvrir l&apos;app.
-          </p>
-        </div>
-
-        <div className="relative grid gap-6 md:grid-cols-3">
-          {/* Connecting line desktop */}
-          <div className="hidden md:block absolute top-12 left-[16.66%] right-[16.66%] h-px bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent" />
-
-          {steps.map((step, i) => (
-            <motion.div
-              key={step.n}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative"
-            >
-              <div className="glass glass-hover relative h-full rounded-3xl p-7 border border-emerald-400/10">
-                <div className="flex items-center gap-4 mb-5">
-                  <div className="relative grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500/30 to-teal-500/20 border border-emerald-400/30">
-                    <step.icon className="h-5 w-5 text-emerald-300" strokeWidth={2} />
-                  </div>
-                  <div className="font-mono text-xs text-emerald-400/80">{step.n}</div>
-                </div>
-                <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--text-primary)] mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ──────────────────────────────────────────────────────────────────
-// MODES — 8 modes grid
-// ──────────────────────────────────────────────────────────────────
-function ModesSection() {
-  const modes = [
-    { icon: Volume2, name: 'Natif Instinct™', desc: 'Phonétique 3 couches adaptée à ta langue maternelle. Plus jamais de règles à mémoriser.', accent: 'from-emerald-400/30 to-teal-400/10' },
-    { icon: Mic, name: 'HoloTalk™', desc: 'Conversations vocales avec 6 personas IA. Mémoire longue, voix émotionnelle.', accent: 'from-teal-400/30 to-cyan-400/10' },
-    { icon: Brain, name: 'NeuroFlow™', desc: 'Respiration → immersion double canal → scellage neurologique. 20-30 min.', accent: 'from-lime-400/30 to-emerald-400/10' },
-    { icon: Moon, name: 'SleepSync™', desc: 'Session courte avant dormir. Consolidation en sommeil léger. Toujours optionnel.', accent: 'from-indigo-400/30 to-emerald-400/10' },
-    { icon: Sparkles, name: 'Hypno-Immersif', desc: 'Voix binaurale + micro-vibrations. Double canal conscient/inconscient.', accent: 'from-purple-400/30 to-emerald-400/10' },
-    { icon: Globe, name: 'Réalité Parallèle', desc: 'Monde virtuel vocal : arriver dans un pays, négocier, gérer un conflit. 100 % voix.', accent: 'from-blue-400/30 to-emerald-400/10' },
-    { icon: Users, name: 'Groupe', desc: 'Parle avec une personne réelle proposée par l\'app. Groupes auto-créés.', accent: 'from-pink-400/30 to-emerald-400/10' },
-    { icon: Heart, name: 'Spirituel', desc: 'Apprentissage doux, méditation, gratitude. Langues sacrées si tu veux.', accent: 'from-amber-400/30 to-emerald-400/10' },
-  ]
-
-  return (
-    <section id="modes" className="relative py-20 md:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/5 px-4 py-2 text-xs font-medium text-emerald-300 mb-4">
-            <Zap className="h-3 w-3" />
-            8 modes · 1 abonnement
-          </div>
-          <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl md:text-6xl font-bold tracking-[-0.02em]">
-            Choisis ton état d&apos;esprit.<br />
-            <span className="gradient-text">Vida s&apos;adapte.</span>
-          </h2>
-          <p className="mt-4 text-[var(--text-secondary)] max-w-2xl mx-auto text-base sm:text-lg">
-            Stressé, rêveur, joueur, pressé ? Chaque mode est pensé pour un moment de ta journée.
-          </p>
-        </div>
-
-        <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {modes.map((mode, i) => (
-            <motion.div
-              key={mode.name}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{ duration: 0.4, delay: (i % 4) * 0.06 }}
-              className="group relative"
-            >
-              <div className="relative h-full rounded-3xl border border-emerald-400/10 bg-white/[0.02] backdrop-blur-xl p-6 overflow-hidden transition-all duration-500 hover:border-emerald-400/30 hover:bg-white/[0.04] hover:-translate-y-1">
-                <div className={`absolute inset-0 bg-gradient-to-br ${mode.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
-                <div className="relative">
-                  <div className="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-500/10 border border-emerald-400/20 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <mode.icon className="h-5 w-5 text-emerald-300" strokeWidth={2} />
-                  </div>
-                  <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--text-primary)] mb-1.5">
-                    {mode.name}
-                  </h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{mode.desc}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ──────────────────────────────────────────────────────────────────
-// IMPACT
-// ──────────────────────────────────────────────────────────────────
-function ImpactSection() {
-  return (
-    <section id="impact" className="relative py-20 md:py-32 overflow-hidden">
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-emerald-500/8 blur-[140px]" />
-      </div>
-
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/5 px-4 py-2 text-xs font-medium text-emerald-300 mb-4">
-            <Sun className="h-3 w-3" />
-            Apprendre + faire du bien
-          </div>
-          <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl md:text-6xl font-bold tracking-[-0.02em]">
-            Chaque mot que tu apprends<br />
-            <span className="gradient-text">nourrit le monde.</span>
-          </h2>
-          <p className="mt-4 text-[var(--text-secondary)] max-w-2xl mx-auto text-base sm:text-lg">
-            10 % du chiffre d&apos;affaires Vida est reversé chaque mois à l&apos;Association Vida — missions
-            humanitaires, écologiques, spirituelles. Ton fil de vie garde tout en mémoire.
-          </p>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-3">
-          {[
-            { icon: Heart, title: '10 % du CA', desc: 'reversés à l\'Association Vida — automatiquement, chaque mois.' },
-            { icon: Leaf, title: 'Fil de vie', desc: 'tes mots, tes sessions, tes impacts gardés pour toujours — même en pause.' },
-            { icon: Globe, title: 'Toutes les langues', desc: 'des plus parlées aux plus rares. L\'interface elle-même en 16 langues.' },
-          ].map((stat, i) => (
-            <motion.div
-              key={stat.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="glass rounded-3xl p-6 border border-emerald-400/10"
-            >
-              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-500/10 border border-emerald-400/20 mb-4">
-                <stat.icon className="h-5 w-5 text-emerald-300" strokeWidth={2} />
-              </div>
-              <div className="font-[family-name:var(--font-display)] text-2xl font-bold gradient-text mb-1.5">
-                {stat.title}
-              </div>
-              <div className="text-sm text-[var(--text-secondary)] leading-relaxed">{stat.desc}</div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ──────────────────────────────────────────────────────────────────
-// PRICING TEASER
-// ──────────────────────────────────────────────────────────────────
-function PricingTeaser() {
-  const plans = [
-    { name: 'Mensuel', price: '12,90€', period: '/mois', desc: 'Sans engagement', highlight: false },
-    { name: 'Annuel', price: '9€', period: '/mois', desc: 'Économise 30%', highlight: true, badge: 'POPULAIRE' },
-    { name: 'À vie', price: '6,45€', period: '/mois gelé', desc: 'Membre Fondateur', highlight: false },
-  ]
-  return (
-    <section className="py-20 md:py-32">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl font-bold tracking-[-0.02em]">
-            Un seul abonnement.<br />
-            <span className="gradient-text">Trois façons de payer.</span>
-          </h2>
-          <p className="mt-4 text-[var(--text-secondary)] text-base sm:text-lg max-w-xl mx-auto">
-            14 jours d&apos;essai gratuit. Sans CB. Annulation en 1 clic.
-          </p>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-3">
-          {plans.map((p) => (
-            <div
-              key={p.name}
-              className={`relative rounded-3xl border p-6 backdrop-blur-xl transition-all hover:-translate-y-1 ${
-                p.highlight
-                  ? 'border-emerald-400/40 bg-gradient-to-br from-emerald-500/10 to-teal-500/5 shadow-[0_0_40px_rgba(16,185,129,0.2)]'
-                  : 'border-emerald-400/10 bg-white/[0.02]'
-              }`}
-            >
-              {p.badge && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 px-3 py-1 text-[10px] font-bold text-emerald-950">
-                  {p.badge}
-                </div>
-              )}
-              <div className="text-sm font-semibold text-[var(--text-secondary)]">{p.name}</div>
-              <div className="mt-3 flex items-baseline gap-1">
-                <span className="font-[family-name:var(--font-display)] text-4xl font-bold text-[var(--text-primary)]">{p.price}</span>
-                <span className="text-sm text-[var(--text-muted)]">{p.period}</span>
-              </div>
-              <div className="mt-1 text-xs text-emerald-300">{p.desc}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10 text-center">
-          <Link
-            href="/pricing"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 hover:text-emerald-200 transition-colors"
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-6 text-lg text-[var(--text-secondary)] sm:text-xl"
           >
-            Voir le détail des tarifs <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
+            VEDA grave les langues dans ton cerveau par la phonétique, la voix
+            et l&apos;immersion. Sans cours. Sans stress. Sans théorie.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+          >
+            <Link
+              href="/signup"
+              className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-emerald-950 shadow-[0_8px_32px_rgba(16,185,129,0.25)] hover:bg-emerald-50 transition-all"
+            >
+              Commencer 14 jours offerts
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              href="#modes"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] px-6 text-sm font-medium text-white hover:bg-white/[0.06] transition-colors"
+            >
+              Voir les 8 modes
+            </Link>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="mt-6 text-xs text-[var(--text-muted)]"
+          >
+            Sans carte bancaire · Annulation 1 clic · 16 langues
+          </motion.p>
         </div>
       </div>
     </section>
   )
 }
 
-// ──────────────────────────────────────────────────────────────────
-// FAQ
-// ──────────────────────────────────────────────────────────────────
-function FAQSection() {
-  const [open, setOpen] = useState<number | null>(0)
-  const faqs = [
-    {
-      q: 'C\'est quoi la phonétique Vida exactement ?',
-      a: 'Une décomposition phonétique sur 3 couches, calibrée sur ta langue maternelle. Au lieu de te dire "th = θ", on t\'écrit "ZE" si tu es français, "DE" si tu es espagnol. Tu lis ce que ton cerveau sait déjà prononcer. Zéro règle, zéro intermédiaire.',
-    },
-    {
-      q: 'Je n\'ai jamais réussi à apprendre une langue. C\'est pour moi ?',
-      a: 'Surtout pour toi. Vida est faite pour les sceptiques, les démotivés, les stressés et les dispersés. Zéro jugement, zéro correction agressive, zéro comparaison. Tu ouvres l\'app, tu poses ton téléphone, Vida agit.',
-    },
-    {
-      q: 'Comment fonctionne l\'essai gratuit ?',
-      a: '14 jours complets, accès à tous les modes, sans carte bancaire obligatoire. Tu peux annuler en 1 clic avant la fin. Si tu hésites encore, on te propose un tarif moitié prix verrouillé à vie.',
-    },
-    {
-      q: 'Quelles langues sont disponibles ?',
-      a: 'Toutes. Anglais, espagnol, italien, allemand, japonais, chinois, arabe, portugais, russe, hindi, swahili, lakota, occitan, breton… et celles qu\'on n\'a pas encore référencées, demande-les. L\'interface elle-même est disponible en 16 langues.',
-    },
-    {
-      q: 'Qu\'est-ce que l\'Association Vida ?',
-      a: '10 % du chiffre d\'affaires de Vida Langue est reversé chaque mois à l\'Association Vida (loi 1901) qui finance des missions humanitaires, écologiques et de bien-être. Tu apprends, le monde gagne.',
-    },
-    {
-      q: 'Mes données sont-elles protégées ?',
-      a: 'Oui. 100 % RGPD, hébergement européen, chiffrement de bout en bout. Tu peux exporter ou supprimer toutes tes données à tout moment depuis ton profil.',
-    },
-  ]
-
+function Modes() {
   return (
-    <section id="faq" className="py-20 md:py-32">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl font-bold tracking-[-0.02em]">
-            Questions fréquentes
+    <section id="modes" className="relative py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-[family-name:var(--font-display)] text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            8 modes d&apos;apprentissage.<br />
+            <span className="text-[var(--text-secondary)]">Un seul objectif : la fluidité.</span>
           </h2>
+          <p className="mt-6 text-base text-[var(--text-secondary)]">
+            Choisis ton mode selon ton humeur, ton énergie, ton moment. VEDA s&apos;adapte — toi, tu parles.
+          </p>
         </div>
 
-        <div className="space-y-3">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="overflow-hidden rounded-2xl border border-emerald-400/10 bg-white/[0.02] backdrop-blur-xl transition-colors hover:border-emerald-400/20"
-            >
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 px-5 sm:px-6 py-5 text-left"
+        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {MODES.map((m, i) => {
+            const Icon = m.icon
+            return (
+              <motion.div
+                key={m.name}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.4, delay: i * 0.04 }}
+                className="group rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 backdrop-blur-xl transition-all hover:border-emerald-400/25 hover:bg-white/[0.04]"
               >
-                <span className="font-semibold text-[var(--text-primary)] text-[15px] sm:text-base">{faq.q}</span>
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-300 ring-1 ring-inset ring-emerald-400/20">
+                  <Icon className="h-5 w-5" strokeWidth={1.8} />
+                </div>
+                <h3 className="mt-6 text-base font-semibold text-white">{m.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)]">{m.desc}</p>
+                <p className="mt-6 text-xs font-medium uppercase tracking-wider text-emerald-400">
+                  {m.duration}
+                </p>
+              </motion.div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Method() {
+  const steps = [
+    { n: '01', title: 'Tu choisis une langue', desc: 'Parmi 16. VEDA calibre la phonétique à ta langue maternelle.' },
+    { n: '02', title: 'Tu ouvres un mode', desc: 'NeuroFlow le matin, HoloTalk à midi, SleepSync le soir. 5 à 30 min.' },
+    { n: '03', title: 'Tu parles', desc: 'Jour 30 : tu commandes un café, tu négocies, tu flirtes. Dans leur langue.' },
+  ] as const
+
+  return (
+    <section id="method" className="relative py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-[family-name:var(--font-display)] text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            Trois étapes.<br />
+            <span className="text-[var(--text-secondary)]">Aucune friction.</span>
+          </h2>
+        </div>
+
+        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
+          {steps.map((s, i) => (
+            <motion.div
+              key={s.n}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 backdrop-blur-xl"
+            >
+              <p className="font-[family-name:var(--font-mono)] text-xs font-medium tracking-[0.2em] text-emerald-400">
+                {s.n}
+              </p>
+              <h3 className="mt-6 text-xl font-semibold text-white">{s.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">{s.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function PricingTeaser() {
+  const perks = [
+    'Accès aux 8 modes',
+    '16 langues disponibles',
+    'HoloTalk voix illimité',
+    'SleepSync & Hypno-Immersif',
+    'Annulation en 1 clic',
+  ] as const
+
+  return (
+    <section className="relative py-24 sm:py-32">
+      <div className="mx-auto max-w-4xl px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-8 backdrop-blur-xl sm:p-12">
+          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-emerald-400/15 blur-[100px]" />
+          <div className="relative">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">
+              Essai 14 jours
+            </p>
+            <h2 className="mt-4 font-[family-name:var(--font-display)] text-3xl font-bold text-white sm:text-4xl">
+              12,90 € / mois.<br />
+              <span className="text-[var(--text-secondary)]">Sans engagement.</span>
+            </h2>
+            <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {perks.map((p) => (
+                <li key={p} className="flex items-center gap-3 text-sm text-[var(--text-secondary)]">
+                  <Check className="h-4 w-4 flex-none text-emerald-400" strokeWidth={2.5} />
+                  {p}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/signup"
+                className="inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-emerald-950 hover:bg-emerald-50 transition-colors"
+              >
+                Commencer — 14 jours offerts
+              </Link>
+              <Link
+                href="/pricing"
+                className="inline-flex h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-medium text-white hover:bg-white/[0.04] transition-colors"
+              >
+                Voir tous les plans
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Faq() {
+  const [open, setOpen] = useState<number | null>(0)
+  return (
+    <section id="faq" className="relative py-24 sm:py-32">
+      <div className="mx-auto max-w-3xl px-6 lg:px-8">
+        <h2 className="text-center font-[family-name:var(--font-display)] text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          Questions fréquentes.
+        </h2>
+        <div className="mt-12 divide-y divide-white/[0.06] rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-xl">
+          {FAQ.map((f, i) => (
+            <button
+              key={f.q}
+              onClick={() => setOpen(open === i ? null : i)}
+              className="group w-full px-6 py-5 text-left transition-colors hover:bg-white/[0.02]"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-base font-medium text-white">{f.q}</span>
                 <ChevronDown
-                  className={`h-5 w-5 flex-shrink-0 text-emerald-400 transition-transform duration-300 ${
-                    open === i ? 'rotate-180' : ''
-                  }`}
+                  className={`h-4 w-4 flex-none text-[var(--text-muted)] transition-transform ${open === i ? 'rotate-180' : ''}`}
                 />
-              </button>
-              <AnimatePresence>
+              </div>
+              <AnimatePresence initial={false}>
                 {open === i && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.25 }}
+                    className="overflow-hidden"
                   >
-                    <div className="px-5 sm:px-6 pb-5 text-sm text-[var(--text-secondary)] leading-relaxed">
-                      {faq.a}
-                    </div>
+                    <p className="pt-4 text-sm leading-relaxed text-[var(--text-secondary)]">{f.a}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </button>
           ))}
         </div>
       </div>
@@ -636,103 +392,74 @@ function FAQSection() {
   )
 }
 
-// ──────────────────────────────────────────────────────────────────
-// CTA
-// ──────────────────────────────────────────────────────────────────
-function CTA() {
-  return (
-    <section className="relative py-20 md:py-32 overflow-hidden">
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-emerald-500/15 blur-[140px]" />
-      </div>
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl md:text-6xl font-bold tracking-[-0.025em] leading-[1.05]">
-          Respire. Parle.<br />
-          <span className="gradient-text">Sois libre.</span>
-        </h2>
-        <p className="mt-6 text-base sm:text-lg text-[var(--text-secondary)] max-w-xl mx-auto">
-          14 jours d&apos;essai gratuit. Aucune carte bancaire. Tu peux annuler quand tu veux.
-        </p>
-        <div className="mt-10">
-          <Link
-            href="/signup"
-            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 px-9 py-5 text-base sm:text-lg font-semibold text-emerald-950 shadow-[0_0_60px_rgba(16,185,129,0.5)] hover:shadow-[0_0_80px_rgba(16,185,129,0.75)] hover:scale-[1.02] transition-all"
-          >
-            Commencer ma métamorphose
-            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ──────────────────────────────────────────────────────────────────
-// FOOTER
-// ──────────────────────────────────────────────────────────────────
 function Footer() {
   return (
-    <footer className="border-t border-emerald-400/10 py-12 mt-10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="col-span-2">
-            <Link href="/" className="inline-flex items-center gap-2 group">
-              <div className="relative h-8 w-8 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 grid place-items-center">
-                <Leaf className="h-4 w-4 text-emerald-950" strokeWidth={2.5} />
+    <footer className="relative border-t border-white/[0.06] py-16">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div className="col-span-2 sm:col-span-1">
+            <Link href="/" className="flex items-center gap-2.5">
+              <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-emerald-400 to-teal-500 grid place-items-center">
+                <Leaf className="h-3.5 w-3.5 text-emerald-950" strokeWidth={2.5} />
               </div>
-              <span className="gradient-text font-[family-name:var(--font-display)] text-2xl font-bold">
-                Vida Langue
+              <span className="font-[family-name:var(--font-display)] text-base font-bold tracking-tight text-white">
+                VEDA
               </span>
             </Link>
-            <p className="mt-3 text-sm text-[var(--text-secondary)] max-w-xs leading-relaxed">
-              Apprendre une langue, complètement repensé. Sans cours, sans grammaire, sans honte.
+            <p className="mt-4 text-xs leading-relaxed text-[var(--text-muted)]">
+              Parle une langue en 30 jours. Sans cours, sans stress, sans théorie.
             </p>
           </div>
 
           <div>
-            <div className="font-semibold text-[var(--text-primary)] text-sm mb-3">Produit</div>
-            <ul className="space-y-1 text-sm text-[var(--text-secondary)]">
-              <li><Link href="/pricing" className="block py-1.5 hover:text-emerald-300 transition-colors">Tarifs</Link></li>
-              <li><Link href="/how-it-works" className="block py-1.5 hover:text-emerald-300 transition-colors">Comment ça marche</Link></li>
-              <li><Link href="/aide" className="block py-1.5 hover:text-emerald-300 transition-colors">Aide</Link></li>
-              <li><Link href="/contact" className="block py-1.5 hover:text-emerald-300 transition-colors">Contact</Link></li>
+            <p className="text-xs font-semibold uppercase tracking-wider text-white">Produit</p>
+            <ul className="mt-4 space-y-2.5 text-sm text-[var(--text-secondary)]">
+              <li><a href="#modes" className="hover:text-white transition-colors">Modes</a></li>
+              <li><a href="#method" className="hover:text-white transition-colors">Méthode</a></li>
+              <li><Link href="/pricing" className="hover:text-white transition-colors">Tarifs</Link></li>
+              <li><Link href="/how-it-works" className="hover:text-white transition-colors">Comment ça marche</Link></li>
             </ul>
           </div>
 
           <div>
-            <div className="font-semibold text-[var(--text-primary)] text-sm mb-3">Légal</div>
-            <ul className="space-y-1 text-sm text-[var(--text-secondary)]">
-              <li><Link href="/mentions-legales" className="block py-1.5 hover:text-emerald-300 transition-colors">Mentions légales</Link></li>
-              <li><Link href="/politique-confidentialite" className="block py-1.5 hover:text-emerald-300 transition-colors">Confidentialité</Link></li>
-              <li><Link href="/cgu" className="block py-1.5 hover:text-emerald-300 transition-colors">CGU</Link></li>
-              <li><Link href="/cgv" className="block py-1.5 hover:text-emerald-300 transition-colors">CGV</Link></li>
+            <p className="text-xs font-semibold uppercase tracking-wider text-white">Aide</p>
+            <ul className="mt-4 space-y-2.5 text-sm text-[var(--text-secondary)]">
+              <li><Link href="/aide" className="hover:text-white transition-colors">Centre d&apos;aide</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><Link href="/status" className="hover:text-white transition-colors">Statut</Link></li>
+              <li><Link href="/changelog" className="hover:text-white transition-colors">Changelog</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-white">Légal</p>
+            <ul className="mt-4 space-y-2.5 text-sm text-[var(--text-secondary)]">
+              <li><Link href="/mentions-legales" className="hover:text-white transition-colors">Mentions légales</Link></li>
+              <li><Link href="/politique-confidentialite" className="hover:text-white transition-colors">Confidentialité</Link></li>
+              <li><Link href="/cgv" className="hover:text-white transition-colors">CGV</Link></li>
+              <li><Link href="/cgu" className="hover:text-white transition-colors">CGU</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-emerald-400/10 text-xs text-[var(--text-muted)] text-center leading-relaxed">
-          © {new Date().getFullYear()} SASU PURAMA · 8 Rue de la Chapelle, 25560 Frasne · TVA non applicable, art. 293 B du CGI<br />
-          10 % du chiffre d&apos;affaires reversés à l&apos;Association Vida
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/[0.06] pt-8 text-xs text-[var(--text-muted)] sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} VEDA — SASU PURAMA. TVA non applicable, art. 293 B du CGI.</p>
+          <p>Frasne, France · Fait avec 🌱</p>
         </div>
       </div>
     </footer>
   )
 }
 
-// ──────────────────────────────────────────────────────────────────
-// PAGE
-// ──────────────────────────────────────────────────────────────────
-export default function HomePage() {
+export default function LandingPage() {
   return (
-    <main className="relative">
+    <main className="relative min-h-screen bg-[var(--bg-void)] text-white">
       <Nav />
       <Hero />
-      <HowItWorks />
-      <ModesSection />
-      <ImpactSection />
+      <Modes />
+      <Method />
       <PricingTeaser />
-      <FAQSection />
-      <CTA />
+      <Faq />
       <Footer />
     </main>
   )

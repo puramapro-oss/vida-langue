@@ -2,8 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Politique de Confidentialité — Vida Langue',
-  description: 'Politique de confidentialité et protection des données personnelles de Vida Langue.',
+  title: 'Politique de Confidentialité — VEDA',
+  description: 'Politique de confidentialité et protection des données personnelles de VEDA.',
 }
 
 export default function PolitiqueConfidentialite() {
@@ -26,7 +26,7 @@ export default function PolitiqueConfidentialite() {
               1. Qui sommes-nous ?
             </h2>
             <p>
-              SASU PURAMA (ci-après &quot;nous&quot;) exploite la plateforme Vida Langue accessible à l&apos;adresse <strong className="text-[var(--text-primary)]">vidalangue.purama.dev</strong>.
+              SASU PURAMA (ci-après &quot;nous&quot;) exploite la plateforme VEDA accessible à l&apos;adresse <strong className="text-[var(--text-primary)]">vidalangue.purama.dev</strong>.
               SASU PURAMA est responsable du traitement de vos données personnelles au sens du Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679).
             </p>
             <p className="mt-2">
@@ -38,7 +38,7 @@ export default function PolitiqueConfidentialite() {
             <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--text-primary)] mb-4">
               2. Données collectées
             </h2>
-            <p>Nous collectons les données suivantes lors de votre utilisation de Vida Langue :</p>
+            <p>Nous collectons les données suivantes lors de votre utilisation de VEDA :</p>
             <ul className="mt-3 space-y-2 ml-4 list-disc">
               <li><strong className="text-[var(--text-primary)]">Données d&apos;identification :</strong> adresse e-mail, nom complet (optionnel), photo de profil (via Google OAuth si utilisé)</li>
               <li><strong className="text-[var(--text-primary)]">Données d&apos;usage :</strong> sessions d&apos;apprentissage, vocabulaire, conversations HoloTalk, fil de vie, progression par langue</li>
@@ -55,7 +55,7 @@ export default function PolitiqueConfidentialite() {
             <p>Vos données sont traitées pour les finalités suivantes :</p>
             <ul className="mt-3 space-y-2 ml-4 list-disc">
               <li>Création et gestion de votre compte utilisateur</li>
-              <li>Fourniture des services Vida Langue (sessions phonétiques, conversations HoloTalk, vocabulaire)</li>
+              <li>Fourniture des services VEDA (sessions phonétiques, conversations HoloTalk, vocabulaire)</li>
               <li>Traitement des paiements et émission des factures</li>
               <li>Envoi d&apos;emails transactionnels (confirmation de compte, factures, notifications)</li>
               <li>Amélioration continue de nos services (analytique agrégée)</li>
@@ -94,7 +94,7 @@ export default function PolitiqueConfidentialite() {
               <li><strong className="text-[var(--text-primary)]">Droit à la limitation :</strong> restreindre le traitement dans certaines circonstances</li>
             </ul>
             <p className="mt-3">
-              Pour exercer ces droits, rendez-vous dans <strong className="text-[var(--text-primary)]">Paramètres → Compte → Données personnelles</strong> de votre espace Vida Langue, ou contactez notre DPO à : <a href="mailto:matiss.frasne@gmail.com" className="text-[var(--cyan)] hover:underline">matiss.frasne@gmail.com</a>.
+              Pour exercer ces droits, rendez-vous dans <strong className="text-[var(--text-primary)]">Paramètres → Compte → Données personnelles</strong> de votre espace VEDA, ou contactez notre DPO à : <a href="mailto:matiss.frasne@gmail.com" className="text-[var(--cyan)] hover:underline">matiss.frasne@gmail.com</a>.
             </p>
             <p className="mt-2">
               Vous disposez également du droit d&apos;introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-[var(--cyan)] hover:underline">cnil.fr</a>).

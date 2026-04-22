@@ -505,7 +505,7 @@ export default function SettingsPage() {
                   })}
                 </div>
                 <p className="mt-3 text-xs text-[var(--text-muted)]">
-                  Vida Langue répond automatiquement dans la langue de ta question.
+                  VEDA répond automatiquement dans la langue de ta question.
                 </p>
               </Card>
             </div>
@@ -674,7 +674,7 @@ export default function SettingsPage() {
                 <Button
                   variant="secondary"
                   onClick={() => {
-                    window.location.href = 'mailto:matiss.frasne@gmail.com?subject=Suppression compte Vida Langue'
+                    window.location.href = 'mailto:matiss.frasne@gmail.com?subject=Suppression compte VEDA'
                     setShowDeleteConfirm(null)
                   }}
                 >

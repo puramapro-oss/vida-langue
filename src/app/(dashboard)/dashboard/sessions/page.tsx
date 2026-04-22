@@ -45,7 +45,7 @@ export default function SessionsHubPage() {
   return (
     <div className="mx-auto max-w-6xl space-y-8" data-testid="sessions-hub">
       <header className="space-y-2">
-        <p className="text-sm uppercase tracking-wider text-emerald-400">Sessions Vida</p>
+        <p className="text-sm uppercase tracking-wider text-emerald-400">Sessions VEDA</p>
         <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight md:text-4xl">
           Choisis ton mode d&apos;immersion
         </h1>

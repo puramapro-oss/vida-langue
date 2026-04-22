@@ -1,6 +1,6 @@
 import GuidedSession from '@/components/sessions/GuidedSession'
 
-export const metadata = { title: 'Groupe / Rencontre — Vida Langue' }
+export const metadata = { title: 'Groupe / Rencontre — VEDA' }
 
 export default function GroupPage() {
   return (
@@ -8,7 +8,7 @@ export default function GroupPage() {
       mode="group"
       badge="✦ Groupe / Rencontre"
       title="Conversation libre avec un autre apprenant"
-      intro="30 minutes en simulation de groupe. Vida joue un autre apprenant à ton niveau (intermédiaire), avec ses petites erreurs naturelles. Tu engages la conversation sur un sujet de ton choix."
+      intro="30 minutes en simulation de groupe. VEDA joue un autre apprenant à ton niveau (intermédiaire), avec ses petites erreurs naturelles. Tu engages la conversation sur un sujet de ton choix."
       durationMin={30}
       accentColor="#f59e0b"
       accentBg="bg-amber-500/10"
@@ -22,7 +22,7 @@ export default function GroupPage() {
       phases={[
         {
           title: 'Brise-glace',
-          description: 'Vida (un autre apprenant) lance la conversation. Réponds-lui simplement, comme à un ami.',
+          description: 'VEDA (un autre apprenant) lance la conversation. Réponds-lui simplement, comme à un ami.',
         },
         {
           title: 'Approfondis',

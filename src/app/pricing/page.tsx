@@ -29,7 +29,7 @@ interface VidaPlan {
 const PLANS: VidaPlan[] = [
   {
     id: 'monthly',
-    name: 'Vida Mensuel',
+    name: 'VEDA Mensuel',
     tagline: 'Sans engagement. Annule quand tu veux.',
     price: 12.9,
     billed: '12,90€ facturés chaque mois',
@@ -47,7 +47,7 @@ const PLANS: VidaPlan[] = [
   },
   {
     id: 'yearly',
-    name: 'Vida Annuel',
+    name: 'VEDA Annuel',
     tagline: 'Économise 30%. Le choix de ceux qui veulent vraiment changer.',
     price: 9,
     billed: '108€ facturés une fois par an',
@@ -231,21 +231,21 @@ export default function PricingPage() {
           Tu hésites encore ?
         </p>
         <p className="text-[var(--text-muted)] text-xs max-w-xl mx-auto">
-          Tu peux explorer Vida Langue librement sans abonnement.<br />
+          Tu peux explorer VEDA librement sans abonnement.<br />
           Mais sans abo, tu ne peux pas démarrer de session ni sauvegarder ton fil de vie.
         </p>
       </div>
 
       <div className="max-w-4xl mx-auto mb-16">
         <h2 className="text-2xl font-bold text-[var(--text-primary)] text-center mb-8">
-          Vida Langue vs les autres
+          VEDA vs les autres
         </h2>
         <div className="overflow-x-auto rounded-2xl border border-white/[0.06] bg-white/[0.02]">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-white/[0.06]">
                 <th className="text-left py-4 px-4 text-[var(--text-secondary)] font-medium">Fonctionnalité</th>
-                <th className="text-center py-4 px-4 text-[var(--green)] font-bold">Vida Langue</th>
+                <th className="text-center py-4 px-4 text-[var(--green)] font-bold">VEDA</th>
                 <th className="text-center py-4 px-4 text-[var(--text-muted)] font-medium">Duolingo</th>
                 <th className="text-center py-4 px-4 text-[var(--text-muted)] font-medium">Babbel</th>
               </tr>
@@ -281,10 +281,10 @@ export default function PricingPage() {
       <div className="max-w-2xl mx-auto text-center">
         <div className="inline-flex items-center gap-2 text-[var(--green)] text-sm font-medium mb-3">
           <Heart className="w-4 h-4" />
-          Engagement Vida
+          Engagement VEDA
         </div>
         <p className="text-[var(--text-muted)] text-xs leading-relaxed">
-          10% de chaque abonnement est reversé à l'Association Vida (impact écologique &amp; éducatif).<br />
+          10% de chaque abonnement est reversé à l'Association VEDA (impact écologique &amp; éducatif).<br />
           SASU PURAMA · 8 Rue de la Chapelle, 25560 Frasne · TVA non applicable, art. 293 B du CGI.
         </p>
       </div>

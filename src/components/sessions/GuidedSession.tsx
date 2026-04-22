@@ -115,13 +115,13 @@ export default function GuidedSession({
       })
       const data = await res.json()
       if (!res.ok) {
-        toast.error(data.error ?? 'Vida n\'a pas pu générer la phase. Réessaie.')
+        toast.error(data.error ?? 'VEDA n\'a pas pu générer la phase. Réessaie.')
         return
       }
       setContent(data.text ?? '')
       setTimeout(() => speak(data.text ?? ''), 300)
     } catch {
-      toast.error('Connexion perdue. Vida revient dès que possible.')
+      toast.error('Connexion perdue. VEDA revient dès que possible.')
     } finally {
       setLoading(false)
     }
@@ -183,7 +183,7 @@ export default function GuidedSession({
       })
       const data = await res.json()
       if (data.xp_earned) {
-        toast.success(`Session terminée 🌱 +${data.xp_earned} XP gravés dans ton univers Vida.`)
+        toast.success(`Session terminée 🌱 +${data.xp_earned} XP gravés dans ton univers VEDA.`)
       }
     } catch {
       toast.message('Session terminée. La synchronisation reprendra dès que tu retrouves le réseau.')
@@ -306,7 +306,7 @@ export default function GuidedSession({
           {loading ? (
             <div className="flex h-full items-center justify-center gap-2 text-sm text-[var(--text-muted)]">
               <Loader2 className="h-4 w-4 animate-spin" />
-              Vida prépare ta phase…
+              VEDA prépare ta phase…
             </div>
           ) : content ? (
             <div className="space-y-3">
@@ -323,7 +323,7 @@ export default function GuidedSession({
             <p className="text-center text-sm text-[var(--text-muted)]">
               {completed
                 ? 'Session terminée. Reviens demain pour ancrer un peu plus.'
-                : 'Lance la session pour entendre Vida.'}
+                : 'Lance la session pour entendre VEDA.'}
             </p>
           )}
         </div>

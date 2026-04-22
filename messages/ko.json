@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Vida Langue",
+    "appName": "VEDA",
     "loading": "로딩 중...",
     "error": "오류가 발생했습니다",
     "retry": "재시도",
@@ -85,7 +85,7 @@
     "aidesFound": "개 프로그램 확인"
   },
   "cookie": {
-    "message": "Vida Langue는 필수 쿠키만 사용합니다. 광고 추적 없음.",
+    "message": "VEDA는 필수 쿠키만 사용합니다. 광고 추적 없음.",
     "accept": "수락",
     "decline": "거부",
     "settings": "설정"

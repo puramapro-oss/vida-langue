@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Vida Langue",
+    "appName": "VEDA",
     "loading": "加载中...",
     "error": "发生错误",
     "retry": "重试",
@@ -85,7 +85,7 @@
     "aidesFound": "个项目已确认"
   },
   "cookie": {
-    "message": "Vida Langue仅使用基本Cookie（会话、偏好）。无广告跟踪。",
+    "message": "VEDA仅使用基本Cookie（会话、偏好）。无广告跟踪。",
     "accept": "接受",
     "decline": "拒绝",
     "settings": "设置"

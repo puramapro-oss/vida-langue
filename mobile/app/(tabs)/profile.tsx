@@ -34,7 +34,7 @@ export default function Profile() {
   async function share() {
     try {
       await Share.share({
-        message: `Apprends une langue comme un natif avec Vida Langue 🌱 ${link}`,
+        message: `Apprends une langue comme un natif avec VEDA 🌱 ${link}`,
       });
     } catch (e) {}
   }

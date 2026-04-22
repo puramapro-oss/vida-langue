@@ -27,7 +27,7 @@ interface PhoneticResponse {
 }
 
 const LAYER_LABELS = {
-  full_phonetic: 'Couche 1 — Pure phonétique Vida',
+  full_phonetic: 'Couche 1 — Pure phonétique VEDA',
   mix: 'Couche 2 — Mix doux',
   native: 'Couche 3 — Lecture native',
 } as const
@@ -70,7 +70,7 @@ export default function NatifInstinctPage() {
       })
       const data = await res.json()
       if (!res.ok) {
-        toast.error(data.error ?? 'Vida a perdu le souffle, retente.')
+        toast.error(data.error ?? 'VEDA a perdu le souffle, retente.')
         return
       }
       setResult(data as PhoneticResponse)
@@ -204,7 +204,7 @@ export default function NatifInstinctPage() {
             data-testid="submit-phrase"
             className="w-full !bg-gradient-to-r !from-emerald-500 !to-emerald-600 !text-white"
           >
-            {loading ? 'Vida grave…' : 'Graver dans mon cerveau'}
+            {loading ? 'VEDA grave…' : 'Graver dans mon cerveau'}
           </Button>
         </form>
       </Card>
@@ -258,7 +258,7 @@ export default function NatifInstinctPage() {
                   </div>
 
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-emerald-400">Phonétique Vida</p>
+                    <p className="text-xs uppercase tracking-wider text-emerald-400">Phonétique VEDA</p>
                     <p className="mt-1 font-mono text-3xl font-bold tracking-wide text-emerald-300 drop-shadow-[0_0_15px_rgba(16,185,129,0.3)] md:text-4xl">
                       {result.layers[activeLayer].phonetic_vida}
                     </p>
@@ -312,7 +312,7 @@ export default function NatifInstinctPage() {
             className="flex items-center justify-center gap-3 py-12 text-emerald-300"
           >
             <Loader2 className="h-5 w-5 animate-spin" />
-            <span className="text-sm">Vida grave dans ton cerveau…</span>
+            <span className="text-sm">VEDA grave dans ton cerveau…</span>
           </motion.div>
         )}
       </AnimatePresence>

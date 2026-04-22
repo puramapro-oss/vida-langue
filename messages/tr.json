@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Vida Langue",
+    "appName": "VEDA",
     "loading": "Yukleniyor...",
     "error": "Bir hata olustu",
     "retry": "Tekrar dene",
@@ -85,7 +85,7 @@
     "aidesFound": "program tespit edildi"
   },
   "cookie": {
-    "message": "Vida Langue yalnizca temel cerezleri kullanir. Reklam takibi yoktur.",
+    "message": "VEDA yalnizca temel cerezleri kullanir. Reklam takibi yoktur.",
     "accept": "Kabul et",
     "decline": "Reddet",
     "settings": "Ayarlar"

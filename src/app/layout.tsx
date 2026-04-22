@@ -27,8 +27,8 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Vida Langue — Deviens fluide à l\'oral en 30 jours.',
-  description: 'La première app qui grave les langues dans ton cerveau. Phonétique Vida neuro-adaptative, conversations vocales HoloTalk, sans cours, sans stress, sans théorie. Essai 14 jours offert.',
+  title: 'VEDA — Deviens fluide à l\'oral en 30 jours.',
+  description: 'La première app qui grave les langues dans ton cerveau. Guidé par NAMA-Polyglotte : phonétique 3 couches neuro-adaptative, HoloTalk vocal, 50+ langues. Essai 14 jours offert.',
   metadataBase: new URL('https://vidalangue.purama.dev'),
   manifest: '/manifest.json',
   icons: {
@@ -37,10 +37,10 @@ export const metadata: Metadata = {
     shortcut: '/favicon.svg',
   },
   openGraph: {
-    title: 'Vida Langue — Parle une langue en 30 jours.',
-    description: 'Phonétique Vida neuro-adaptative + HoloTalk vocal + NeuroFlow. Essai 14 jours offert.',
+    title: 'VEDA — Parle une langue en 30 jours.',
+    description: 'Phonétique VEDA neuro-adaptative + HoloTalk vocal + NeuroFlow. Essai 14 jours offert.',
     url: 'https://vidalangue.purama.dev',
-    siteName: 'Vida Langue',
+    siteName: 'VEDA',
     locale: 'fr_FR',
     type: 'website',
     images: [
@@ -48,13 +48,13 @@ export const metadata: Metadata = {
         url: '/api/og',
         width: 1200,
         height: 630,
-        alt: 'Vida Langue — Parle une langue en 30 jours',
+        alt: 'VEDA — Parle une langue en 30 jours',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Vida Langue — Parle une langue en 30 jours.',
+    title: 'VEDA — Parle une langue en 30 jours.',
     description: 'Phonétique neuro-adaptée + conversations vocales + impact réel. Essai 14 jours.',
     images: ['/api/og'],
   },

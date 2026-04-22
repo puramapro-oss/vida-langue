@@ -3,7 +3,7 @@ import { ArrowLeft, ExternalLink } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Écosystème Purama — Vida Langue',
+  title: 'Écosystème Purama — VEDA',
   description: 'Découvre toutes les apps de l\'écosystème Purama',
 }
 
@@ -35,7 +35,7 @@ export default function EcosystemPage() {
 
         <h1 className="text-3xl font-bold text-[var(--text-primary)]">Écosystème Purama</h1>
         <p className="mt-2 text-[var(--text-secondary)]">
-          Un compte unique, des dizaines d&apos;apps spécialisées. Vida Langue est l&apos;app langues — explore aussi nos autres apps santé, finance, créativité.
+          Un compte unique, des dizaines d&apos;apps spécialisées. VEDA est l&apos;app langues — explore aussi nos autres apps santé, finance, créativité.
         </p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

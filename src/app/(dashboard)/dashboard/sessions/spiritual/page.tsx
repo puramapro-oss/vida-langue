@@ -1,6 +1,6 @@
 import GuidedSession from '@/components/sessions/GuidedSession'
 
-export const metadata = { title: 'Spirituel — Vida Langue' }
+export const metadata = { title: 'Spirituel — VEDA' }
 
 export default function SpiritualPage() {
   return (
@@ -8,7 +8,7 @@ export default function SpiritualPage() {
       mode="spiritual"
       badge="✦ Spirituel"
       title="Une intention, une langue, un souffle"
-      intro="15 minutes pour mêler apprentissage et présence. Vida te propose une intention douce dans la langue cible, à répéter comme un mantra. Pas de religion, juste la chaleur des mots."
+      intro="15 minutes pour mêler apprentissage et présence. VEDA te propose une intention douce dans la langue cible, à répéter comme un mantra. Pas de religion, juste la chaleur des mots."
       durationMin={15}
       accentColor="#fb7185"
       accentBg="bg-rose-500/10"
@@ -23,7 +23,7 @@ export default function SpiritualPage() {
       phases={[
         {
           title: 'Centre',
-          description: 'Pose une main sur ton cœur. Vida te donne une intention.',
+          description: 'Pose une main sur ton cœur. VEDA te donne une intention.',
         },
         {
           title: 'Répète',

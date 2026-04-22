@@ -149,7 +149,7 @@ export default function GuidedSessionScreen() {
                   Prêt à entrer dans la zone {config.title.toLowerCase()} ?
                 </Text>
                 <Text className="mt-2 text-sm text-emerald-200/70">
-                  Vida Langue va générer une session guidée sur mesure.
+                  NAMA va générer une session guidée sur mesure.
                 </Text>
                 <View className="mt-5">
                   <Button

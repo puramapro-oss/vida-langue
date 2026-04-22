@@ -1,7 +1,7 @@
 {
-  "name": "Vida Langue",
-  "short_name": "Vida",
-  "description": "Apprends une langue comme un natif. 8 modes immersifs, neuro-phonétique, fil de vie linguistique. 16 langues.",
+  "name": "VEDA",
+  "short_name": "VEDA",
+  "description": "Apprends une langue comme un natif avec NAMA-Polyglotte. 8 modes immersifs, neuro-phonétique 3 couches, 50+ langues.",
   "start_url": "/dashboard",
   "display": "standalone",
   "background_color": "#0A0A0F",

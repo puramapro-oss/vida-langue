@@ -101,7 +101,7 @@ export default function AidePage() {
           <Link href="/" className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--green)]">
             <ArrowLeft className="h-4 w-4" /> Retour
           </Link>
-          <h1 className="text-3xl font-bold text-[var(--text-primary)]">Centre d&apos;aide Vida Langue</h1>
+          <h1 className="text-3xl font-bold text-[var(--text-primary)]">Centre d&apos;aide VEDA</h1>
           <p className="mt-2 text-[var(--text-secondary)]">Trouve une reponse a ta question, ou parle a ton coach</p>
 
           {/* Search */}
@@ -221,7 +221,7 @@ export default function AidePage() {
                 <Bot className="h-4 w-4 text-white" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-[var(--text-primary)]">Coach Vida Langue</p>
+                <p className="text-sm font-semibold text-[var(--text-primary)]">Coach VEDA</p>
                 <p className="text-xs text-[var(--green)]">En ligne</p>
               </div>
             </div>
@@ -240,9 +240,9 @@ export default function AidePage() {
               <div className="text-center py-8">
                 <Bot className="mx-auto h-10 w-10 text-[var(--green)]" />
                 <p className="mt-3 text-sm font-medium text-[var(--text-primary)]">Salut ! Pret a parler une nouvelle langue ?</p>
-                <p className="mt-1 text-xs text-[var(--text-secondary)]">Pose-moi tes questions sur Vida Langue 🌱</p>
+                <p className="mt-1 text-xs text-[var(--text-secondary)]">Pose-moi tes questions sur VEDA 🌱</p>
                 <div className="mt-4 flex flex-wrap justify-center gap-2">
-                  {['Comment marche Natif Instinct ?', 'Combien coute Vida Langue ?', 'Comment fonctionne le parrainage ?'].map(q => (
+                  {['Comment marche Natif Instinct ?', 'Combien coute VEDA ?', 'Comment fonctionne le parrainage ?'].map(q => (
                     <button
                       key={q}
                       onClick={() => { setChatInput(q); }}

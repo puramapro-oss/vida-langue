@@ -3,7 +3,7 @@ import { WifiOff } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Hors ligne — Vida Langue',
+  title: 'Hors ligne — VEDA',
 }
 
 export default function OfflinePage() {
@@ -12,7 +12,7 @@ export default function OfflinePage() {
       <WifiOff className="h-16 w-16 text-[var(--text-secondary)]" />
       <h1 className="mt-6 text-2xl font-bold text-[var(--text-primary)]">Pas de connexion</h1>
       <p className="mt-2 max-w-md text-[var(--text-secondary)]">
-        Vérifie ta connexion internet et réessaie. Vida Langue a besoin d&apos;Internet pour fonctionner.
+        Vérifie ta connexion internet et réessaie. VEDA a besoin d&apos;Internet pour fonctionner.
       </p>
       <Link
         href="/"

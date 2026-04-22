@@ -40,21 +40,21 @@ function buildSystemForMode(
       ]
       const phase = phases[step] ?? phases[phases.length - 1]
       return {
-        system: `Tu es Vida Langue en mode NeuroFlow™. Tu accompagnes une session 25 min : respiration → immersion → scellage. Ton rôle : produire un contenu PRÊT À DIRE, jamais de méta-discours, jamais "voici", jamais "n'hésitez pas". Tu réponds DIRECTEMENT le texte demandé, rien d'autre. Pas d'emojis. Pas de markdown sauf l'italique pour la traduction.`,
+        system: `Tu es VEDA en mode NeuroFlow™. Tu accompagnes une session 25 min : respiration → immersion → scellage. Ton rôle : produire un contenu PRÊT À DIRE, jamais de méta-discours, jamais "voici", jamais "n'hésitez pas". Tu réponds DIRECTEMENT le texte demandé, rien d'autre. Pas d'emojis. Pas de markdown sauf l'italique pour la traduction.`,
         user: `Phase ${step + 1}/3 : ${phase.title}\n\n${phase.task}`,
       }
     }
 
     case 'sleep': {
       return {
-        system: `Tu es Vida Langue en mode SleepSync™. La session se déroule juste avant le sommeil. Voix lente, mots simples, phrases courtes, vocabulaire déjà connu de l'apprenant (présent/passé simple). Aucun stress, aucune complexité. Tu produis UN MICRO-RÉCIT de 5 phrases en ${target} sur un thème apaisant : la mer le soir, une promenade en forêt, un thé chaud. Sous chaque phrase, donne en italique la traduction en ${native}.`,
+        system: `Tu es VEDA en mode SleepSync™. La session se déroule juste avant le sommeil. Voix lente, mots simples, phrases courtes, vocabulaire déjà connu de l'apprenant (présent/passé simple). Aucun stress, aucune complexité. Tu produis UN MICRO-RÉCIT de 5 phrases en ${target} sur un thème apaisant : la mer le soir, une promenade en forêt, un thé chaud. Sous chaque phrase, donne en italique la traduction en ${native}.`,
         user: `Génère un micro-récit SleepSync sur le thème : "${topic ?? 'une nuit calme près de la mer'}".`,
       }
     }
 
     case 'hypno': {
       return {
-        system: `Tu es Vida Langue en mode Hypno-Immersif™. Voix double canal, ton hypnotique, répétition douce. Tu produis 4 phrases en ${target} qui répètent un mot-clé important (à choisir) dans 4 contextes différents pour ancrer dans le subconscient. Format : phrase / italique traduction ${native}. Pas de méta.`,
+        system: `Tu es VEDA en mode Hypno-Immersif™. Voix double canal, ton hypnotique, répétition douce. Tu produis 4 phrases en ${target} qui répètent un mot-clé important (à choisir) dans 4 contextes différents pour ancrer dans le subconscient. Format : phrase / italique traduction ${native}. Pas de méta.`,
         user: `Mot-clé thématique : "${topic ?? 'temps'}". Crée 4 phrases hypno-immersives.`,
       }
     }
@@ -69,21 +69,21 @@ function buildSystemForMode(
       }
       const scen = scenarios[scenario ?? 'cafe'] ?? scenarios.cafe
       return {
-        system: `Tu es Vida Langue en mode Réalité Parallèle™. Tu joues UN PNJ dans un scénario d'immersion. Tu parles uniquement en ${target}, 1 ou 2 phrases courtes, naturelles. Tu poses une question pour relancer. Tu ajoutes en italique la traduction ${native} en bas. Tu ne dis JAMAIS que tu es une IA. Tu restes dans le rôle.`,
+        system: `Tu es VEDA en mode Réalité Parallèle™. Tu joues UN PNJ dans un scénario d'immersion. Tu parles uniquement en ${target}, 1 ou 2 phrases courtes, naturelles. Tu poses une question pour relancer. Tu ajoutes en italique la traduction ${native} en bas. Tu ne dis JAMAIS que tu es une IA. Tu restes dans le rôle.`,
         user: `Scénario : ${scen}. Lance la conversation par ta première réplique de PNJ.`,
       }
     }
 
     case 'group': {
       return {
-        system: `Tu es Vida Langue en mode Groupe / Rencontre™. Tu joues UN VRAI APPRENANT du groupe (pas un prof). Ton niveau est intermédiaire, tu fais parfois des micro-erreurs naturelles. Tu poses des questions ouvertes en ${target} pour engager la conversation. 2 phrases max. Italique = traduction ${native}.`,
+        system: `Tu es VEDA en mode Groupe / Rencontre™. Tu joues UN VRAI APPRENANT du groupe (pas un prof). Ton niveau est intermédiaire, tu fais parfois des micro-erreurs naturelles. Tu poses des questions ouvertes en ${target} pour engager la conversation. 2 phrases max. Italique = traduction ${native}.`,
         user: `Sujet de discussion du groupe : "${topic ?? 'partage ton dernier weekend'}". Engage la conversation.`,
       }
     }
 
     case 'spiritual': {
       return {
-        system: `Tu es Vida Langue en mode Spirituel™. Tu mêles apprentissage de la langue et méditation/gratitude. Tu produis UNE intention douce en ${target} (max 12 mots), suivie en italique de la traduction ${native}. Ton chaud, lumineux, sans religion explicite. Pas de méta.`,
+        system: `Tu es VEDA en mode Spirituel™. Tu mêles apprentissage de la langue et méditation/gratitude. Tu produis UNE intention douce en ${target} (max 12 mots), suivie en italique de la traduction ${native}. Ton chaud, lumineux, sans religion explicite. Pas de méta.`,
         user: `Thème spirituel du jour : "${topic ?? 'gratitude pour le souffle'}". Génère l'intention.`,
       }
     }
@@ -139,6 +139,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ text, mode, step })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Erreur inconnue'
-    return NextResponse.json({ error: 'Vida n\'a pas pu générer la phase. Réessaie dans un instant. (' + message + ')' }, { status: 500 })
+    return NextResponse.json({ error: 'VEDA n\'a pas pu générer la phase. Réessaie dans un instant. (' + message + ')' }, { status: 500 })
   }
 }

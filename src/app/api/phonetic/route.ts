@@ -28,7 +28,7 @@ interface PhoneticResponse {
   cultural_note?: string
 }
 
-const PHONETIC_SYSTEM = `Tu es VIDA LANGUE, experte en phonétique neuro-adaptative.
+const PHONETIC_SYSTEM = `Tu es NAMA-Polyglotte, la voix de VEDA, experte en phonétique neuro-adaptative (50+ langues).
 
 Pour CHAQUE phrase reçue, tu produis un JSON strict (aucun texte avant/après) :
 
@@ -111,7 +111,7 @@ export async function POST(req: NextRequest) {
     const userPrompt = `Langue source (à apprendre) : ${targetName} (${targetLanguage})
 Langue maternelle de l'apprenant : ${nativeName} (${nativeLanguage})
 
-Phrase à décomposer en 3 couches phonétiques Vida :
+Phrase à décomposer en 3 couches phonétiques VEDA :
 "${phrase}"
 
 Renvoie UNIQUEMENT le JSON, rien d'autre.`
@@ -130,7 +130,7 @@ Renvoie UNIQUEMENT le JSON, rien d'autre.`
       parsed = JSON.parse(raw.slice(jsonStart, jsonEnd + 1)) as PhoneticResponse
     } catch {
       return NextResponse.json(
-        { error: 'Vida n\'a pas pu graver cette phrase, retente avec une formulation plus simple.' },
+        { error: 'VEDA n\'a pas pu graver cette phrase, retente avec une formulation plus simple.' },
         { status: 502 },
       )
     }
@@ -161,7 +161,7 @@ Renvoie UNIQUEMENT le JSON, rien d'autre.`
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Erreur inconnue'
     return NextResponse.json(
-      { error: `Vida a perdu le souffle : ${message}. Respire et retente.` },
+      { error: `VEDA a perdu le souffle : ${message}. Respire et retente.` },
       { status: 500 },
     )
   }

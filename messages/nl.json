@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Vida Langue",
+    "appName": "VEDA",
     "loading": "Laden...",
     "error": "Er is een fout opgetreden",
     "retry": "Opnieuw",
@@ -85,7 +85,7 @@
     "aidesFound": "programma s gevonden"
   },
   "cookie": {
-    "message": "Vida Langue gebruikt alleen essentiële cookies (sessie, voorkeuren). Geen advertentietracking.",
+    "message": "VEDA gebruikt alleen essentiële cookies (sessie, voorkeuren). Geen advertentietracking.",
     "accept": "Accepteren",
     "decline": "Weigeren",
     "settings": "Instellingen"

@@ -54,27 +54,27 @@ function buildEmailHtml(type: EmailType, userName: string): string {
       <p>Ca fait quelques jours qu'on ne t'a pas vu. Une langue, ca s'attrape dans la duree — meme 5 minutes par jour valent mieux qu'1h le dimanche.</p>
       <ul>
         <li>Ton fil de vie t'attend</li>
-        <li>Ta mission du jour vaut +30 d'energie Vida</li>
+        <li>Ta mission du jour vaut +30 d'energie VEDA</li>
         <li>Ton streak ne se brisera pas si tu reviens aujourd'hui</li>
       </ul>
       <p>Reviens 5 minutes — ton cerveau te dira merci.</p>
-      <a href="https://${APP_DOMAIN}/dashboard" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Revenir sur Vida</a>
+      <a href="https://${APP_DOMAIN}/dashboard" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Revenir sur VEDA</a>
     `,
     tips_day7: `
-      <h2>1 semaine avec Vida Langue ! ⚡</h2>
+      <h2>1 semaine avec VEDA ! ⚡</h2>
       <p>${name}, tu as deja fait plus que 80% des gens qui telechargent une appli de langue. Voici 3 trucs que les apprenants serieux adorent :</p>
       <ol>
         <li><strong>HoloTalk avec Marco</strong> — 5 min de conversation libre = 1 cours particulier</li>
         <li><strong>Vocabulaire spaced repetition</strong> — Revoir 10 mots juste avant qu'ils s'effacent</li>
         <li><strong>Ritual hebdo</strong> — Le dimanche, 20 min pour ancrer ce que tu as appris</li>
       </ol>
-      <p>Et chaque session te rapporte XP, energie Vida et missions impact.</p>
+      <p>Et chaque session te rapporte XP, energie VEDA et missions impact.</p>
       <a href="https://${APP_DOMAIN}/dashboard/sessions" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Choisir ma session</a>
     `,
     upgrade_day14: `
       <h2>Offre exclusive, ${name} ! 🎁</h2>
       <p>Tu termines ton essai de 14 jours. Pour te remercier, voici <strong>-20%</strong> sur ton 1er mois.</p>
-      <p>En passant Vida illimite, tu debloques :</p>
+      <p>En passant VEDA illimite, tu debloques :</p>
       <ul>
         <li>Sessions Natif Instinct™ illimitees (au lieu de 3/jour)</li>
         <li>HoloTalk avec les 6 personas natifs sans limite</li>
@@ -82,11 +82,11 @@ function buildEmailHtml(type: EmailType, userName: string): string {
         <li>16 langues + accent regional au choix</li>
       </ul>
       <p><strong>Code : VIDA20</strong> — 48h seulement. Et si la methode ne te transforme pas, tu es rembourse a vie.</p>
-      <a href="https://${APP_DOMAIN}/pricing" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Voir les plans Vida</a>
+      <a href="https://${APP_DOMAIN}/pricing" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Voir les plans VEDA</a>
     `,
     testimonial_day21: `
       <h2>Ils en parlent partout 💬</h2>
-      <p>${name}, ils ont essaye Vida Langue, voici ce qu'ils en disent :</p>
+      <p>${name}, ils ont essaye VEDA, voici ce qu'ils en disent :</p>
       <blockquote style="border-left:3px solid ${APP_COLOR};padding-left:16px;margin:16px 0;font-style:italic;">
         "En 3 semaines avec Natif Instinct, j'ai mieux retenu qu'en 6 mois de Babbel. La 3e couche phonetique change tout."
       </blockquote>
@@ -104,11 +104,11 @@ function buildEmailHtml(type: EmailType, userName: string): string {
         <li>Le ritual du dimanche est la pour te remettre en route en douceur</li>
       </ul>
       <p>On t'a garde une place. Pas de jugement, juste un petit pas.</p>
-      <a href="https://${APP_DOMAIN}/dashboard" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Revenir sur Vida</a>
+      <a href="https://${APP_DOMAIN}/dashboard" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Revenir sur VEDA</a>
     `,
     referral_event: `
       <h2>Parrainage valide ! 🎉</h2>
-      <p>${name}, quelqu'un que tu as invite vient de prendre Vida Langue. <strong>50% de son 1er mois</strong> arrive sur ton wallet.</p>
+      <p>${name}, quelqu'un que tu as invite vient de prendre VEDA. <strong>50% de son 1er mois</strong> arrive sur ton wallet.</p>
       <p>Continue de partager — au 5e parrainage, tu passes Vert Vif et gagnes encore plus.</p>
       <a href="https://${APP_DOMAIN}/dashboard/referral" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Voir mes parrainages</a>
     `,
@@ -119,7 +119,7 @@ function buildEmailHtml(type: EmailType, userName: string): string {
     `,
     milestone_event: `
       <h2>Nouveau palier atteint ! 🌟</h2>
-      <p>${name}, felicitations ! Tu viens de monter d'un palier sur Vida Langue.</p>
+      <p>${name}, felicitations ! Tu viens de monter d'un palier sur VEDA.</p>
       <p>De nouvelles recompenses sont debloquees dans ton univers.</p>
       <a href="https://${APP_DOMAIN}/dashboard/achievements" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Voir mes succes</a>
     `,

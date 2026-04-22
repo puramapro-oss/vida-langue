@@ -2,8 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Conditions Générales d\'Utilisation — Vida Langue',
-  description: 'CGU de Vida Langue par SASU PURAMA.',
+  title: 'Conditions Générales d\'Utilisation — VEDA',
+  description: 'CGU de VEDA par SASU PURAMA.',
 }
 
 export default function CGU() {
@@ -26,7 +26,7 @@ export default function CGU() {
               1. Acceptation des CGU
             </h2>
             <p>
-              En accédant et en utilisant la plateforme Vida Langue (accessible à <strong className="text-[var(--text-primary)]">vidalangue.purama.dev</strong>), vous acceptez sans réserve les présentes Conditions Générales d&apos;Utilisation.
+              En accédant et en utilisant la plateforme VEDA (accessible à <strong className="text-[var(--text-primary)]">vidalangue.purama.dev</strong>), vous acceptez sans réserve les présentes Conditions Générales d&apos;Utilisation.
               Si vous n&apos;acceptez pas ces conditions, vous ne devez pas utiliser le service.
             </p>
             <p className="mt-2">
@@ -39,7 +39,7 @@ export default function CGU() {
               2. Description du service
             </h2>
             <p>
-              Vida Langue est une plateforme SaaS (Software as a Service) d&apos;apprentissage des langues fondée sur la méthode neuro-phonétique propriétaire Natif Instinct™, incluant notamment :
+              VEDA est une plateforme SaaS (Software as a Service) d&apos;apprentissage des langues fondée sur la méthode neuro-phonétique propriétaire Natif Instinct™, incluant notamment :
             </p>
             <ul className="mt-3 space-y-1.5 ml-4 list-disc">
               <li>Sessions Natif Instinct™ : phonétique en 3 couches (orthographe, IPA, audible FR)</li>
@@ -58,7 +58,7 @@ export default function CGU() {
             <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--text-primary)] mb-4">
               3. Création et gestion du compte
             </h2>
-            <p>Pour utiliser Vida Langue, vous devez créer un compte en fournissant une adresse e-mail valide. Vous pouvez également vous connecter via votre compte Google.</p>
+            <p>Pour utiliser VEDA, vous devez créer un compte en fournissant une adresse e-mail valide. Vous pouvez également vous connecter via votre compte Google.</p>
             <p className="mt-2">Vous êtes responsable :</p>
             <ul className="mt-2 space-y-1.5 ml-4 list-disc">
               <li>De la confidentialité de vos identifiants de connexion</li>
@@ -74,7 +74,7 @@ export default function CGU() {
             <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--text-primary)] mb-4">
               4. Utilisation acceptable
             </h2>
-            <p>En utilisant Vida Langue, vous vous engagez à ne pas :</p>
+            <p>En utilisant VEDA, vous vous engagez à ne pas :</p>
             <ul className="mt-3 space-y-1.5 ml-4 list-disc">
               <li>Générer, diffuser ou promouvoir du contenu illégal, haineux, violent, pornographique ou discriminatoire</li>
               <li>Utiliser le service pour du spam, du phishing ou toute activité frauduleuse</li>
@@ -96,13 +96,13 @@ export default function CGU() {
               5. Propriété intellectuelle
             </h2>
             <p>
-              <strong className="text-[var(--text-primary)]">Contenu de la plateforme :</strong> L&apos;ensemble du code, des interfaces, des marques, des logos et contenus de Vida Langue restent la propriété exclusive de SASU PURAMA.
+              <strong className="text-[var(--text-primary)]">Contenu de la plateforme :</strong> L&apos;ensemble du code, des interfaces, des marques, des logos et contenus de VEDA restent la propriété exclusive de SASU PURAMA.
             </p>
             <p className="mt-3">
-              <strong className="text-[var(--text-primary)]">Contenu généré :</strong> Les contenus que vous créez via Vida Langue vous appartiennent, sous réserve des licences des modèles IA utilisés. Vous accordez à SASU PURAMA une licence limitée pour afficher ces contenus dans le cadre du service.
+              <strong className="text-[var(--text-primary)]">Contenu généré :</strong> Les contenus que vous créez via VEDA vous appartiennent, sous réserve des licences des modèles IA utilisés. Vous accordez à SASU PURAMA une licence limitée pour afficher ces contenus dans le cadre du service.
             </p>
             <p className="mt-3">
-              <strong className="text-[var(--text-primary)]">Vocabulaire et fil de vie :</strong> Les phrases, mots et notes que vous générez restent les vôtres. Vida Langue peut conserver ces données pour personnaliser votre apprentissage tant que votre compte est actif.
+              <strong className="text-[var(--text-primary)]">Vocabulaire et fil de vie :</strong> Les phrases, mots et notes que vous générez restent les vôtres. VEDA peut conserver ces données pour personnaliser votre apprentissage tant que votre compte est actif.
             </p>
           </section>
 
@@ -111,7 +111,7 @@ export default function CGU() {
               6. Responsabilité limitée
             </h2>
             <p>
-              Vida Langue fournit un service d&apos;apprentissage linguistique à titre éducatif. Les transcriptions phonétiques et les corrections sont fournies à titre indicatif et ne sauraient remplacer une certification linguistique officielle (DELF, TOEFL, IELTS, etc.).
+              VEDA fournit un service d&apos;apprentissage linguistique à titre éducatif. Les transcriptions phonétiques et les corrections sont fournies à titre indicatif et ne sauraient remplacer une certification linguistique officielle (DELF, TOEFL, IELTS, etc.).
             </p>
             <p className="mt-2">
               SASU PURAMA ne saurait être tenue responsable des décisions prises sur la base des résultats générés par l&apos;IA. La responsabilité de SASU PURAMA est limitée au montant total des sommes versées par l&apos;utilisateur au cours des 12 derniers mois.

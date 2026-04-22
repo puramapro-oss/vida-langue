@@ -69,7 +69,7 @@ export default function SignupPage() {
     } catch {
       // attribution non bloquante
     }
-    toast.success('Compte créé ! Bienvenue sur Vida Langue 🌱')
+    toast.success('Compte créé ! Bienvenue sur VEDA 🌱')
     router.push('/onboarding')
   }
 
@@ -105,14 +105,14 @@ export default function SignupPage() {
               <span className="block gradient-text">Pas l&apos;inverse.</span>
             </h1>
             <p className="mt-5 text-lg text-[var(--text-secondary)] max-w-md leading-relaxed">
-              La phonétique Vida s&apos;adapte à ta langue maternelle. Sans cours, sans grammaire, sans honte.
+              La phonétique VEDA s&apos;adapte à ta langue maternelle. Sans cours, sans grammaire, sans honte.
             </p>
 
             <ul className="mt-8 space-y-3 max-w-md">
               {[
                 { icon: Sparkles, text: '8 modes d\'apprentissage — neuro, vocal, immersif, hypno…' },
                 { icon: Globe, text: 'Toutes les langues — calibrées sur ta langue maternelle' },
-                { icon: Heart, text: '10 % du CA reversé à l\'Association Vida' },
+                { icon: Heart, text: '10 % du CA reversé à l\'Association VEDA' },
                 { icon: Check, text: 'Annulation en 1 clic, à tout moment' },
               ].map((item) => (
                 <li key={item.text} className="flex items-start gap-3 text-sm text-[var(--text-secondary)]">
@@ -134,7 +134,7 @@ export default function SignupPage() {
                     <Leaf className="h-4 w-4 text-emerald-950" strokeWidth={2.5} />
                   </div>
                   <span className="font-[family-name:var(--font-display)] text-xl font-bold gradient-text">
-                    Vida Langue
+                    VEDA
                   </span>
                 </div>
                 <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold text-[var(--text-primary)]">

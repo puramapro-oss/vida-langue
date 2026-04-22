@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
       .single()
 
     if (sessionErr) {
-      return NextResponse.json({ error: 'Vida n\'a pas pu graver la session' }, { status: 500 })
+      return NextResponse.json({ error: 'VEDA n\'a pas pu graver la session' }, { status: 500 })
     }
 
     const { data: profile } = await service

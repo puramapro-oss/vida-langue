@@ -107,7 +107,7 @@ export default function AdminPage() {
         <div className="text-center">
           <Shield className="mx-auto h-16 w-16 text-red-400" />
           <h1 className="mt-4 text-2xl font-bold text-[var(--text-primary)]">Acces restreint</h1>
-          <p className="mt-2 text-[var(--text-secondary)]">Reservé aux super-administrateurs Vida.</p>
+          <p className="mt-2 text-[var(--text-secondary)]">Reservé aux super-administrateurs VEDA.</p>
         </div>
       </div>
     )
@@ -158,8 +158,8 @@ export default function AdminPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Administration Vida</h1>
-          <p className="mt-1 text-sm text-[var(--text-secondary)]">Vue d&apos;ensemble de la plateforme Vida Langue 🌱</p>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Administration VEDA</h1>
+          <p className="mt-1 text-sm text-[var(--text-secondary)]">Vue d&apos;ensemble de la plateforme VEDA 🌱</p>
         </div>
         <button
           onClick={loadData}

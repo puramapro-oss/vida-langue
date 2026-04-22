@@ -43,8 +43,8 @@ interface VidaInfluencerSale {
 }
 
 const TIERS = [
-  { id: 'bronze', label: 'Bronze', min: 10, commission: '50% + 10%', color: '#cd7f32', perk: '+1 mois Vida offert' },
-  { id: 'argent', label: 'Argent', min: 25, commission: '50% + 12%', color: '#94a3b8', perk: 'Vida Annuel offert' },
+  { id: 'bronze', label: 'Bronze', min: 10, commission: '50% + 10%', color: '#cd7f32', perk: '+1 mois VEDA offert' },
+  { id: 'argent', label: 'Argent', min: 25, commission: '50% + 12%', color: '#94a3b8', perk: 'VEDA Annuel offert' },
   { id: 'or', label: 'Or', min: 50, commission: '50% + 13%', color: '#f59e0b', perk: 'Page perso /p/[slug]' },
   { id: 'platine', label: 'Platine', min: 100, commission: '50% + 15%', color: '#e879f9', perk: 'Coach IA dédié + accès anticipé' },
   { id: 'diamant', label: 'Diamant', min: 250, commission: '50% + 17%', color: '#06b6d4', perk: 'Statut VIP + événements' },
@@ -178,7 +178,7 @@ export default function InfluenceurPage() {
           {[
             { icon: Link2, label: 'Lien promo -50%', desc: 'Ton filleul a 50% de réduction pendant 7 jours' },
             { icon: TrendingUp, label: '50% + 10% à vie', desc: 'Commission récurrente tant qu\'il est abonné' },
-            { icon: Wallet, label: 'Retrait IBAN dès 5€', desc: 'Versé sur ton wallet Vida automatiquement' },
+            { icon: Wallet, label: 'Retrait IBAN dès 5€', desc: 'Versé sur ton wallet VEDA automatiquement' },
           ].map(({ icon: Icon, label, desc }) => (
             <Card key={label} className="p-4 text-center">
               <Icon className="mx-auto mb-2 h-8 w-8 text-[var(--green)]" />
@@ -486,10 +486,10 @@ export default function InfluenceurPage() {
           {[
             {
               level: 1,
-              title: 'Les bases — Vida Ambassadeur',
+              title: 'Les bases — VEDA Ambassadeur',
               duration: '2h',
               topics: [
-                'Comprendre Vida Langue en 5 min',
+                'Comprendre VEDA en 5 min',
                 'Activer ton lien promo -50%',
                 'Partager efficacement (story, DM, post)',
                 'Optimiser ta page perso',
@@ -503,8 +503,8 @@ export default function InfluenceurPage() {
               topics: [
                 'Cibler les bonnes audiences',
                 'Contenu qui convertit (TikTok, Reels, Shorts)',
-                'Storytelling Vida (avant/après)',
-                'Réseau influenceurs Vida',
+                'Storytelling VEDA (avant/après)',
+                'Réseau influenceurs VEDA',
               ],
               unlocked: conversions >= 25,
             },
