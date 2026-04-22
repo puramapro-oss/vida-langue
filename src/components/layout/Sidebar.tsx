@@ -7,6 +7,7 @@ import {
   Home, Sparkles, Globe2, Compass, Megaphone, Users,
   Wallet, Trophy, Settings, ChevronLeft, ChevronRight,
   LogOut, User, Shield, BookOpen, Heart, Leaf, Wind, ShoppingBag,
+  Calculator,
 } from 'lucide-react'
 import { cn, getInitials } from '@/lib/utils'
 import { useAuth } from '@/hooks/useAuth'
@@ -23,6 +24,7 @@ const NAV_ITEMS = [
   { href: '/dashboard/referral', icon: Users, label: 'Parrainage' },
   { href: '/dashboard/ambassadeur', icon: Megaphone, label: 'Ambassadeur' },
   { href: '/dashboard/wallet', icon: Wallet, label: 'Gains' },
+  { href: '/dashboard/fiscal', icon: Calculator, label: 'Fiscal' },
   { href: '/dashboard/boutique', icon: ShoppingBag, label: 'Boutique' },
   { href: '/dashboard/gratitude', icon: Heart, label: 'Gratitude' },
   { href: '/breathe', icon: Wind, label: 'Respiration' },

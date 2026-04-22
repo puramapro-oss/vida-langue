@@ -7,6 +7,8 @@ import { Sparkles, Flame, Heart, Compass, Globe2, ArrowRight, Mic, Volume2 } fro
 import { useAuth } from '@/hooks/useAuth'
 import { createClient } from '@/lib/supabase'
 import Card from '@/components/ui/Card'
+import Flywheel from '@/components/engagement/Flywheel'
+import SocialFeed from '@/components/engagement/SocialFeed'
 import { LEARNING_LANGUAGES, APP_NAME } from '@/lib/constants'
 
 interface DailyMission {
@@ -131,6 +133,16 @@ export default function DashboardHomePage() {
         </Card>
       </motion.div>
 
+      {/* Wealth Engine — Flywheel (boucle virale visualisée) */}
+      <motion.div variants={fadeUp}>
+        <Flywheel
+          streak={streak}
+          impactActions={thread?.total_actions ?? 0}
+          referrals={0}
+          achievements={0}
+        />
+      </motion.div>
+
       {/* Quick actions */}
       <motion.div variants={fadeUp} className="grid gap-4 md:grid-cols-2">
         <Link
@@ -209,6 +221,11 @@ export default function DashboardHomePage() {
           </Link>
         </motion.div>
       )}
+
+      {/* Wealth Engine — SocialFeed (victoires communauté sans montants) */}
+      <motion.div variants={fadeUp}>
+        <SocialFeed limit={6} />
+      </motion.div>
 
       {loading && <p className="text-center text-sm text-[var(--text-muted)]">VEDA prépare ton espace…</p>}
     </motion.div>

@@ -9,6 +9,8 @@ import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import Skeleton from '@/components/ui/Skeleton'
 import EmptyState from '@/components/ui/EmptyState'
+import PrimeTracker from '@/components/wallet/PrimeTracker'
+import FiscalBanner from '@/components/fiscal/FiscalBanner'
 import { formatDate } from '@/lib/utils'
 import { WALLET_MIN_WITHDRAWAL } from '@/lib/constants'
 
@@ -178,6 +180,9 @@ export default function WalletPage() {
         <h1 className="text-2xl font-bold text-[var(--text-primary)]">Wallet VEDA</h1>
         <p className="mt-1 text-[var(--text-secondary)]">Tes commissions de parrainage, ton abonnement et tes retraits IBAN.</p>
       </div>
+
+      {/* Fiscal banner : seuils 1500/2500/3000 (P4) */}
+      <FiscalBanner totalEarningsCents={Math.round(Number(wallet?.total_earned ?? 0) * 100)} />
 
       {/* Stats */}
       <div className="grid gap-4 md:grid-cols-3">

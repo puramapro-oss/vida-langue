@@ -164,7 +164,7 @@ export const PUBLIC_ROUTES = [
   '/', '/pricing', '/how-it-works', '/ecosystem', '/status', '/changelog',
   '/privacy', '/terms', '/legal', '/offline', '/login', '/signup', '/register',
   '/onboarding', '/mentions-legales', '/politique-confidentialite', '/cgv', '/cgu',
-  '/aide', '/contact', '/financer', '/breathe',
+  '/aide', '/contact', '/financer', '/breathe', '/fiscal', '/confirmation',
 ]
 
 // Legacy XP_ACTIONS / XP_TITLES kept for compat with dashboard widgets
