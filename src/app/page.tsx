@@ -22,7 +22,7 @@ const MODES = [
 const FAQ = [
   { q: 'Ça marche vraiment en 30 jours ?', a: 'La phonétique VEDA adapte chaque son à ta langue maternelle. En 30 jours à raison de 15 min/jour, tu tiens une conversation fluide sur les sujets du quotidien.' },
   { q: 'Sans cours, sans théorie ?', a: 'Zéro grammaire explicite. Ton cerveau absorbe les structures comme un enfant — par exposition guidée, répétition contextuelle et émotion.' },
-  { q: 'Quelles langues sont disponibles ?', a: '16 langues au lancement : anglais, espagnol, italien, allemand, portugais, japonais, chinois, coréen, arabe, russe, hindi, turc, néerlandais, polonais, suédois, français.' },
+  { q: 'Quelles langues sont disponibles ?', a: '50+ langues couvertes par NAMA-Polyglotte : latines, germaniques, slaves, sino-tibétaines, arabo-sémitiques, indo-iraniennes, japonaise, coréenne, turques, africaines, austronésiennes, langues des signes LSF/ASL, ainsi que des langues d\'éveil (langue des anges, langue de lumière, yatra kundalini).' },
   { q: 'Je peux essayer avant de payer ?', a: '14 jours offerts, sans carte. Accès complet à tous les modes. Si tu n\'es pas conquis, tu pars sans rien payer.' },
   { q: 'Comment se passe l\'annulation ?', a: 'Un clic dans ton espace. Pas d\'appel, pas de mail, pas de justification. Tu gardes l\'accès jusqu\'à la fin de la période déjà payée.' },
 ] as const
@@ -178,7 +178,8 @@ function Hero() {
             className="mt-6 text-lg text-[var(--text-secondary)] sm:text-xl"
           >
             VEDA grave les langues dans ton cerveau par la phonétique, la voix
-            et l&apos;immersion. Sans cours. Sans stress. Sans théorie.
+            et l&apos;immersion. Guidée par <span className="text-emerald-300 font-semibold">NAMA-Polyglotte</span>.
+            Sans cours. Sans stress. Sans théorie.
           </motion.p>
 
           <motion.div
@@ -208,11 +209,95 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.25 }}
             className="mt-6 text-xs text-[var(--text-muted)]"
           >
-            Sans carte bancaire · Annulation 1 clic · 16 langues
+            Sans carte bancaire · Annulation 1 clic · 50+ langues
           </motion.p>
         </div>
+
+        {/* BLOC 2 above-fold — 3 modes phares (teaser) */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="mx-auto mt-14 grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-3"
+        >
+          {[
+            { icon: Volume2, name: 'Natif Instinct', tag: 'Phonétique 3 couches' },
+            { icon: Mic, name: 'HoloTalk', tag: 'Voix vivante · mémoire longue' },
+            { icon: Brain, name: 'NeuroFlow', tag: 'État flow profond' },
+          ].map((m) => {
+            const Ic = m.icon
+            return (
+              <a
+                key={m.name}
+                href="#modes"
+                className="group flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.02] px-4 py-3 backdrop-blur-xl transition-all hover:border-emerald-400/30 hover:bg-white/[0.04]"
+              >
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-300 ring-1 ring-inset ring-emerald-400/20">
+                  <Ic className="h-4 w-4" strokeWidth={1.8} />
+                </div>
+                <div className="text-left">
+                  <p className="text-sm font-semibold text-white">{m.name}</p>
+                  <p className="text-xs text-[var(--text-secondary)]">{m.tag}</p>
+                </div>
+              </a>
+            )
+          })}
+        </motion.div>
+
+        {/* BLOC 3 above-fold — preuve dynamique (compteurs DB, aucun faux chiffre) */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-x-8 gap-y-3 text-center text-xs text-[var(--text-muted)]"
+        >
+          <LiveCounters />
+        </motion.div>
       </div>
     </section>
+  )
+}
+
+/**
+ * Compteurs dynamiques alimentés par /api/status.
+ * Affiche 0 si la DB retourne 0 (JAMAIS de faux chiffre inventé).
+ */
+function LiveCounters() {
+  const [stats, setStats] = useState<{ learners: number; languages: number; sessions: number } | null>(null)
+
+  useEffect(() => {
+    let mounted = true
+    fetch('/api/status', { cache: 'no-store' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (!mounted || !data) return
+        setStats({
+          learners: Number(data.learners ?? 0),
+          languages: Number(data.languages ?? 50),
+          sessions: Number(data.sessions ?? 0),
+        })
+      })
+      .catch(() => {
+        if (!mounted) return
+        setStats({ learners: 0, languages: 50, sessions: 0 })
+      })
+    return () => { mounted = false }
+  }, [])
+
+  return (
+    <>
+      <span>
+        <strong className="text-white font-semibold">{stats?.learners ?? 0}</strong> apprenants
+      </span>
+      <span>·</span>
+      <span>
+        <strong className="text-white font-semibold">{stats?.languages ?? 50}+</strong> langues
+      </span>
+      <span>·</span>
+      <span>
+        <strong className="text-white font-semibold">{stats?.sessions ?? 0}</strong> sessions guidées
+      </span>
+    </>
   )
 }
 
@@ -261,7 +346,7 @@ function Modes() {
 
 function Method() {
   const steps = [
-    { n: '01', title: 'Tu choisis une langue', desc: 'Parmi 16. VEDA calibre la phonétique à ta langue maternelle.' },
+    { n: '01', title: 'Tu choisis une langue', desc: 'Parmi 50+. NAMA calibre la phonétique à ta langue maternelle.' },
     { n: '02', title: 'Tu ouvres un mode', desc: 'NeuroFlow le matin, HoloTalk à midi, SleepSync le soir. 5 à 30 min.' },
     { n: '03', title: 'Tu parles', desc: 'Jour 30 : tu commandes un café, tu négocies, tu flirtes. Dans leur langue.' },
   ] as const

@@ -26,7 +26,7 @@ const ENTRIES = [
     version: 'v0.4',
     changes: [
       { type: 'feature', text: 'Système de parrainage (Graine → Légende, 50% du 1er paiement)' },
-      { type: 'feature', text: 'Programme influenceur 1 clic + dashboard' },
+      { type: 'feature', text: 'Programme ambassadeur 1 clic + dashboard' },
       { type: 'feature', text: 'Pricing VEDA concret (Mensuel / Annuel / À vie moitié prix)' },
       { type: 'feature', text: 'Stripe checkout + webhook commission auto' },
       { type: 'feature', text: 'Page Impact (4 dimensions, équivalents réels)' },

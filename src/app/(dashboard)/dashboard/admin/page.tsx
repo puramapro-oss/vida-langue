@@ -134,7 +134,7 @@ export default function AdminPage() {
     { label: 'Actifs 7 jours', value: stats.activeWeek, icon: TrendingUp, color: '#22c55e' },
     { label: 'Sessions totales', value: stats.totalSessions, icon: BookOpen, color: '#10b981' },
     { label: 'Parrainages convertis', value: stats.totalReferrals, icon: Users, color: '#ec4899' },
-    { label: 'Influenceurs actifs', value: stats.totalInfluencers, icon: BarChart3, color: '#8b5cf6' },
+    { label: 'Ambassadeurs actifs', value: stats.totalInfluencers, icon: BarChart3, color: '#8b5cf6' },
     { label: 'Commissions versées', value: `${(stats.totalEarningsCents / 100).toFixed(2)} €`, icon: DollarSign, color: '#0ea5e9' },
     { label: 'Messages contact', value: stats.pendingContact, icon: Mail, color: stats.pendingContact > 0 ? '#f97316' : '#22c55e' },
   ] : []

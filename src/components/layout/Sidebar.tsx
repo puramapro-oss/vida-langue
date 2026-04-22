@@ -21,7 +21,7 @@ const NAV_ITEMS = [
   { href: '/dashboard/impact', icon: Leaf, label: 'Impact' },
   { href: '/dashboard/concours', icon: Trophy, label: 'Concours' },
   { href: '/dashboard/referral', icon: Users, label: 'Parrainage' },
-  { href: '/dashboard/influenceur', icon: Megaphone, label: 'Influenceur' },
+  { href: '/dashboard/ambassadeur', icon: Megaphone, label: 'Ambassadeur' },
   { href: '/dashboard/wallet', icon: Wallet, label: 'Gains' },
   { href: '/dashboard/boutique', icon: ShoppingBag, label: 'Boutique' },
   { href: '/dashboard/gratitude', icon: Heart, label: 'Gratitude' },
