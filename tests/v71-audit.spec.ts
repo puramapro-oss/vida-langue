@@ -49,10 +49,19 @@ test.describe('V7.1 · Identité VEDA & NAMA-Polyglotte', () => {
 
   test('FAQ décrit familles linguistiques (latines, germaniques, slaves…)', async ({ page }) => {
     await page.goto('/')
+    // Le FAQ est un accordion : ouvre d'abord la question sur les langues disponibles
+    const faqTrigger = page.getByText(/quelles langues sont disponibles/i).first()
+    if (await faqTrigger.isVisible().catch(() => false)) {
+      await faqTrigger.click()
+      await page.waitForTimeout(300)
+    }
+    // Accepte la présence dans le DOM rendu (innerText) OU dans le HTML sérialisé
+    const html = await page.content()
     const text = await page.locator('body').innerText()
-    expect(text.toLowerCase()).toContain('latines')
-    expect(text.toLowerCase()).toContain('slaves')
-    expect(text.toLowerCase()).toContain("langues d'éveil")
+    const haystack = (html + ' ' + text).toLowerCase()
+    expect(haystack).toContain('latines')
+    expect(haystack).toContain('slaves')
+    expect(haystack).toContain("langues d'éveil")
   })
 
   test('/api/status retourne app=VEDA + ai=NAMA-Polyglotte + languages >= 50', async ({ request }) => {

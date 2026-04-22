@@ -33,12 +33,12 @@ const THRESHOLDS = [
 
 export default function FiscalPage() {
   return (
-    <main className="relative min-h-screen bg-[var(--bg-void)] pb-20 pt-16">
-      <div className="pointer-events-none absolute inset-0 -z-10">
+    <main className="relative min-h-screen w-full max-w-full overflow-x-hidden bg-[var(--bg-void)] pb-20 pt-16">
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute left-1/2 top-0 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-emerald-500/15 blur-[120px]" />
       </div>
 
-      <div className="mx-auto max-w-3xl px-6 lg:px-8">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <header className="text-center">
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-300 ring-1 ring-inset ring-emerald-400/20">
             <Calculator className="h-7 w-7" strokeWidth={1.8} />

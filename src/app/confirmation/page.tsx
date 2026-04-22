@@ -11,13 +11,13 @@ export const metadata = {
 // Célébration + info prime + L221-28 rappel (déjà accepté implicitement au clic).
 export default function ConfirmationPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[var(--bg-void)] py-16 px-6">
-      <div className="pointer-events-none absolute inset-0 -z-10">
+    <main className="relative min-h-screen w-full max-w-full overflow-x-hidden bg-[var(--bg-void)] py-16 px-4 sm:px-6">
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute left-1/2 top-20 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-emerald-500/20 blur-[140px]" />
       </div>
 
       <div className="mx-auto max-w-xl">
-        <div className="rounded-3xl border border-emerald-400/25 bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-cyan-500/10 p-10 text-center backdrop-blur-2xl shadow-[0_20px_80px_rgba(16,185,129,0.25)]">
+        <div className="rounded-3xl border border-emerald-400/25 bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-cyan-500/10 p-6 sm:p-10 text-center backdrop-blur-2xl shadow-[0_20px_80px_rgba(16,185,129,0.25)]">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/20 text-emerald-300">
             <CheckCircle2 className="h-8 w-8" strokeWidth={2} />
           </div>
