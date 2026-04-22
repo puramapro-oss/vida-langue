@@ -219,3 +219,62 @@ Vida Langue = app **éducation/langues**, PAS santé/bien-être/sport/fitness/we
 - ✅ Deploy final Vercel prod
 - ✅ 0 Lorem, 0 TODO, 0 AKASHA, 0 console.log, 0 faux contenu
 - ✅ Commit 118f0c2
+
+## UPGRADE V7.1 + V4.1 — VEDA (2026-04-23)
+
+### P1 — Rename VEDA + NAMA-Polyglotte + 50+ langues + .claude/ local ✅
+- ✅ src/lib/claude.ts : system prompt NAMA-Polyglotte (Neuro-Adaptive Multilingual Ambassador) + aliases veda-*/nama + MODEL_MAIN/FAST/PRO via env
+- ✅ src/lib/constants.ts : LEARNING_LANGUAGES 16→60+ (20 familles + signes + éveil) + LANGUAGE_FAMILIES
+- ✅ 3 API routes purgées (aide/chat, holotalk, phonetic) → NAMA
+- ✅ Mobile rename (constants, welcome, signup, profile, sessions[mode])
+- ✅ public/manifest.json + layout metadata
+- ✅ .claude/ local : agents/qa.md (22 checks V13) + agents/security.md (5 sévérités V13) + docs/veda.md + settings.local.json
+- ✅ tsc 0, 0 résidu "Vida Langue"
+- ✅ Commit d2b0784
+
+### P2 — Rename ambassadeur + Homepage 3 blocs + Shells ✅
+- ✅ git mv influenceur→ambassadeur + 308 permanent redirect
+- ✅ Sidebar "Ambassadeur" + admin stats + changelog update
+- ✅ Homepage above-fold : Hero + 3 modes teaser + LiveCounters dynamiques
+- ✅ /api/status enrichi : app=VEDA, ai=NAMA-Polyglotte, learners/sessions/languages réels (cache 60s)
+- ✅ FAQ 50+ langues + familles détaillées
+- ✅ Shells components : Flywheel, MagicMoment, SocialFeed, AmbassadorTier (engagement/) + PrimeTracker (wallet/) + FiscalBanner (fiscal/)
+- ✅ tsc 0, build 76 routes
+- ✅ Commit 738aed2
+
+### P3 — Paiement V7.1 + OpenTimestamps + INSEE SIRENE ✅
+- ✅ src/lib/opentimestamps.ts (stampBuffer/stampString/verifyProof via javascript-opentimestamps@0.4.5)
+- ✅ src/lib/insee.ts (verifySiret + Luhn + détection asso via catégories juridiques)
+- ✅ /api/ots/stamp (super-admin) + /api/ots/verify (public avec content)
+- ✅ /api/tax/verify-siret (auth soft)
+- ✅ /api/subscription/cancel (Stripe cancel_at_period_end + prime récupérée si <30j)
+- ✅ /confirmation : célébration + prime + notice L221-28 3° waiver implicite
+- ✅ /dashboard/settings/abonnement : résiliation 3 étapes + offre moitié prix
+- ✅ Migration SQL P3 poussée VPS : welcome_primes, timestamped_records, fiscal_profiles, fiscal_statements, stripe_connect_accounts + RPC wallet_deduct_prime + subs cancel_at_period_end
+- ✅ PostgREST 200 sur 3 nouvelles tables
+- ✅ Types shim javascript-opentimestamps.d.ts
+- ✅ npm i javascript-opentimestamps@0.4.5 pdf-lib@1.17.1
+- ✅ tsc 0, build 82 routes
+- ✅ Commit (P3)
+
+### P4 — Wealth Engine Phase 1 wired + Stripe Connect + /fiscal ✅
+- ✅ /api/connect/account (gated wallet≥5€ OU prime) + /api/connect/account-session (Embedded V4.1)
+- ✅ /fiscal (public) : 3 paliers 1500/2500/3000 + OTS + tiers déclarant
+- ✅ /dashboard/fiscal : FiscalBanner + SIRET INSEE inline + PDF à la demande + historique
+- ✅ /api/fiscal/pdf : pdf-lib A4 + total + ventilation + SASU footer + OTS stamp auto + upsert fiscal_statements
+- ✅ /api/cron/fiscal-monthly : alerte seuil franchi (idempotent)
+- ✅ /api/cron/fiscal-yearly : upsert statements N-1 + notifications
+- ✅ Flywheel + SocialFeed intégrés dashboard home
+- ✅ FiscalBanner intégré wallet
+- ✅ Sidebar : entrée Fiscal + Calculator icon
+- ✅ Middleware + constants PUBLIC_ROUTES : +/fiscal +/confirmation
+- ✅ tsc 0, build 89 routes (+7 vs P3)
+- ✅ Commit aed3d77
+
+### P5 — Tests + Mobile sync + Deploy + Handoff ✅
+- ✅ tests/v71-audit.spec.ts : suite V7.1 (identité, homepage 3 blocs, ambassadeur 308, paiement L221-28, OTS 401/400, INSEE Luhn, /fiscal public, Connect 401, crons 401, console clean, responsive 375px)
+- ✅ Mobile sync : AMBASSADOR_TIERS + LANGUAGES_COUNT aligné web
+- ✅ progress.md + task_plan.md mis à jour
+- ⏭️ vercel --prod (à lancer)
+- ⏭️ Relancer Playwright live contre prod
+- ⏭️ Lighthouse >90 nouvelles pages (/fiscal, /confirmation, /dashboard/ambassadeur)

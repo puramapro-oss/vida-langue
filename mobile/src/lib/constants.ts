@@ -97,3 +97,18 @@ export const REFERRAL_TIERS = [
   { slug: 'foret', label: 'Forêt 🌲', count: 75, perk: 'Année gratuite' },
   { slug: 'legende', label: 'Légende ✨', count: 150, perk: 'À vie offert' },
 ] as const;
+
+// Wealth Engine Phase 1 · Ambassadeur tiers (aligné avec web components/engagement/AmbassadorTier)
+export const AMBASSADOR_TIERS = [
+  { slug: 'bronze', label: 'Bronze', minConversions: 1, perk: 'VEDA Mensuel offert' },
+  { slug: 'argent', label: 'Argent', minConversions: 10, perk: 'VEDA Annuel offert' },
+  { slug: 'or', label: 'Or', minConversions: 25, perk: 'Page perso' },
+  { slug: 'platine', label: 'Platine', minConversions: 50, perk: 'Coach NAMA dédié' },
+  { slug: 'diamant', label: 'Diamant', minConversions: 100, perk: 'VIP événements' },
+  { slug: 'legende', label: 'Légende', minConversions: 250, perk: 'Commissions héréditaires' },
+  { slug: 'eternel', label: 'Éternel', minConversions: 1000, perk: '1% parts VEDA à vie' },
+] as const;
+
+// Les 50+ langues complètes vivent côté web (src/lib/constants.ts).
+// Côté mobile, on se contente d'exposer un count minimal pour l'UI marketing.
+export const LANGUAGES_COUNT = 60; // indicative only
