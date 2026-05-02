@@ -9,6 +9,7 @@ import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import { LEARNING_LANGUAGES } from '@/lib/constants'
 import { useAuth } from '@/hooks/useAuth'
+import { speakWithElevenLabs } from '@/lib/elevenlabs-client'
 
 interface PhoneticLayer {
   original: string
@@ -93,15 +94,7 @@ export default function NatifInstinctPage() {
   }
 
   function speak(text: string, lang: string) {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
-      toast.message('Voix navigateur indisponible sur cet appareil.')
-      return
-    }
-    const utterance = new SpeechSynthesisUtterance(text)
-    utterance.lang = lang === 'en' ? 'en-US' : lang === 'es' ? 'es-ES' : lang === 'it' ? 'it-IT' : lang === 'de' ? 'de-DE' : lang === 'pt' ? 'pt-PT' : lang === 'ja' ? 'ja-JP' : lang
-    utterance.rate = 0.85
-    window.speechSynthesis.cancel()
-    window.speechSynthesis.speak(utterance)
+    void speakWithElevenLabs(text, lang)
   }
 
   const samples = SAMPLE_PHRASES[target] ?? SAMPLE_PHRASES.en

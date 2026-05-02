@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 import Card from '@/components/ui/Card'
 import { LEARNING_LANGUAGES } from '@/lib/constants'
 import { useAuth } from '@/hooks/useAuth'
+import { speakWithElevenLabs } from '@/lib/elevenlabs-client'
 
 interface Msg {
   role: 'user' | 'assistant'
@@ -50,12 +51,7 @@ export default function HoloTalkPage() {
   }, [messages])
 
   function speak(text: string) {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return
-    const u = new SpeechSynthesisUtterance(text.replace(/\([^)]*\)/g, '').trim())
-    u.lang = LOCALE_MAP[target] ?? 'en-US'
-    u.rate = 0.9
-    window.speechSynthesis.cancel()
-    window.speechSynthesis.speak(u)
+    void speakWithElevenLabs(text, target)
   }
 
   async function send(e?: React.FormEvent) {

@@ -9,6 +9,7 @@ import { createClient } from '@/lib/supabase'
 import Card from '@/components/ui/Card'
 import Flywheel from '@/components/engagement/Flywheel'
 import SocialFeed from '@/components/engagement/SocialFeed'
+import HomeBlocks from '@/components/engagement/HomeBlocks'
 import { LEARNING_LANGUAGES, APP_NAME } from '@/lib/constants'
 
 interface DailyMission {
@@ -131,6 +132,11 @@ export default function DashboardHomePage() {
             {targetMeta?.flag} <span className="text-base text-[var(--text-secondary)]">{targetMeta?.name ?? '—'}</span>
           </p>
         </Card>
+      </motion.div>
+
+      {/* 3 BLOCS OBLIGATOIRES Home — Parrainage / Ambassadeur / Cross-promo */}
+      <motion.div variants={fadeUp}>
+        <HomeBlocks />
       </motion.div>
 
       {/* Wealth Engine — Flywheel (boucle virale visualisée) */}

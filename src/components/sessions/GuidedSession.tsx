@@ -9,12 +9,7 @@ import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import { LEARNING_LANGUAGES } from '@/lib/constants'
 import { useAuth } from '@/hooks/useAuth'
-
-const LOCALE_MAP: Record<string, string> = {
-  en: 'en-US', es: 'es-ES', it: 'it-IT', de: 'de-DE', pt: 'pt-PT',
-  ja: 'ja-JP', zh: 'zh-CN', ko: 'ko-KR', ar: 'ar-SA', ru: 'ru-RU',
-  hi: 'hi-IN', tr: 'tr-TR', nl: 'nl-NL', pl: 'pl-PL', sv: 'sv-SE', fr: 'fr-FR',
-}
+import { speakWithElevenLabs, stopSpeaking } from '@/lib/elevenlabs-client'
 
 export type GuidedMode = 'neuroflow' | 'sleep' | 'hypno' | 'reality' | 'group' | 'spiritual'
 
@@ -88,14 +83,7 @@ export default function GuidedSession({
   }, [running])
 
   function speak(text: string) {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return
-    const clean = text.replace(/\([^)]*\)/g, '').replace(/\*[^*]*\*/g, '').trim()
-    if (!clean) return
-    const u = new SpeechSynthesisUtterance(clean)
-    u.lang = LOCALE_MAP[target] ?? 'en-US'
-    u.rate = ttsRate
-    window.speechSynthesis.cancel()
-    window.speechSynthesis.speak(u)
+    void speakWithElevenLabs(text, target)
   }
 
   async function generate(nextStep: number) {
@@ -148,9 +136,7 @@ export default function GuidedSession({
 
   function pause() {
     setRunning(false)
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      window.speechSynthesis.cancel()
-    }
+    stopSpeaking()
   }
 
   function reset() {
@@ -165,9 +151,7 @@ export default function GuidedSession({
   async function finish() {
     setRunning(false)
     setCompleted(true)
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      window.speechSynthesis.cancel()
-    }
+    stopSpeaking()
     const elapsed = startedAtRef.current
       ? Math.floor((Date.now() - startedAtRef.current) / 1000)
       : durationMin * 60
