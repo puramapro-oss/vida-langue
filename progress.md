@@ -54,3 +54,44 @@
 - ✅ P4 Wealth Engine Phase 1 + Stripe Connect + /fiscal
 - ✅ P5 tests + mobile sync + handoff docs
 - ⏭️ Deploy prod : `vercel --prod --token $VERCEL_TOKEN --scope puramapro-oss --yes`
+
+## P6 V8 — Refonte Design GOD MODE V5 + ElevenLabs + 3 Blocs ✅ 2026-05-02
+### Landing GOD MODE V5
+- Hero3D R3F (sphère MeshDistort émeraude + 200 particules teal + Stars 800 + autoRotate)
+- CursorGlow follower 350px (mix-blend:screen, hidden touch)
+- MagneticButton sur 2 CTAs (spring useSpring 150/15, force 0.3)
+- AnimatedCounter stats (0→value 1.5s easeOut, tabular-nums)
+- 8 ModeCards palette unique (NeuroFlow violet / HoloTalk émeraude / NatifInstinct cyan / SleepSync bleu / Hypno lavande / Réalité ambre / Groupe rose / Spirituel or) + spotlight hover + tilt 3D + stagger 0.06s
+- Method timeline ligne pointillée scroll-draw
+- ScrollRevealText "Jour 30. Tu commandes un café. Dans leur langue." mot-par-mot
+- FuturePraise désactivé (placeholder flouté + CTA "Rejoins les premiers apprenants")
+- FinalCTA section radial gradient teal + magnetic
+- NewsletterForm inline footer
+- globals.css: aurora-rich, hue-shift, spotlight-card, badgeUnlock, scaleBounce keyframes
+
+### ElevenLabs API (50+ langues)
+- /api/elevenlabs/tts proxy Multilingual v2 + auth Supabase 401 + rate limit 100/h + Zod + cache 24h
+- /api/newsletter upsert idempotent
+- lib/elevenlabs-client.ts cache Map blob + fallback Web Speech
+- Remplace speechSynthesis dans GuidedSession + holotalk + natif-instinct
+- ELEVENLABS_API_KEY déjà en Vercel prod (22j)
+
+### Dashboard home — 3 BLOCS OBLIGATOIRES
+- Bloc 1 Parrainage : lien copiable + share natif + count filleuls + earnings cents
+- Bloc 2 Ambassadeur : paliers Bronze→Éternel + progress bar vers prochain palier
+- Bloc 3 Cross-promo VEDA→AKASHA WELCOME50 (-50% + 100€ prime)
+
+### Quality
+- tsc --noEmit → 0 erreur
+- npm run build → 91 routes, 0 warning
+- 0 placeholder / TODO / Lorem / console.log final / any TS
+- Témoignages désactivés (0 faux contenu)
+
+### Deploy
+- Commit 3332e17 → push main → dpl_Gw9P6qFsATQFkNLrNB37nnYwHiwH
+- Smoke tests live https://vidalangue.purama.dev : / /pricing /aide /financer /fiscal /api/status → 200, /api/elevenlabs/tts /api/newsletter → 405 (POST only, normal)
+
+### Reste à faire (session suivante)
+- Lighthouse > 90 sur Landing/Pricing/Sessions hub (Hero3D peut impacter LCP)
+- Playwright re-run 136 tests V7.1 + nouveaux tests Hero3D / 8 modes / ElevenLabs
+- Test humain navigation complète : signup → 8 modes → ElevenLabs vraies voix → parrainage end-to-end
