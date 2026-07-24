@@ -13,11 +13,32 @@ import MagneticButton from '@/components/landing/MagneticButton'
 import AnimatedCounter from '@/components/landing/AnimatedCounter'
 import ScrollRevealText from '@/components/landing/ScrollRevealText'
 
-// Hero3D = lourd → ssr:false + dynamic
+// Hero3D = lourd → ssr:false + dynamic + idle-deferred mount (LCP-friendly)
 const Hero3D = dynamic(() => import('@/components/landing/Hero3D'), {
   ssr: false,
   loading: () => null,
 })
+
+function DeferredHero3D() {
+  const [ready, setReady] = useState(false)
+  useEffect(() => {
+    type IdleWindow = Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number
+    }
+    const w = window as IdleWindow
+    if (typeof w.requestIdleCallback === 'function') {
+      const id = w.requestIdleCallback(() => setReady(true), { timeout: 2000 })
+      return () => {
+        const wc = window as IdleWindow & { cancelIdleCallback?: (id: number) => void }
+        wc.cancelIdleCallback?.(id)
+      }
+    }
+    const t = setTimeout(() => setReady(true), 1500)
+    return () => clearTimeout(t)
+  }, [])
+  if (!ready) return null
+  return <Hero3D />
+}
 
 // ─── Modes : 8 cartes avec palette unique ──────────────────────────────────
 type ModeAccent = {
@@ -319,8 +340,8 @@ function Hero() {
         <div className="absolute left-[-10%] bottom-0 h-[380px] w-[380px] rounded-full bg-cyan-500/10 blur-[120px]" />
       </div>
 
-      {/* Sphère 3D en arrière-plan, ssr:false */}
-      <Hero3D />
+      {/* Sphère 3D en arrière-plan, ssr:false + idle-deferred (LCP-friendly) */}
+      <DeferredHero3D />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">

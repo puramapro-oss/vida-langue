@@ -88,11 +88,11 @@ export async function POST(req: NextRequest) {
       allow_promotion_codes: true,
       line_items: [{ price: priceId, quantity: 1 }],
       subscription_data: withTrial
-        ? { trial_period_days: TRIAL_DAYS, metadata: { user_id: user.id, plan: legacyPlan } }
-        : { metadata: { user_id: user.id, plan: legacyPlan } },
+        ? { trial_period_days: TRIAL_DAYS, metadata: { user_id: user.id, plan: legacyPlan, app_slug: 'vida-langue' } }
+        : { metadata: { user_id: user.id, plan: legacyPlan, app_slug: 'vida-langue' } },
       success_url: `${origin}/dashboard?checkout=success`,
       cancel_url: `${origin}/pricing?checkout=cancelled`,
-      metadata: { user_id: user.id, plan: legacyPlan, tier: tier ?? 'essential' },
+      metadata: { user_id: user.id, plan: legacyPlan, tier: tier ?? 'essential', app_slug: 'vida-langue' },
     })
 
     return NextResponse.json({ url: session.url })

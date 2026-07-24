@@ -29,14 +29,14 @@ function VedaSphere() {
 }
 
 /**
- * 200 particules orbitales teal.
+ * 50 particules orbitales teal.
  */
 function OrbitalParticles() {
   const ref = useRef<THREE.Points>(null)
 
   const positions = useMemo(() => {
-    const arr = new Float32Array(200 * 3)
-    for (let i = 0; i < 200; i++) {
+    const arr = new Float32Array(50 * 3)
+    for (let i = 0; i < 50; i++) {
       const radius = 2 + Math.random() * 1.2
       const theta = Math.random() * Math.PI * 2
       const phi = Math.acos(2 * Math.random() - 1)
@@ -91,7 +91,7 @@ export default function Hero3D() {
           <pointLight position={[-5, -3, -2]} intensity={0.8} color="#06B6D4" />
           <VedaSphere />
           <OrbitalParticles />
-          <Stars radius={50} depth={50} count={800} factor={3} saturation={0} fade />
+          <Stars radius={50} depth={50} count={200} factor={3} saturation={0} fade />
           <OrbitControls
             enableZoom={false}
             enablePan={false}
