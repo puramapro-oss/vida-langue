@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
+import { z } from 'zod'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase'
 import { streamClaude } from '@/lib/claude'
@@ -12,6 +13,16 @@ interface HoloMessage {
   role: 'user' | 'assistant'
   content: string
 }
+
+const BodySchema = z.object({
+  messages: z.array(z.object({
+    role: z.enum(['user', 'assistant']),
+    content: z.string().min(1).max(4000),
+  })).min(1).max(40),
+  persona: z.string().max(40).optional(),
+  targetLanguage: z.string().max(10).optional(),
+  nativeLanguage: z.string().max(10).optional(),
+})
 
 const PERSONAS: Record<string, { name: string; instruction: string }> = {
   vendor: {
@@ -72,20 +83,16 @@ export async function POST(req: NextRequest) {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return NextResponse.json({ error: 'Non authentifié' }, { status: 401 })
 
-    const body = (await req.json()) as {
-      messages?: HoloMessage[]
-      persona?: string
-      targetLanguage?: string
-      nativeLanguage?: string
+    const json = await req.json().catch(() => ({}))
+    const parsed = BodySchema.safeParse(json)
+    if (!parsed.success) {
+      return NextResponse.json({ error: parsed.error.issues[0]?.message ?? 'Données invalides.' }, { status: 400 })
     }
-    const messages = body.messages ?? []
-    const persona = body.persona ?? 'friend'
-    const target = body.targetLanguage ?? 'en'
-    const native = body.nativeLanguage ?? 'fr'
 
-    if (messages.length === 0) {
-      return NextResponse.json({ error: 'Messages requis' }, { status: 400 })
-    }
+    const messages = parsed.data.messages
+    const persona = parsed.data.persona ?? 'friend'
+    const target = parsed.data.targetLanguage ?? 'en'
+    const native = parsed.data.nativeLanguage ?? 'fr'
 
     const service = createServiceClient()
     const { data: profile } = await service
