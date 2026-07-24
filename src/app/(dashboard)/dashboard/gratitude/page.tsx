@@ -37,7 +37,9 @@ export default function GratitudePage() {
   }, [profile?.id, supabase])
 
   useEffect(() => {
-    void loadEntries()
+    void (async () => {
+      await loadEntries()
+    })()
   }, [loadEntries])
 
   const todayCount = entries.filter(

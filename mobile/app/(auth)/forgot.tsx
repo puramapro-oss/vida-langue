@@ -51,7 +51,7 @@ export default function Forgot() {
             Mot de passe oublié 🌿
           </Text>
           <Text className="mt-2 text-emerald-200/70">
-            Saisis ton email — on t'envoie un lien de réinitialisation.
+            Saisis ton email — on t&apos;envoie un lien de réinitialisation.
           </Text>
 
           <View className="mt-8 gap-4">

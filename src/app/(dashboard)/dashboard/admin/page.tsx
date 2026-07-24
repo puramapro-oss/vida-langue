@@ -98,7 +98,9 @@ export default function AdminPage() {
   }, [isSuperAdmin, supabase])
 
   useEffect(() => {
-    loadData()
+    void (async () => {
+      await loadData()
+    })()
   }, [loadData])
 
   if (!isSuperAdmin) {
@@ -148,7 +150,7 @@ export default function AdminPage() {
     }
   }
 
-  const SortIcon = ({ field }: { field: typeof sortField }) => {
+  const renderSortIcon = (field: typeof sortField) => {
     if (sortField !== field) return null
     return sortAsc ? <ChevronUp className="ml-1 inline h-3 w-3" /> : <ChevronDown className="ml-1 inline h-3 w-3" />
   }
@@ -219,14 +221,14 @@ export default function AdminPage() {
                 <th className="pb-3 pr-4">Apprenant</th>
                 <th className="pb-3 pr-4">Plan</th>
                 <th className="cursor-pointer pb-3 pr-4 select-none" onClick={() => handleSort('level')}>
-                  Niveau <SortIcon field="level" />
+                  Niveau {renderSortIcon('level')}
                 </th>
                 <th className="cursor-pointer pb-3 pr-4 select-none" onClick={() => handleSort('wallet_balance')}>
-                  Wallet <SortIcon field="wallet_balance" />
+                  Wallet {renderSortIcon('wallet_balance')}
                 </th>
                 <th className="pb-3 pr-4">Streak</th>
                 <th className="cursor-pointer pb-3 select-none" onClick={() => handleSort('created_at')}>
-                  Inscrit <SortIcon field="created_at" />
+                  Inscrit {renderSortIcon('created_at')}
                 </th>
               </tr>
             </thead>

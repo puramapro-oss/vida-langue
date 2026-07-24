@@ -66,7 +66,7 @@ export default function Login() {
               Bon retour 🌱
             </Text>
             <Text className="mt-2 text-emerald-200/70">
-              Reprends ton voyage linguistique là où tu l'as laissé.
+              Reprends ton voyage linguistique là où tu l&apos;as laissé.
             </Text>
 
             <View className="mt-8 gap-4">

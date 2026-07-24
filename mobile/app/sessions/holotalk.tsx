@@ -106,7 +106,7 @@ export default function Holotalk() {
                       : `こんにちは！${persona.name}です。今日は何の話をしましょうか？`,
       },
     ]);
-  }, [persona.id]);
+  }, [persona.id, persona.name, persona.language]);
 
   async function send() {
     const trimmed = input.trim();

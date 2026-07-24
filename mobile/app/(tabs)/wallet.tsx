@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { router } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -16,7 +16,7 @@ export default function Wallet() {
 
   useEffect(() => {
     refreshProfile();
-  }, []);
+  }, [refreshProfile]);
 
   const balance = profile?.wallet_balance ?? 0;
   const balanceEur = (balance / 100).toFixed(2);
@@ -34,7 +34,7 @@ export default function Wallet() {
       } else {
         setError("Aucun portail n'a pu être ouvert. Active un abonnement d'abord.");
       }
-    } catch (e) {
+    } catch {
       setError(
         "Pas encore d'abonnement Stripe associé. Démarre ton essai 14 j depuis /pricing 🌱"
       );
@@ -110,8 +110,8 @@ export default function Wallet() {
                 Parrainage 🌱
               </Text>
               <Text className="mt-2 text-sm text-emerald-100/80">
-                Gagne 50 % de commission à vie sur chaque ami qui s'abonne. Partage
-                ton lien depuis l'onglet Profil.
+                Gagne 50 % de commission à vie sur chaque ami qui s&apos;abonne. Partage
+                ton lien depuis l&apos;onglet Profil.
               </Text>
             </Card>
           </View>

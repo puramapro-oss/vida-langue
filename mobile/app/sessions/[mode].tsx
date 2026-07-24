@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import {
-  ActivityIndicator,
   Pressable,
   ScrollView,
   Text,
@@ -62,7 +61,7 @@ export default function GuidedSessionScreen() {
     }
     const t = setTimeout(() => setSecondsLeft((s) => s - 1), 1000);
     return () => clearTimeout(t);
-  }, [running, secondsLeft, currentPhase, phases.length]);
+  }, [running, secondsLeft, currentPhase, phases, mode, config]);
 
   async function load() {
     if (!mode || !config) return;

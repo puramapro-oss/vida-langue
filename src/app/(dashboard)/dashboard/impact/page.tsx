@@ -113,8 +113,10 @@ export default function ImpactPage() {
 
   const projectionAnnual = useMemo(() => {
     // Si tu continues au rythme actuel des 30 derniers jours
+    // eslint-disable-next-line react-hooks/purity
+    const now = Date.now()
     const last30 = entries.filter((e) => {
-      const ageMs = Date.now() - new Date(e.created_at).getTime()
+      const ageMs = now - new Date(e.created_at).getTime()
       return ageMs < 30 * 24 * 60 * 60 * 1000
     })
     const monthlyImpact = last30.reduce((sum, e) => sum + Number(e.impact_value ?? 0), 0)

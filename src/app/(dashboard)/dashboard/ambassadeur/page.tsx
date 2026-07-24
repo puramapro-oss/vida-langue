@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import {
   Users, TrendingUp, Wallet, Link2, Copy, Check,
   Star, Crown, Megaphone, BookOpen, Eye,
@@ -148,6 +148,16 @@ export default function AmbassadeurPage() {
     }
   }
 
+  const { promoActive, promoDaysLeft } = useMemo(() => {
+    // eslint-disable-next-line react-hooks/purity
+    const now = Date.now()
+    const expiresAt = influencer?.promo_expires_at ? new Date(influencer.promo_expires_at).getTime() : 0
+    return {
+      promoActive: expiresAt > now,
+      promoDaysLeft: expiresAt > now ? Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24))) : 0,
+    }
+  }, [influencer?.promo_expires_at])
+
   if (loading) {
     return (
       <div className="space-y-6">
@@ -221,12 +231,6 @@ export default function AmbassadeurPage() {
   const recurringRevenue = sales
     .filter((s) => s.recurring)
     .reduce((sum, s) => sum + s.commission_cents, 0) / 100
-  const promoActive = influencer.promo_expires_at
-    ? new Date(influencer.promo_expires_at).getTime() > Date.now()
-    : false
-  const promoDaysLeft = influencer.promo_expires_at
-    ? Math.max(0, Math.ceil((new Date(influencer.promo_expires_at).getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
-    : 0
 
   const shareTemplates = [
     `J'apprends une langue avec ${APP_NAME}, l'app qui grave la phonétique dans ton cerveau. -50% pendant 7j via mon lien : ${goLink}`,

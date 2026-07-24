@@ -79,7 +79,7 @@ export default function Signup() {
               Bienvenue sur VEDA 🌱
             </Text>
             <Text className="mt-2 text-emerald-200/70">
-              14 jours d'essai gratuit. Annule en 1 clic.
+              14 jours d&apos;essai gratuit. Annule en 1 clic.
             </Text>
 
             <View className="mt-8 gap-4">
@@ -124,7 +124,7 @@ export default function Signup() {
                   ) : null}
                 </View>
                 <Text className="flex-1 text-sm text-emerald-100/80">
-                  J'accepte les CGU et la politique de confidentialité de VEDA.
+                  J&apos;accepte les CGU et la politique de confidentialité de VEDA.
                 </Text>
               </Pressable>
 

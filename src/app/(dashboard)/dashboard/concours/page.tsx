@@ -8,7 +8,7 @@ import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import Skeleton from '@/components/ui/Skeleton'
 import EmptyState from '@/components/ui/EmptyState'
-import { cn, formatDate, formatNumber } from '@/lib/utils'
+import { cn, formatNumber } from '@/lib/utils'
 
 interface ContestEntry {
   user_id: string
@@ -109,7 +109,9 @@ export default function ConcoursPage() {
   }, [user, supabase])
 
   useEffect(() => {
-    load()
+    void (async () => {
+      await load()
+    })()
   }, [load])
 
   if (loading) {

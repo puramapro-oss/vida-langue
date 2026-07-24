@@ -36,7 +36,9 @@ export default function Profile() {
       await Share.share({
         message: `Apprends une langue comme un natif avec VEDA 🌱 ${link}`,
       });
-    } catch (e) {}
+    } catch {
+      // Ignore share errors
+    }
   }
 
   function confirmSignOut() {

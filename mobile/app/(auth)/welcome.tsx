@@ -18,8 +18,10 @@ export default function Welcome() {
           <View className="flex-1 items-center justify-center">
             <View className="h-32 w-32 items-center justify-center rounded-full border border-emerald-500/30 bg-emerald-500/10">
               <Image
+                // eslint-disable-next-line @typescript-eslint/no-require-imports
                 source={require('../../assets/icon.png')}
                 style={{ width: 100, height: 100, borderRadius: 24 }}
+                alt="VEDA icon"
               />
             </View>
 
@@ -47,7 +49,7 @@ export default function Welcome() {
               <View className="flex-row items-center gap-3">
                 <Text className="text-2xl">🌱</Text>
                 <Text className="flex-1 text-emerald-100/90">
-                  14 jours d'essai gratuit. Annule en 1 clic.
+                  14 jours d&apos;essai gratuit. Annule en 1 clic.
                 </Text>
               </View>
             </View>
@@ -61,7 +63,7 @@ export default function Welcome() {
             />
             <Button
               testID="welcome-login"
-              title="J'ai déjà un compte"
+              title="J&apos;ai déjà un compte"
               variant="secondary"
               onPress={() => router.push('/(auth)/login')}
             />
