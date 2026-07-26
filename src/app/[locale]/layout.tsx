@@ -6,7 +6,7 @@ import { Toaster } from 'sonner'
 import ErrorBoundary from '@/components/shared/ErrorBoundary'
 import CookieBanner from '@/components/shared/CookieBanner'
 import CursorGlow from '@/components/layout/CursorGlow'
-import './globals.css'
+import '../globals.css'
 
 const syne = Syne({
   subsets: ['latin'],
