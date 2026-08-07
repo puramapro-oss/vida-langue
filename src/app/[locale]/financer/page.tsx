@@ -271,7 +271,7 @@ export default function FinancerPage() {
             <Card className="p-6 text-center bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border-emerald-500/20">
               <Sparkles className="w-6 h-6 text-emerald-400 mx-auto mb-2" />
               <p className="text-sm text-[var(--text-secondary)] mb-1">
-                Vous pouvez potentiellement obtenir jusqu'a
+                Vous pouvez potentiellement obtenir jusqu&apos;à
               </p>
               <p className="text-4xl font-bold text-emerald-400 mb-1">
                 {cumul.toLocaleString('fr-FR')} euros
@@ -464,7 +464,7 @@ export default function FinancerPage() {
         {/* Footer */}
         <p className="text-center text-xs text-[var(--text-muted)] mt-10 max-w-md mx-auto">
           Les informations sont fournies a titre indicatif et mises a jour regulierement.
-          Consultez les sites officiels pour connaitre les conditions exactes d'eligibilite.
+          Consultez les sites officiels pour connaitre les conditions exactes d&apos;eligibilite.
         </p>
       </div>
     </main>

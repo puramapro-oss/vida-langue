@@ -125,7 +125,7 @@ export default function PricingPage() {
       <div className="max-w-6xl mx-auto mb-10">
         <Link href="/" className="inline-flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors text-sm">
           <ArrowLeft className="w-4 h-4" />
-          Retour à l'accueil
+          Retour à l&apos;accueil
         </Link>
       </div>
 
@@ -148,7 +148,7 @@ export default function PricingPage() {
       <div className="max-w-3xl mx-auto text-center mb-14">
         <div className="inline-flex items-center gap-2 bg-[var(--green)]/10 border border-[var(--green)]/30 rounded-full px-4 py-1.5 text-[var(--green)] text-sm font-medium mb-6">
           <Sparkles className="w-3.5 h-3.5" />
-          14 jours d'essai gratuit · Sans CB
+          14 jours d&apos;essai gratuit · Sans CB
         </div>
         <h1 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-4 tracking-tight">
           Grave la langue dans ton cerveau.
@@ -284,7 +284,7 @@ export default function PricingPage() {
           Engagement VEDA
         </div>
         <p className="text-[var(--text-muted)] text-xs leading-relaxed">
-          10% de chaque abonnement est reversé à l'Association VEDA (impact écologique &amp; éducatif).<br />
+          10% de chaque abonnement est reversé à l&apos;Association VEDA (impact écologique &amp; éducatif).<br />
           SASU PURAMA · 8 Rue de la Chapelle, 25560 Frasne · TVA non applicable, art. 293 B du CGI.
         </p>
       </div>

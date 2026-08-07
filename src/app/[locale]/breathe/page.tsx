@@ -140,7 +140,7 @@ export default function BreathePage() {
             Respiration guidee
           </h1>
           <p className="text-[var(--text-secondary)] text-sm">
-            Quelques minutes de respiration consciente transforment ta journee d'apprentissage.
+            Quelques minutes de respiration consciente transforment ta journee d&apos;apprentissage.
           </p>
         </div>
 

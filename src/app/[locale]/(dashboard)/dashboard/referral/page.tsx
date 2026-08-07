@@ -123,7 +123,7 @@ export default function ReferralPage() {
             </div>
             <p className="text-sm text-[var(--text-secondary)] mb-3">
               Ton filleul reçoit <span className="text-[var(--green)] font-semibold">14 jours offerts</span>.
-              Tu reçois <span className="text-[var(--green)] font-semibold">la moitié de son 1er paiement</span> dès qu'il s'abonne.
+              Tu reçois <span className="text-[var(--green)] font-semibold">la moitié de son 1er paiement</span> dès qu&apos;il s&apos;abonne.
             </p>
             <div className="flex items-center gap-2 rounded-xl bg-white/[0.04] border border-white/[0.08] p-3 max-w-2xl">
               <code className="flex-1 truncate text-sm text-[var(--green)] font-mono">

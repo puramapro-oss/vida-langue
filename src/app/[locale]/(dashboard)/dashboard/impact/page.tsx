@@ -208,7 +208,7 @@ export default function ImpactPage() {
           </p>
           <p className="text-4xl font-bold text-[var(--green)]">
             {projectionAnnual.toLocaleString('fr-FR')}
-            <span className="text-lg font-normal text-[var(--text-secondary)] ml-2">points d'impact / an</span>
+            <span className="text-lg font-normal text-[var(--text-secondary)] ml-2">points d&apos;impact / an</span>
           </p>
           <p className="mt-3 text-xs text-[var(--text-muted)]">
             ≈ {Math.round(projectionAnnual / 22)} arbres équivalents par an
@@ -228,7 +228,7 @@ export default function ImpactPage() {
             <span className="text-lg font-normal text-[var(--text-secondary)] ml-2">actions</span>
           </p>
           <p className="mt-3 text-xs text-[var(--text-muted)]">
-            Tu fais partie d'un mouvement. Chaque session compte.
+            Tu fais partie d&apos;un mouvement. Chaque session compte.
           </p>
         </Card>
       </div>

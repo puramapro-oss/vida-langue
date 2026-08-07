@@ -76,7 +76,7 @@ export default function GratitudePage() {
           Journal de gratitude
         </h1>
         <p className="text-[var(--text-secondary)] text-sm">
-          Prends un instant pour noter ce qui te rend reconnaissant aujourd'hui.
+          Prends un instant pour noter ce qui te rend reconnaissant aujourd&apos;hui.
           La gratitude amplifie chaque apprentissage.
         </p>
       </div>
@@ -89,7 +89,7 @@ export default function GratitudePage() {
           </div>
           <div>
             <p className="text-lg font-bold text-[var(--text-primary)]">{todayCount}</p>
-            <p className="text-xs text-[var(--text-muted)]">Aujourd'hui</p>
+            <p className="text-xs text-[var(--text-muted)]">Aujourd&apos;hui</p>
           </div>
         </Card>
         <Card className="flex-1 p-4 flex items-center gap-3">

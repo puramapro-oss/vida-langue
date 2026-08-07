@@ -82,7 +82,7 @@ export default function SocialFeed({ limit = 8 }: { limit?: number }) {
       <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
         <p className="text-xs uppercase tracking-wider text-emerald-300">La communauté VEDA</p>
         <p className="mt-3 text-sm text-[var(--text-secondary)]">
-          Sois le premier à marquer un palier aujourd'hui 🌱
+          Sois le premier à marquer un palier aujourd&apos;hui 🌱
         </p>
       </div>
     )

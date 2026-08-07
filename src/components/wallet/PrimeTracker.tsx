@@ -30,7 +30,7 @@ export default function PrimeTracker({
           <div>
             <p className="text-sm font-semibold text-amber-100">Prime récupérée</p>
             <p className="mt-1 text-xs text-amber-200/70">
-              Conformément aux CGV, l'annulation avant le 30ème jour déduit la prime de bienvenue.
+              Conformément aux CGV, l&apos;annulation avant le 30ème jour déduit la prime de bienvenue.
               Aucune retenue au-delà de la prime elle-même.
             </p>
           </div>
@@ -85,7 +85,7 @@ export default function PrimeTracker({
         />
       </div>
       <p className="mt-3 text-[11px] text-[var(--text-muted)]">
-        Anti-abus : la prime devient transférable après 30 jours d'abonnement continu. 1 par compte à vie.
+        Anti-abus : la prime devient transférable après 30 jours d&apos;abonnement continu. 1 par compte à vie.
       </p>
     </div>
   )
