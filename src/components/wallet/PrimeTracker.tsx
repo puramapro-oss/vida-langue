@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { Clock, CheckCircle2, AlertCircle } from 'lucide-react'
 
 interface PrimeTrackerProps {
@@ -22,6 +23,8 @@ export default function PrimeTracker({
   unlockedAt,
   cancelledAt,
 }: PrimeTrackerProps) {
+  const [now] = useState(() => Date.now())
+
   if (cancelledAt) {
     return (
       <div className="rounded-2xl border border-amber-400/20 bg-amber-500/[0.04] p-5">
@@ -60,7 +63,6 @@ export default function PrimeTracker({
   if (!grantedAt) return null
 
   const granted = new Date(grantedAt).getTime()
-  const now = Date.now()
   const elapsedDays = Math.floor((now - granted) / (24 * 60 * 60 * 1000))
   const daysRemaining = Math.max(0, 30 - elapsedDays)
   const progress = Math.min(100, Math.round((elapsedDays / 30) * 100))

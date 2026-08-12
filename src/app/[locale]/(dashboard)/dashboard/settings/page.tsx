@@ -78,12 +78,14 @@ export default function SettingsPage() {
   // Initialize form from profile
   useEffect(() => {
     if (profile) {
-      setProfileForm({
-        display_name: profile.display_name ?? '',
-        pseudo: profile.pseudo ?? '',
-        bio: profile.bio ?? '',
+      queueMicrotask(() => {
+        setProfileForm({
+          display_name: profile.display_name ?? '',
+          pseudo: profile.pseudo ?? '',
+          bio: profile.bio ?? '',
+        })
+        setAccentColor(profile.accent_color ?? '#00d4ff')
       })
-      setAccentColor(profile.accent_color ?? '#00d4ff')
     }
   }, [profile])
 
@@ -92,7 +94,7 @@ export default function SettingsPage() {
     if (typeof document === 'undefined') return
     const stored = localStorage.getItem('vida_theme') as 'dark' | 'light' | null
     const initial: 'dark' | 'light' = stored ?? 'dark'
-    setTheme(initial)
+    queueMicrotask(() => setTheme(initial))
     document.documentElement.dataset.theme = initial
   }, [])
 
@@ -108,7 +110,7 @@ export default function SettingsPage() {
   // Fetch payments when billing tab opens
   useEffect(() => {
     if (activeTab !== 'billing' || !user) return
-    setLoadingPayments(true)
+    queueMicrotask(() => setLoadingPayments(true))
     supabase
       .from('payments')
       .select('id, amount, status, created_at, invoice_number')

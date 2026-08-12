@@ -34,7 +34,7 @@ export default function GratitudePage() {
       .limit(30)
     setEntries((data as GratitudeEntry[]) ?? [])
     setLoadingEntries(false)
-  }, [profile?.id, supabase])
+  }, [profile, supabase])
 
   useEffect(() => {
     void (async () => {

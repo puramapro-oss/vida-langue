@@ -26,7 +26,7 @@ export function useWallet() {
   }, [user, supabase])
 
   useEffect(() => {
-    fetchWallet()
+    queueMicrotask(() => fetchWallet())
   }, [fetchWallet])
 
   return { ...state, refetch: fetchWallet }

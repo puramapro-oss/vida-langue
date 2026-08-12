@@ -23,9 +23,11 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (profile) {
-      setDisplayName(profile.display_name ?? '')
-      setPseudo(profile.pseudo ?? '')
-      setBio(profile.bio ?? '')
+      queueMicrotask(() => {
+        setDisplayName(profile.display_name ?? '')
+        setPseudo(profile.pseudo ?? '')
+        setBio(profile.bio ?? '')
+      })
     }
   }, [profile])
 

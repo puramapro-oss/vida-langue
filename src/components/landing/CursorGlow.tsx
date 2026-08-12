@@ -14,7 +14,7 @@ export default function CursorGlow() {
   useEffect(() => {
     const mediaQuery = window.matchMedia('(pointer:coarse)')
     if (mediaQuery.matches) return
-    setEnabled(true)
+    queueMicrotask(() => setEnabled(true))
 
     const handleMove = (e: MouseEvent) => {
       setPos({ x: e.clientX, y: e.clientY })

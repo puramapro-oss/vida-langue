@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Float, MeshDistortMaterial, OrbitControls, Stars } from '@react-three/drei'
-import { Suspense, useRef, useMemo } from 'react'
+import { Suspense, useRef } from 'react'
 import * as THREE from 'three'
 
 /**
@@ -31,21 +31,24 @@ function VedaSphere() {
 /**
  * 50 particules orbitales teal.
  */
+function generateOrbitalPositions() {
+  const arr = new Float32Array(50 * 3)
+  for (let i = 0; i < 50; i++) {
+    const radius = 2 + Math.random() * 1.2
+    const theta = Math.random() * Math.PI * 2
+    const phi = Math.acos(2 * Math.random() - 1)
+    arr[i * 3] = radius * Math.sin(phi) * Math.cos(theta)
+    arr[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta)
+    arr[i * 3 + 2] = radius * Math.cos(phi)
+  }
+  return arr
+}
+
+const ORBITAL_POSITIONS = generateOrbitalPositions()
+
 function OrbitalParticles() {
   const ref = useRef<THREE.Points>(null)
-
-  const positions = useMemo(() => {
-    const arr = new Float32Array(50 * 3)
-    for (let i = 0; i < 50; i++) {
-      const radius = 2 + Math.random() * 1.2
-      const theta = Math.random() * Math.PI * 2
-      const phi = Math.acos(2 * Math.random() - 1)
-      arr[i * 3] = radius * Math.sin(phi) * Math.cos(theta)
-      arr[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta)
-      arr[i * 3 + 2] = radius * Math.cos(phi)
-    }
-    return arr
-  }, [])
+  const positions = ORBITAL_POSITIONS
 
   useFrame((_, delta) => {
     if (ref.current) {

@@ -84,8 +84,10 @@ export default function BreathePage() {
   useEffect(() => {
     if (!active || !pattern) return
 
-    setCountdown(pattern.phases[0].duration)
-    setPhaseIndex(0)
+    queueMicrotask(() => {
+      setCountdown(pattern.phases[0].duration)
+      setPhaseIndex(0)
+    })
 
     intervalRef.current = setInterval(() => {
       setCountdown((prev) => {

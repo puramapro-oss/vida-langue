@@ -9,7 +9,7 @@ export function useTheme() {
   useEffect(() => {
     const stored = localStorage.getItem('vida_theme') as Theme | null
     if (stored && ['dark', 'light', 'oled'].includes(stored)) {
-      setThemeState(stored)
+      queueMicrotask(() => setThemeState(stored))
       document.documentElement.setAttribute('data-theme', stored)
     }
   }, [])
