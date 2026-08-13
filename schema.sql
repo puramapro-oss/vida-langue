@@ -72,6 +72,14 @@ CREATE TABLE IF NOT EXISTS vida_langue.profiles (
   updated_at TIMESTAMPTZ DEFAULT now()
 );
 
+-- Idempotence webhook Stripe : empeche un event redeliverre par Stripe/karma
+-- de re-executer le handler (double-credit wallet/referral, cf task_plan.md P3).
+CREATE TABLE IF NOT EXISTS vida_langue.stripe_events (
+  event_id TEXT PRIMARY KEY,
+  type TEXT,
+  processed_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
 CREATE INDEX IF NOT EXISTS idx_profiles_email ON vida_langue.profiles(email);
 CREATE INDEX IF NOT EXISTS idx_profiles_referral ON vida_langue.profiles(referral_code);
 CREATE INDEX IF NOT EXISTS idx_profiles_stripe ON vida_langue.profiles(stripe_customer_id);
