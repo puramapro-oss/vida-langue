@@ -59,30 +59,42 @@ export async function POST(req: NextRequest) {
     // Check si prime wallet non débloquée → la marquer récupérée
     const { data: prime } = await service
       .from('welcome_primes')
-      .select('id, granted_at, unlocked_at, amount_cents')
+      .select('id, granted_at, unlocked_at, cancelled_at, amount_cents')
       .eq('user_id', user.id)
       .maybeSingle()
 
-    if (prime && prime.granted_at && !prime.unlocked_at) {
+    if (prime && prime.granted_at && !prime.unlocked_at && !prime.cancelled_at) {
       const grantedAt = new Date(prime.granted_at).getTime()
       const daysElapsed = (Date.now() - grantedAt) / (24 * 60 * 60 * 1000)
       if (daysElapsed < 30) {
-        await service
+        // Verrou atomique AVANT le débit wallet : le RPC wallet_deduct_prime n'a
+        // aucune garde d'idempotence (soustraction inconditionnelle), et le check
+        // ci-dessus (!prime.cancelled_at) est un read-then-act non atomique — sans
+        // ce WHERE conditionnel, un double-clic/retry sur ce endpoint débite le
+        // wallet une nouvelle fois à chaque appel (cf task_plan.md P3, 2026-08-14).
+        const { data: locked } = await service
           .from('welcome_primes')
           .update({
             cancelled_at: new Date().toISOString(),
             cancelled_reason: 'subscription_cancelled_before_30d',
           })
           .eq('id', prime.id)
-        // Débite le wallet du montant de la prime (si elle avait été pré-créditée).
-        // RPC optionnelle : on absorbe toute erreur pour ne pas bloquer l'annulation.
-        try {
-          await service.rpc('wallet_deduct_prime', {
-            p_user: user.id,
-            p_amount_cents: prime.amount_cents,
-          })
-        } catch {
-          // Fail silently — la fonction RPC peut ne pas être présente sur anciens envs.
+          .is('cancelled_at', null)
+          .is('unlocked_at', null)
+          .select('id')
+          .maybeSingle()
+
+        if (locked) {
+          // Débite le wallet du montant de la prime (si elle avait été pré-créditée).
+          // RPC optionnelle : on absorbe toute erreur pour ne pas bloquer l'annulation.
+          try {
+            await service.rpc('wallet_deduct_prime', {
+              p_user: user.id,
+              p_amount_cents: prime.amount_cents,
+            })
+          } catch {
+            // Fail silently — la fonction RPC peut ne pas être présente sur anciens envs.
+          }
         }
       }
     }
