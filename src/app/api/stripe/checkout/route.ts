@@ -70,6 +70,8 @@ export async function POST(req: NextRequest) {
         email: user.email ?? profile?.email ?? '',
         name: profile?.display_name ?? undefined,
         metadata: { user_id: user.id, app: 'vida-langue' },
+      }, {
+        idempotencyKey: `customer:${user.id}`,
       })
       customerId = customer.id
 
@@ -93,6 +95,8 @@ export async function POST(req: NextRequest) {
       success_url: `${origin}/dashboard?checkout=success`,
       cancel_url: `${origin}/pricing?checkout=cancelled`,
       metadata: { user_id: user.id, plan: legacyPlan, tier: tier ?? 'essential', app_slug: 'vida-langue' },
+    }, {
+      idempotencyKey: `checkout:${user.id}:${plan}:${tier ?? 'essential'}:${new Date().toISOString().slice(0, 10)}`,
     })
 
     return NextResponse.json({ url: session.url })

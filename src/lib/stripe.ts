@@ -41,6 +41,8 @@ export async function createCheckoutSession(
     cancel_url: cancelUrl,
     metadata: { app_slug: 'vida-langue' },
     subscription_data: { metadata: { app_slug: 'vida-langue' } },
+  }, {
+    idempotencyKey: `checkout:${customerId}:${priceId}:${new Date().toISOString().slice(0, 10)}`,
   })
 }
 
