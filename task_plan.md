@@ -278,3 +278,17 @@ Vida Langue = app **éducation/langues**, PAS santé/bien-être/sport/fitness/we
 - ⏭️ vercel --prod (à lancer)
 - ⏭️ Relancer Playwright live contre prod
 - ⏭️ Lighthouse >90 nouvelles pages (/fiscal, /confirmation, /dashboard/ambassadeur)
+
+## SOCLE LÉGAL NIYAMA (2026-08-23)
+- ✅ aPaiement=true (Stripe checkout réel), aChatIA=true (HoloTalk + coach IA via claude.ts) — vérifié par grep, pas supposé
+- ✅ `packages/legal/src/` copié EN BLOC dans `src/lib/legal/` (structure préservée, imports relatifs intacts) + `src/lib/legal/config.ts` (LegalAppConfig VEDA, clauses spécifiques CGU/CGV)
+- ✅ Composants adaptés aux tokens de CETTE app (`.glass`, `gradient-text`, `var(--cyan)`...) — les classes génériques du socle (`bg-background`, `rounded-pill`...) n'existent pas dans ce Tailwind v4 sans thème shadcn
+- ✅ 4 pages légales régénérées via `buildMentionsLegales/CGU/CGV/PolitiqueConfidentialite` (corrige au passage : adresse Vercel obsolète, clause de rétractation CGV incohérente avec le flux réel zéro-checkbox déjà en place sur `/confirmation`)
+- ✅ Page `/dashboard/ma-memoire` (export RGPD réel, acceptations légales, suppression de compte avec grâce 30j) + lien depuis Paramètres → Données (remplace les boutons factices : export qui ne faisait qu'un toast, suppression qui ouvrait juste un mailto)
+- ✅ Routes `/api/legal/{accept,my-data,cookie-consent}`, `/api/account/delete`, `/api/cron/account-deletion`, `src/lib/cron-auth.ts` — adaptées à `createServerSupabaseClient()` (pas `getSupabaseServer`), pas de `checkRateLimit` (absent de l'app), export RGPD couvre 36 tables personnelles réelles du schéma
+- ✅ `LegalAcceptanceNotice` zéro-case-à-cocher sur `/signup` (remplace le checkbox CGU) + preuve d'acceptation horodatée écrite à l'inscription email ET à chaque callback OAuth Google (upsert idempotent)
+- ✅ `AIDisclosure` sur HoloTalk (`/dashboard/sessions/holotalk`) et le chatbot SAV (`/aide`)
+- ✅ CookieBanner existant conservé tel quel (fonctionnel, 2 choix) — pas remplacé par `CookieConsentBanner` du socle (piège documenté : ne jamais remplacer un bandeau qui marche déjà)
+- ✅ `vercel.json` : cron `/api/cron/account-deletion` quotidien 03:00 UTC ajouté
+- ✅ tsc 0 erreur, `npm run lint` 0 erreur (warnings pré-existants uniquement), build 100% (nouvelles routes listées)
+- ⏭️ **BLOQUÉ** : migration `migration-legal-niyama.sql` (3 tables `legal_acceptances`/`cookie_consents`/`account_deletion_requests` + GRANTs) non exécutée — SSH VPS `root@72.62.191.111:22` refuse la connexion (host ping OK, port 22 down, probablement transitoire). Cf ERRORS.md. À relancer dès que le VPS répond, AVANT tout trafic réel sur `/api/legal/*` ou `/api/account/delete` (échoueront en 500 tant que les tables n'existent pas).

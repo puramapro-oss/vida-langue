@@ -9,6 +9,8 @@ import Card from '@/components/ui/Card'
 import { LEARNING_LANGUAGES } from '@/lib/constants'
 import { useAuth } from '@/hooks/useAuth'
 import { speakWithElevenLabs } from '@/lib/elevenlabs-client'
+import AIDisclosure from '@/lib/legal/components/AIDisclosure'
+import { APP_NAME } from '@/lib/constants'
 
 interface Msg {
   role: 'user' | 'assistant'
@@ -209,6 +211,8 @@ export default function HoloTalkPage() {
           ))}
         </select>
       </div>
+
+      <AIDisclosure appName={APP_NAME} className="text-xs text-[var(--text-muted)]" />
 
       <Card className="flex flex-1 flex-col overflow-hidden p-0">
         <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto p-4">

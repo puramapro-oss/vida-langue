@@ -1,0 +1,5 @@
+# ERRORS.md — VEDA (vida-langue)
+
+| DATE | BUG | CAUSE | FIX |
+|---|---|---|---|
+| 2026-08-23 | Migration socle légal NIYAMA (`migration-legal-niyama.sql`) non exécutée sur le VPS | SSH `root@72.62.191.111:22` refuse la connexion (`Connection refused`) alors que le host répond au ping — sshd probablement down/en redémarrage ou règle firewall temporaire, pas un problème d'identifiants (la même session SSH fonctionnait plus tôt dans la journée) | Relancer dès que le port 22 répond à nouveau : `sshpass -p '$VPS_SSH_PASSWORD' ssh root@72.62.191.111 "docker exec -i supabase-db psql -U postgres -d postgres" < migration-legal-niyama.sql` (fichier déjà préparé à la racine du repo, `__SCHEMA__` déjà remplacé par `vida_langue`, GRANTs inclus). Tout le reste du socle légal (code, pages, API routes) est déployable indépendamment — seules les 3 tables (`legal_acceptances`, `cookie_consents`, `account_deletion_requests`) manquent tant que cette migration n'a pas tourné, ce qui fera échouer les routes `/api/legal/*` et `/api/account/delete` en production (elles retourneront une erreur Postgres "relation does not exist") jusqu'à exécution. |

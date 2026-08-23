@@ -9,6 +9,23 @@ import { useAuth } from '@/hooks/useAuth'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import { cn } from '@/lib/utils'
+import LegalAcceptanceNotice from '@/lib/legal/components/LegalAcceptanceNotice'
+
+async function recordLegalAcceptance() {
+  try {
+    await Promise.all(
+      (['cgu', 'cgv', 'confidentialite'] as const).map((docType) =>
+        fetch('/api/legal/accept', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ docType }),
+        })
+      )
+    )
+  } catch {
+    // non bloquant — l'utilisateur n'attend pas cet appel pour accéder au service
+  }
+}
 
 function getPasswordStrength(password: string): number {
   let score = 0
@@ -30,7 +47,6 @@ export default function SignupPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [cguAccepted, setCguAccepted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
 
@@ -42,8 +58,7 @@ export default function SignupPage() {
     name.trim().length > 0 &&
     email.length > 0 &&
     password.length >= 8 &&
-    passwordsMatch &&
-    cguAccepted
+    passwordsMatch
 
   async function handleGoogleSignup() {
     setGoogleLoading(true)
@@ -69,6 +84,7 @@ export default function SignupPage() {
     } catch {
       // attribution non bloquante
     }
+    await recordLegalAcceptance()
     toast.success('Compte créé ! Bienvenue sur VEDA 🌱')
     router.push('/onboarding')
   }
@@ -240,25 +256,7 @@ export default function SignupPage() {
                   required
                 />
 
-                <label className="flex cursor-pointer items-start gap-3 text-sm text-[var(--text-secondary)]">
-                  <input
-                    type="checkbox"
-                    className="mt-0.5 h-4 w-4 accent-emerald-400"
-                    checked={cguAccepted}
-                    onChange={(e) => setCguAccepted(e.target.checked)}
-                    data-testid="cgu-checkbox"
-                  />
-                  <span className="leading-snug">
-                    J&apos;accepte les{' '}
-                    <Link href="/cgu" className="text-emerald-300 hover:underline" target="_blank">
-                      Conditions Générales
-                    </Link>{' '}
-                    et la{' '}
-                    <Link href="/politique-confidentialite" className="text-emerald-300 hover:underline" target="_blank">
-                      Politique de confidentialité
-                    </Link>
-                  </span>
-                </label>
+                <LegalAcceptanceNotice actionLabel="Créer mon compte" />
 
                 <Button
                   type="submit"

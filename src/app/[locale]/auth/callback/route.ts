@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { cookies } from 'next/headers'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase'
+import { CURRENT_LEGAL_VERSIONS } from '@/lib/legal/versions'
 
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url)
@@ -19,6 +20,26 @@ export async function GET(request: NextRequest) {
         const cookieStore = await cookies()
         const refCode = cookieStore.get('vida_ref')?.value
         const infId = cookieStore.get('vida_inf')?.value
+
+        if (user) {
+          // Preuve d'acceptation CGU/CGV/confidentialité pour les comptes créés via OAuth
+          // (pas de passage par le formulaire signup — cf LegalAcceptanceNotice). Idempotent
+          // (upsert onConflict user_id,doc_type) : sûr à rappeler à chaque connexion Google.
+          await Promise.all(
+            (['cgu', 'cgv', 'confidentialite'] as const).map((docType) =>
+              supabase.from('legal_acceptances').upsert(
+                {
+                  user_id: user.id,
+                  doc_type: docType,
+                  version: CURRENT_LEGAL_VERSIONS[docType],
+                  ip: request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? null,
+                  user_agent: request.headers.get('user-agent'),
+                },
+                { onConflict: 'user_id,doc_type' }
+              )
+            )
+          )
+        }
 
         if (user && refCode) {
           const db = createServiceClient()
