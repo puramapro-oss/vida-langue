@@ -12,7 +12,7 @@ const EMAIL_SEQUENCE = [
   { type: 'relaunch_day3', dayOffset: 3, subject: `${APP_NAME} t'attend ! Decouvre ce que tu as manque`, emoji: '👋' },
   { type: 'tips_day7', dayOffset: 7, subject: `7 jours avec ${APP_NAME} — voici tes super-pouvoirs`, emoji: '⚡' },
   { type: 'upgrade_day14', dayOffset: 14, subject: `-20% sur ton abonnement ${APP_NAME} (48h seulement)`, emoji: '🎁' },
-  { type: 'testimonial_day21', dayOffset: 21, subject: `Ils utilisent ${APP_NAME} au quotidien`, emoji: '💬' },
+  { type: 'testimonial_day21', dayOffset: 21, subject: `3 semaines avec ${APP_NAME} — le point`, emoji: '💬' },
   { type: 'winback_day30', dayOffset: 30, subject: `Tu nous manques sur ${APP_NAME}`, emoji: '💛' },
   { type: 'referral_event', dayOffset: -1, subject: `Ton parrainage a ete valide !`, emoji: '🎉' },
   { type: 'contest_event', dayOffset: -1, subject: `Resultats du concours ${APP_NAME}`, emoji: '🏆' },
@@ -62,7 +62,7 @@ function buildEmailHtml(type: EmailType, userName: string): string {
     `,
     tips_day7: `
       <h2>1 semaine avec VEDA ! ⚡</h2>
-      <p>${name}, tu as deja fait plus que 80% des gens qui telechargent une appli de langue. Voici 3 trucs que les apprenants serieux adorent :</p>
+      <p>${name}, une semaine complete, c'est deja une vraie habitude qui se construit. Voici 3 trucs que les apprenants serieux adorent :</p>
       <ol>
         <li><strong>HoloTalk avec Marco</strong> — 5 min de conversation libre = 1 cours particulier</li>
         <li><strong>Vocabulaire spaced repetition</strong> — Revoir 10 mots juste avant qu'ils s'effacent</li>
@@ -81,18 +81,18 @@ function buildEmailHtml(type: EmailType, userName: string): string {
         <li>Wallet de gains reels (parrainage + missions impact)</li>
         <li>16 langues + accent regional au choix</li>
       </ul>
-      <p><strong>Code : VIDA20</strong> — 48h seulement. Et si la methode ne te transforme pas, tu es rembourse a vie.</p>
+      <p><strong>Code : VIDA20</strong> — 48h seulement.</p>
       <a href="https://${APP_DOMAIN}/pricing" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Voir les plans VEDA</a>
     `,
     testimonial_day21: `
-      <h2>Ils en parlent partout 💬</h2>
-      <p>${name}, ils ont essaye VEDA, voici ce qu'ils en disent :</p>
-      <blockquote style="border-left:3px solid ${APP_COLOR};padding-left:16px;margin:16px 0;font-style:italic;">
-        "En 3 semaines avec Natif Instinct, j'ai mieux retenu qu'en 6 mois de Babbel. La 3e couche phonetique change tout."
-      </blockquote>
-      <blockquote style="border-left:3px solid ${APP_COLOR};padding-left:16px;margin:16px 0;font-style:italic;">
-        "HoloTalk avec Marco m'a fait gagner ma confiance. Premiere fois en Italie, je me suis debrouille seul."
-      </blockquote>
+      <h2>3 semaines, ${name} 💬</h2>
+      <p>Pas de faux témoignages ici — juste un rappel de ce que VEDA fait réellement pour toi :</p>
+      <ul>
+        <li><strong>Natif Instinct™</strong> — la phonetique 3 couches ancre chaque mot dans ta prononciation reelle, pas juste sa graphie</li>
+        <li><strong>HoloTalk</strong> — parler a voix haute avec un persona natif, sans jugement, aussi souvent que tu veux</li>
+        <li><strong>Fil de vie</strong> — chaque session compte, meme 10 minutes</li>
+      </ul>
+      <p>Si tu n'as pas encore essaye HoloTalk, c'est le moment ideal apres 3 semaines de bases.</p>
       <a href="https://${APP_DOMAIN}/dashboard/sessions/holotalk" style="display:inline-block;background:${APP_COLOR};color:#fff;padding:12px 28px;border-radius:12px;text-decoration:none;font-weight:600;margin-top:16px;">Tester HoloTalk</a>
     `,
     winback_day30: `

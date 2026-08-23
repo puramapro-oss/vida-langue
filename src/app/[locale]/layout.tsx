@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from 'next'
 import { Syne, DM_Sans, JetBrains_Mono } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
-import { getLocale, getMessages } from 'next-intl/server'
+import { getMessages } from 'next-intl/server'
 import { Toaster } from 'sonner'
 import ErrorBoundary from '@/components/shared/ErrorBoundary'
-import CookieBanner from '@/components/shared/CookieBanner'
+import CookieConsentBannerClient from '@/components/shared/CookieConsentBannerClient'
 import CursorGlow from '@/components/layout/CursorGlow'
 import '../globals.css'
 
@@ -99,7 +99,7 @@ export default async function RootLayout({
           <ErrorBoundary>
             {children}
           </ErrorBoundary>
-          <CookieBanner />
+          <CookieConsentBannerClient />
         </NextIntlClientProvider>
         <Toaster
           position="top-right"

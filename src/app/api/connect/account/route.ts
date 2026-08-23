@@ -1,4 +1,4 @@
-import { NextResponse, type NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase'
@@ -15,7 +15,7 @@ function getStripe() {
 // POST /api/connect/account
 // Crée un compte Stripe Connect Express pour le user connecté (si pas déjà créé).
 // Gated : user doit avoir wallet ≥ 5€ OU prime débloquée pour déclencher onboarding.
-export async function POST(req: NextRequest) {
+export async function POST() {
   try {
     const supabase = await createServerSupabaseClient()
     const { data: { user } } = await supabase.auth.getUser()

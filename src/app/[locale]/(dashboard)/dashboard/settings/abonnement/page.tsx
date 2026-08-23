@@ -3,12 +3,13 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { toast } from 'sonner'
-import { AlertCircle, ArrowLeft, Loader2, Clock, Sparkles } from 'lucide-react'
+import { AlertCircle, ArrowLeft, Loader2 } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
 import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
 import PrimeTracker from '@/components/wallet/PrimeTracker'
+import CancellationWizard from '@/components/subscription/CancellationWizard'
 
 type Step = 'overview' | 'reason' | 'offer' | 'confirm'
 
@@ -29,15 +30,6 @@ interface PrimeRow {
   unlocked_at: string | null
   cancelled_at: string | null
 }
-
-const CANCELLATION_REASONS = [
-  { id: 'price', label: 'Trop cher pour moi' },
-  { id: 'time', label: 'Je n\'ai pas eu le temps de m\'y mettre' },
-  { id: 'result', label: 'Pas vu de progression' },
-  { id: 'other_app', label: 'J\'utilise une autre app' },
-  { id: 'pause', label: 'Je veux juste faire une pause' },
-  { id: 'other', label: 'Autre raison' },
-] as const
 
 export default function AbonnementPage() {
   const { user } = useAuth()
@@ -126,7 +118,6 @@ export default function AbonnementPage() {
       toast.success('Abonnement annulé. Tu gardes accès jusqu\'à la fin de la période.')
       setStep('overview')
       setBusy(false)
-      // Reload
       const { data: subData } = await supabase
         .from('subscriptions')
         .select('*')
@@ -159,7 +150,6 @@ export default function AbonnementPage() {
         Ton abonnement VEDA
       </h1>
 
-      {/* Overview */}
       {step === 'overview' && (
         <div className="space-y-4">
           <Card className="p-6">
@@ -241,103 +231,24 @@ export default function AbonnementPage() {
         </div>
       )}
 
-      {/* Step 1 : raison */}
-      {step === 'reason' && (
-        <Card className="p-6">
-          <p className="text-xs uppercase tracking-wider text-emerald-300">Étape 1/3</p>
-          <h2 className="mt-2 text-xl font-bold text-white">Qu&apos;est-ce qui te pousse à partir ?</h2>
-          <p className="mt-2 text-sm text-[var(--text-secondary)]">
-            Réponse facultative. Elle nous aide à améliorer VEDA.
-          </p>
-
-          <div className="mt-4 grid gap-2">
-            {CANCELLATION_REASONS.map((r) => (
-              <button
-                key={r.id}
-                onClick={() => setReason(r.id)}
-                className={`rounded-xl border px-4 py-3 text-left text-sm transition-all ${
-                  reason === r.id
-                    ? 'border-emerald-400/60 bg-emerald-500/10 text-white'
-                    : 'border-white/[0.07] bg-white/[0.02] text-[var(--text-secondary)] hover:border-white/15'
-                }`}
-              >
-                {r.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-2">
-            <Button variant="ghost" onClick={() => setStep('overview')}>Retour</Button>
-            <Button onClick={() => setStep('offer')} disabled={busy}>Continuer</Button>
-          </div>
-        </Card>
-      )}
-
-      {/* Step 2 : offre anti-désabo moitié prix à vie */}
-      {step === 'offer' && (
-        <Card className="p-6">
-          <p className="text-xs uppercase tracking-wider text-emerald-300">Étape 2/3</p>
-          <div className="mt-2 flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-emerald-300" />
-            <h2 className="text-xl font-bold text-white">Avant de partir, une offre unique</h2>
-          </div>
-          <p className="mt-3 text-sm text-[var(--text-secondary)]">
-            Passe à la formule <strong className="text-white">Moitié prix à vie</strong> : 6,45 € / mois au lieu de 12,90 €.
-            Sans engagement. Sans limite de durée. Un clic et tu restes.
-          </p>
-          <div className="mt-5 rounded-2xl border border-emerald-400/25 bg-emerald-500/[0.06] p-5">
-            <p className="text-xs uppercase tracking-wider text-emerald-200">Offre anti-départ</p>
-            <p className="mt-2 text-2xl font-bold text-white">6,45 € / mois · à vie</p>
-            <p className="mt-1 text-xs text-[var(--text-secondary)]">
-              Réservée à ceux qui ont envie de partir. Jamais reproposée.
-            </p>
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-2">
-            <Button variant="ghost" onClick={() => setStep('reason')}>Retour</Button>
-            <Button onClick={acceptHalfPriceOffer} disabled={busy}>
-              {busy ? 'Activation…' : 'Je prends l\'offre'}
-            </Button>
-            <button
-              onClick={() => setStep('confirm')}
-              className="ml-auto text-xs font-medium text-[var(--text-muted)] underline underline-offset-4 hover:text-[var(--text-secondary)]"
-            >
-              Non merci, je pars
-            </button>
-          </div>
-        </Card>
-      )}
-
-      {/* Step 3 : confirmation */}
-      {step === 'confirm' && (
-        <Card className="p-6">
-          <p className="text-xs uppercase tracking-wider text-emerald-300">Étape 3/3</p>
-          <div className="mt-2 flex items-center gap-2">
-            <Clock className="h-5 w-5 text-amber-300" />
-            <h2 className="text-xl font-bold text-white">Confirme l&apos;annulation</h2>
-          </div>
-          <p className="mt-3 text-sm text-[var(--text-secondary)]">
-            Tu garderas l&apos;accès complet à VEDA jusqu&apos;à la fin de la période déjà payée.
-            Aucun nouveau prélèvement ne sera effectué.
-          </p>
-
-          {prime && !prime.unlocked_at && prime.granted_at && (
-            <div className="mt-4 rounded-xl border border-amber-400/25 bg-amber-500/[0.04] p-4">
-              <p className="text-xs font-semibold text-amber-200">Prime de bienvenue</p>
-              <p className="mt-1 text-xs text-amber-100/80">
-                Ta prime de {(prime.amount_cents / 100).toFixed(2)} € n&apos;a pas encore été débloquée (30 jours).
-                Elle sera récupérée conformément aux CGV. Aucune autre retenue.
-              </p>
-            </div>
-          )}
-
-          <div className="mt-6 flex flex-wrap gap-2">
-            <Button variant="ghost" onClick={() => setStep('offer')}>Retour</Button>
-            <Button variant="secondary" onClick={confirmCancellation} disabled={busy}>
-              {busy ? 'Annulation…' : 'Confirmer l\'annulation'}
-            </Button>
-          </div>
-        </Card>
+      {(step === 'reason' || step === 'offer' || step === 'confirm') && (
+        <CancellationWizard
+          step={step}
+          reason={reason}
+          busy={busy}
+          onReasonChange={setReason}
+          onBack={() => {
+            if (step === 'reason') setStep('overview')
+            else if (step === 'offer') setStep('reason')
+            else if (step === 'confirm') setStep('offer')
+          }}
+          onContinue={() => {
+            if (step === 'reason') setStep('offer')
+            else if (step === 'offer') setStep('confirm')
+          }}
+          onAcceptOffer={acceptHalfPriceOffer}
+          onConfirm={confirmCancellation}
+        />
       )}
     </main>
   )

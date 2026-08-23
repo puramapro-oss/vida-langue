@@ -1,16 +1,17 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {
-  Search, ChevronRight, HelpCircle, MessageSquare, CreditCard,
-  Users, Sparkles, ArrowLeft, Send, X, Bot, Loader2, Languages,
+  Search, HelpCircle, MessageSquare, CreditCard,
+  Users, Sparkles, ArrowLeft, Languages,
   Mic, Leaf, Heart,
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import { cn } from '@/lib/utils'
-import { APP_NAME } from '@/lib/constants'
-import AIDisclosure from '@/lib/legal/components/AIDisclosure'
+import FAQSection from '@/components/help/FAQSection'
+import ContactSection from '@/components/help/ContactSection'
+import ChatPanel from '@/components/help/ChatPanel'
 import type { FaqArticle } from '@/types'
 
 const CATEGORIES: { id: string; label: string; icon: React.ReactNode; color: string }[] = [
@@ -25,29 +26,13 @@ const CATEGORIES: { id: string; label: string; icon: React.ReactNode; color: str
   { id: 'compte', label: 'Compte', icon: <Heart className="h-5 w-5" />, color: '#f472b6' },
 ]
 
-interface ChatMessage {
-  role: 'user' | 'assistant'
-  content: string
-}
-
 export default function AidePage() {
   const [articles, setArticles] = useState<FaqArticle[]>([])
   const [search, setSearch] = useState('')
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
-  // Chatbot state
   const [chatOpen, setChatOpen] = useState(false)
-  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([])
-  const [chatInput, setChatInput] = useState('')
-  const [chatLoading, setChatLoading] = useState(false)
-  const [showEscalation, setShowEscalation] = useState(false)
-  const [escName, setEscName] = useState('')
-  const [escEmail, setEscEmail] = useState('')
-  const [escMessage, setEscMessage] = useState('')
-  const [escLoading, setEscLoading] = useState(false)
-  const [escSent, setEscSent] = useState(false)
-  const chatEndRef = useRef<HTMLDivElement>(null)
   const supabase = createClient()
 
   useEffect(() => {
@@ -58,42 +43,11 @@ export default function AidePage() {
       })
   }, [supabase])
 
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [chatMessages])
-
   const filtered = articles.filter(a => {
     const matchSearch = !search || a.question.toLowerCase().includes(search.toLowerCase()) || a.answer.toLowerCase().includes(search.toLowerCase())
     const matchCat = !activeCategory || a.category === activeCategory
     return matchSearch && matchCat
   })
-
-  const sendChatMessage = useCallback(async () => {
-    if (!chatInput.trim() || chatLoading) return
-    const userMsg: ChatMessage = { role: 'user', content: chatInput.trim() }
-    const newMessages = [...chatMessages, userMsg]
-    setChatMessages(newMessages)
-    setChatInput('')
-    setChatLoading(true)
-
-    try {
-      const res = await fetch('/api/aide/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages }),
-      })
-      const data = await res.json()
-      if (data.reply) {
-        setChatMessages(prev => [...prev, { role: 'assistant', content: data.reply }])
-      } else {
-        setChatMessages(prev => [...prev, { role: 'assistant', content: data.error ?? 'Desole, une erreur est survenue. Reessaie !' }])
-      }
-    } catch {
-      setChatMessages(prev => [...prev, { role: 'assistant', content: 'Connexion perdue. Verifie ta connexion internet et reessaie.' }])
-    } finally {
-      setChatLoading(false)
-    }
-  }, [chatInput, chatLoading, chatMessages])
 
   return (
     <div className="min-h-screen bg-[var(--bg-void)]">
@@ -146,60 +100,8 @@ export default function AidePage() {
           ))}
         </div>
 
-        {/* Articles */}
-        {loading ? (
-          <div className="space-y-3">
-            {[1, 2, 3, 4, 5].map(i => (
-              <div key={i} className="h-20 animate-pulse rounded-xl bg-white/5" />
-            ))}
-          </div>
-        ) : filtered.length === 0 ? (
-          <div className="py-12 text-center">
-            <HelpCircle className="mx-auto h-12 w-12 text-[var(--text-secondary)]" />
-            <p className="mt-4 text-lg font-medium text-[var(--text-primary)]">Aucun resultat</p>
-            <p className="mt-1 text-sm text-[var(--text-secondary)]">Essaie un autre mot-cle ou pose ta question au chatbot</p>
-            <button
-              onClick={() => setChatOpen(true)}
-              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[var(--green)] to-[var(--purple)] px-5 py-2.5 text-sm font-medium text-white hover:opacity-90 transition-opacity"
-            >
-              <MessageSquare className="h-4 w-4" /> Demander a l&apos;assistant
-            </button>
-          </div>
-        ) : (
-          <div className="space-y-3">
-            {filtered.map(article => (
-              <details key={article.id} className="group glass rounded-xl">
-                <summary className="flex cursor-pointer items-center justify-between px-5 py-4">
-                  <span className="font-medium text-[var(--text-primary)]">{article.question}</span>
-                  <ChevronRight className="h-5 w-5 text-[var(--text-secondary)] transition-transform group-open:rotate-90" />
-                </summary>
-                <div className="border-t border-[var(--border)] px-5 py-4 text-sm leading-relaxed text-[var(--text-secondary)]">
-                  {article.answer}
-                </div>
-              </details>
-            ))}
-          </div>
-        )}
-
-        {/* Contact CTA */}
-        <div className="mt-12 rounded-2xl bg-gradient-to-r from-[var(--green)]/10 to-[var(--purple)]/10 p-8 text-center">
-          <h2 className="text-xl font-bold text-[var(--text-primary)]">Tu n&apos;as pas trouve ta reponse ?</h2>
-          <p className="mt-2 text-[var(--text-secondary)]">Notre equipe est la pour t&apos;aider</p>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-            <button
-              onClick={() => setChatOpen(true)}
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[var(--green)] to-[var(--purple)] px-6 py-3 font-medium text-white hover:opacity-90 transition-opacity"
-            >
-              <Bot className="h-4 w-4" /> Assistant IA
-            </button>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-white/5 px-6 py-3 font-medium text-[var(--text-primary)] hover:bg-white/10 transition-colors"
-            >
-              <MessageSquare className="h-4 w-4" /> Nous contacter
-            </Link>
-          </div>
-        </div>
+        <FAQSection articles={filtered} loading={loading} />
+        <ContactSection onOpenChat={() => setChatOpen(true)} />
       </div>
 
       {/* Floating Chatbot Button */}
@@ -213,170 +115,7 @@ export default function AidePage() {
         </button>
       )}
 
-      {/* Chat Panel */}
-      {chatOpen && (
-        <div className="fixed bottom-6 right-6 z-50 flex h-[500px] w-[380px] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-nebula)] shadow-2xl shadow-black/50">
-          {/* Chat Header */}
-          <div className="flex items-center justify-between border-b border-[var(--border)] px-4 py-3">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-[var(--green)] to-[var(--purple)]">
-                <Bot className="h-4 w-4 text-white" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-[var(--text-primary)]">Coach VEDA</p>
-                <p className="text-xs text-[var(--green)]">En ligne</p>
-              </div>
-            </div>
-            <button
-              onClick={() => setChatOpen(false)}
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-[var(--text-secondary)] hover:bg-white/5 hover:text-[var(--text-primary)] transition-colors"
-              aria-label="Fermer le chat"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
-
-          <AIDisclosure appName={APP_NAME} className="border-b border-[var(--border)] px-4 py-2 text-[11px] text-[var(--text-muted)]" />
-
-          {/* Chat Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3">
-            {chatMessages.length === 0 && (
-              <div className="text-center py-8">
-                <Bot className="mx-auto h-10 w-10 text-[var(--green)]" />
-                <p className="mt-3 text-sm font-medium text-[var(--text-primary)]">Salut ! Pret a parler une nouvelle langue ?</p>
-                <p className="mt-1 text-xs text-[var(--text-secondary)]">Pose-moi tes questions sur VEDA 🌱</p>
-                <div className="mt-4 flex flex-wrap justify-center gap-2">
-                  {['Comment marche Natif Instinct ?', 'Combien coute VEDA ?', 'Comment fonctionne le parrainage ?'].map(q => (
-                    <button
-                      key={q}
-                      onClick={() => { setChatInput(q); }}
-                      className="rounded-lg bg-white/5 px-3 py-1.5 text-xs text-[var(--text-secondary)] hover:bg-white/10 hover:text-[var(--text-primary)] transition-colors"
-                    >
-                      {q}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {chatMessages.map((msg, i) => (
-              <div
-                key={i}
-                className={cn(
-                  'max-w-[85%] rounded-2xl px-4 py-2.5 text-sm',
-                  msg.role === 'user'
-                    ? 'ml-auto bg-gradient-to-r from-[var(--green)] to-[var(--purple)] text-white'
-                    : 'bg-white/5 text-[var(--text-primary)]'
-                )}
-              >
-                <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
-              </div>
-            ))}
-
-            {chatLoading && (
-              <div className="flex items-center gap-2 rounded-2xl bg-white/5 px-4 py-2.5">
-                <Loader2 className="h-4 w-4 animate-spin text-[var(--green)]" />
-                <span className="text-sm text-[var(--text-secondary)]">Reflexion en cours...</span>
-              </div>
-            )}
-
-            {/* Escalation prompt after 3+ messages */}
-            {chatMessages.length >= 3 && !showEscalation && !escSent && (
-              <div className="text-center py-2">
-                <button
-                  onClick={() => setShowEscalation(true)}
-                  className="text-xs text-[var(--text-muted)] hover:text-[var(--green)] transition-colors underline"
-                  data-testid="btn-escalade"
-                >
-                  Le chatbot ne resout pas ton probleme ? Contacte un humain
-                </button>
-              </div>
-            )}
-
-            {/* Escalation form */}
-            {showEscalation && !escSent && (
-              <div className="rounded-xl bg-white/5 border border-[var(--border)] p-3 space-y-2">
-                <p className="text-xs font-medium text-[var(--text-primary)]">Contacter l&apos;equipe</p>
-                <input
-                  type="text"
-                  placeholder="Ton nom"
-                  value={escName}
-                  onChange={(e) => setEscName(e.target.value)}
-                  className="w-full rounded-lg border border-[var(--border)] bg-white/5 px-3 py-1.5 text-xs text-[var(--text-primary)] outline-none"
-                />
-                <input
-                  type="email"
-                  placeholder="Ton email"
-                  value={escEmail}
-                  onChange={(e) => setEscEmail(e.target.value)}
-                  className="w-full rounded-lg border border-[var(--border)] bg-white/5 px-3 py-1.5 text-xs text-[var(--text-primary)] outline-none"
-                  data-testid="esc-email"
-                />
-                <textarea
-                  placeholder="Decris ton probleme..."
-                  value={escMessage}
-                  onChange={(e) => setEscMessage(e.target.value)}
-                  rows={2}
-                  className="w-full rounded-lg border border-[var(--border)] bg-white/5 px-3 py-1.5 text-xs text-[var(--text-primary)] outline-none resize-none"
-                  data-testid="esc-message"
-                />
-                <button
-                  onClick={async () => {
-                    if (!escEmail || !escMessage) return
-                    setEscLoading(true)
-                    await fetch('/api/aide/escalade', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ name: escName, email: escEmail, message: escMessage }),
-                    })
-                    setEscLoading(false)
-                    setEscSent(true)
-                    setShowEscalation(false)
-                  }}
-                  disabled={!escEmail || !escMessage || escLoading}
-                  className="w-full rounded-lg bg-gradient-to-r from-[var(--green)] to-[var(--purple)] px-3 py-1.5 text-xs font-medium text-white disabled:opacity-40"
-                  data-testid="btn-send-escalade"
-                >
-                  {escLoading ? 'Envoi...' : 'Envoyer'}
-                </button>
-              </div>
-            )}
-
-            {escSent && (
-              <div className="rounded-xl bg-[var(--green)]/10 border border-[var(--green)]/20 p-3 text-center">
-                <p className="text-xs text-[var(--green)]">Message envoye ! Nous te repondrons sous 24h 🌱</p>
-              </div>
-            )}
-
-            <div ref={chatEndRef} />
-          </div>
-
-          {/* Chat Input */}
-          <div className="border-t border-[var(--border)] p-3">
-            <form
-              onSubmit={e => { e.preventDefault(); sendChatMessage() }}
-              className="flex items-center gap-2"
-            >
-              <input
-                type="text"
-                value={chatInput}
-                onChange={e => setChatInput(e.target.value)}
-                placeholder="Pose ta question..."
-                className="flex-1 rounded-xl border border-[var(--border)] bg-white/5 px-4 py-2.5 text-sm text-[var(--text-primary)] outline-none focus:border-[var(--green)] placeholder:text-[var(--text-secondary)]"
-                disabled={chatLoading}
-              />
-              <button
-                type="submit"
-                disabled={!chatInput.trim() || chatLoading}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-r from-[var(--green)] to-[var(--purple)] text-white hover:opacity-90 transition-opacity disabled:opacity-30"
-                aria-label="Envoyer"
-              >
-                <Send className="h-4 w-4" />
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
+      <ChatPanel open={chatOpen} onClose={() => setChatOpen(false)} onShowEscalation={() => {}} />
     </div>
   )
 }

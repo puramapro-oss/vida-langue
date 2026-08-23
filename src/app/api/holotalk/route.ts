@@ -9,11 +9,6 @@ import type { Plan } from '@/types'
 export const runtime = 'nodejs'
 export const maxDuration = 120
 
-interface HoloMessage {
-  role: 'user' | 'assistant'
-  content: string
-}
-
 const BodySchema = z.object({
   messages: z.array(z.object({
     role: z.enum(['user', 'assistant']),

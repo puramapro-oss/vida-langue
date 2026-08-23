@@ -1,15 +1,15 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { ArrowLeft, Loader2, Pause, Play, RotateCcw, Volume2 } from 'lucide-react'
+import { ArrowLeft, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 import Card from '@/components/ui/Card'
-import Button from '@/components/ui/Button'
-import { LEARNING_LANGUAGES } from '@/lib/constants'
 import { useAuth } from '@/hooks/useAuth'
 import { speakWithElevenLabs, stopSpeaking } from '@/lib/elevenlabs-client'
+import SessionSetup from './SessionSetup'
+import SessionProgress from './SessionProgress'
+import SessionControls from './SessionControls'
 
 export type GuidedMode = 'neuroflow' | 'sleep' | 'hypno' | 'reality' | 'group' | 'spiritual'
 
@@ -27,7 +27,6 @@ interface Props {
   phases: Phase[]
   accentColor: string
   accentBg: string
-  ttsRate?: number
   topicOptions?: { value: string; label: string }[]
   scenarioOptions?: { value: string; label: string }[]
 }
@@ -41,7 +40,6 @@ export default function GuidedSession({
   phases,
   accentColor,
   accentBg,
-  ttsRate = 0.95,
   topicOptions,
   scenarioOptions,
 }: Props) {
@@ -80,7 +78,7 @@ export default function GuidedSession({
     return () => {
       if (tickRef.current) clearInterval(tickRef.current)
     }
-  }, [running])
+  }, [running, finish])
 
   function speak(text: string) {
     void speakWithElevenLabs(text, target)
@@ -148,7 +146,7 @@ export default function GuidedSession({
     startedAtRef.current = null
   }
 
-  async function finish() {
+  const finish = useCallback(async () => {
     setRunning(false)
     setCompleted(true)
     stopSpeaking()
@@ -172,7 +170,7 @@ export default function GuidedSession({
     } catch {
       toast.message('Session terminée. La synchronisation reprendra dès que tu retrouves le réseau.')
     }
-  }
+  }, [mode, target, durationMin])
 
   const minutes = Math.floor(secondsLeft / 60)
   const seconds = secondsLeft % 60
@@ -200,89 +198,30 @@ export default function GuidedSession({
         <p className="max-w-2xl text-sm text-[var(--text-secondary)]">{intro}</p>
       </header>
 
-      <div className="grid grid-cols-2 gap-2">
-        <select
-          value={native}
-          onChange={(e) => setNative(e.target.value)}
-          disabled={running}
-          className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none disabled:opacity-50"
-          aria-label="Langue maternelle"
-        >
-          {LEARNING_LANGUAGES.map(l => (
-            <option key={l.code} value={l.code} className="bg-zinc-900">
-              Ma langue : {l.flag} {l.name}
-            </option>
-          ))}
-        </select>
-        <select
-          value={target}
-          onChange={(e) => setTarget(e.target.value)}
-          disabled={running}
-          className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none disabled:opacity-50"
-          aria-label="Langue à pratiquer"
-        >
-          {LEARNING_LANGUAGES.map(l => (
-            <option key={l.code} value={l.code} className="bg-zinc-900">
-              Je parle : {l.flag} {l.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {(topicOptions || scenarioOptions) && (
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {topicOptions && (
-            <select
-              value={topic}
-              onChange={(e) => setTopic(e.target.value)}
-              disabled={running}
-              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none disabled:opacity-50"
-              aria-label="Thème"
-            >
-              {topicOptions.map(o => (
-                <option key={o.value} value={o.value} className="bg-zinc-900">
-                  Thème : {o.label}
-                </option>
-              ))}
-            </select>
-          )}
-          {scenarioOptions && (
-            <select
-              value={scenario}
-              onChange={(e) => setScenario(e.target.value)}
-              disabled={running}
-              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none disabled:opacity-50"
-              aria-label="Scénario"
-            >
-              {scenarioOptions.map(o => (
-                <option key={o.value} value={o.value} className="bg-zinc-900">
-                  Lieu : {o.label}
-                </option>
-              ))}
-            </select>
-          )}
-        </div>
-      )}
+      <SessionSetup
+        native={native}
+        target={target}
+        topic={topic}
+        scenario={scenario}
+        disabled={running}
+        onNativeChange={setNative}
+        onTargetChange={setTarget}
+        onTopicChange={setTopic}
+        onScenarioChange={setScenario}
+        topicOptions={topicOptions}
+        scenarioOptions={scenarioOptions}
+      />
 
       <Card className="space-y-5 p-6">
-        <div className="flex items-center justify-between">
-          <div className="text-xs uppercase tracking-wider text-[var(--text-muted)]">
-            Phase {Math.min(step + 1, phases.length)}/{phases.length} · {phases[step]?.title ?? 'Préparation'}
-          </div>
-          <div className="font-mono text-lg tabular-nums" style={{ color: accentColor }}>
-            {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
-          </div>
-        </div>
-
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/5">
-          <motion.div
-            className="h-full rounded-full"
-            style={{ background: accentColor }}
-            initial={{ width: '0%' }}
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.5 }}
-          />
-        </div>
+        <SessionProgress
+          step={step}
+          totalSteps={phases.length}
+          phaseTitle={phases[step]?.title ?? 'Préparation'}
+          minutesLeft={minutes}
+          secondsLeft={seconds}
+          progress={progress}
+          accentColor={accentColor}
+        />
 
         <p className="text-sm text-[var(--text-secondary)]">{phases[step]?.description}</p>
 
@@ -293,16 +232,7 @@ export default function GuidedSession({
               VEDA prépare ta phase…
             </div>
           ) : content ? (
-            <div className="space-y-3">
-              <p className="whitespace-pre-wrap text-base leading-relaxed text-[var(--text-primary)]">{content}</p>
-              <button
-                onClick={() => speak(content)}
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs hover:bg-white/10"
-                aria-label="Réécouter"
-              >
-                <Volume2 className="h-3 w-3" /> Réécouter
-              </button>
-            </div>
+            <p className="whitespace-pre-wrap text-base leading-relaxed text-[var(--text-primary)]">{content}</p>
           ) : (
             <p className="text-center text-sm text-[var(--text-muted)]">
               {completed
@@ -312,33 +242,19 @@ export default function GuidedSession({
           )}
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
-          {!running && !completed && step === 0 && (
-            <Button onClick={start} icon={<Play className="h-4 w-4" />} disabled={loading}>
-              Commencer la session
-            </Button>
-          )}
-          {running && (
-            <>
-              <Button onClick={next} disabled={loading || step >= phases.length - 1 ? false : false}>
-                {step >= phases.length - 1 ? 'Terminer' : 'Phase suivante'}
-              </Button>
-              <Button variant="secondary" onClick={pause} icon={<Pause className="h-4 w-4" />}>
-                Pause
-              </Button>
-            </>
-          )}
-          {!running && step > 0 && !completed && (
-            <Button onClick={() => setRunning(true)} icon={<Play className="h-4 w-4" />}>
-              Reprendre
-            </Button>
-          )}
-          {(step > 0 || completed) && (
-            <Button variant="ghost" onClick={reset} icon={<RotateCcw className="h-4 w-4" />}>
-              Recommencer
-            </Button>
-          )}
-        </div>
+        <SessionControls
+          running={running}
+          loading={loading}
+          completed={completed}
+          content={content}
+          step={step}
+          totalSteps={phases.length}
+          onStart={start}
+          onPause={pause}
+          onNext={next}
+          onReset={reset}
+          onSpeak={speak}
+        />
       </Card>
     </div>
   )

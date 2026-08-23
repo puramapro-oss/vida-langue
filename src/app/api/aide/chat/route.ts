@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import Anthropic from '@anthropic-ai/sdk'
 import { z } from 'zod'
-
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! })
+import { smarana } from '@purama/smarana'
 
 const schema = z.object({
   messages: z.array(z.object({
@@ -44,17 +42,22 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { messages } = schema.parse(body)
 
-    const response = await anthropic.messages.create({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 1024,
+    const lastMsg = messages[messages.length - 1]
+    if (!lastMsg || lastMsg.role !== 'user') {
+      return NextResponse.json({ error: 'Le dernier message doit être de l\'utilisateur.' }, { status: 400 })
+    }
+    const recentMessages = messages.length > 1 ? messages.slice(0, -1) : undefined
+
+    const result = await smarana.ask({
+      appSlug: 'lingora',
       system: SYSTEM_PROMPT,
-      messages,
+      recentMessages,
+      message: lastMsg.content,
+      tier: 'fast',
+      maxTokens: 1024,
     })
 
-    const block = response.content[0]
-    const text = block.type === 'text' ? block.text : ''
-
-    return NextResponse.json({ reply: text })
+    return NextResponse.json({ reply: result.text })
   } catch (err) {
     if (err instanceof z.ZodError) {
       return NextResponse.json({ error: 'Message invalide. Reformule ta question.' }, { status: 400 })

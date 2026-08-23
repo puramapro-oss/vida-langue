@@ -134,6 +134,7 @@ export async function POST(req: NextRequest) {
       plan,
       system,
       'vida-main',
+      user.id,
     )
 
     return NextResponse.json({ text, mode, step })

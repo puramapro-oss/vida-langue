@@ -9,7 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.82.0",
+    "@anthropic-ai/sdk": "^0.112.3",
+    "@purama/smarana": "file:../packages/smarana",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
     "@stripe/stripe-js": "^9.0.1",
@@ -25,6 +26,7 @@
     "next": "^16.2.2",
     "next-intl": "^4.9.0",
     "pdf-lib": "^1.17.1",
+    "pg": "^8.22.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-markdown": "^10.1.0",

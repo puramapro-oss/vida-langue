@@ -2,10 +2,13 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, Search, FileText, ClipboardList, Euro, Sparkles, ExternalLink, ChevronDown } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Search, FileText, ClipboardList, Euro, ExternalLink } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
 import { APP_NAME } from '@/lib/constants'
+import FundingCards from '@/components/funding/FundingCards'
+import DossierStep from '@/components/funding/DossierStep'
+import TrackingStep from '@/components/funding/TrackingStep'
 
 interface Aide {
   id: string
@@ -95,7 +98,6 @@ export default function FinancerPage() {
   const [loading, setLoading] = useState(false)
   const [aides, setAides] = useState<Aide[]>([])
   const [cumul, setCumul] = useState(0)
-  const [expandedAide, setExpandedAide] = useState<string | null>(null)
 
   const handleSearch = async () => {
     setLoading(true)
@@ -267,90 +269,7 @@ export default function FinancerPage() {
         {/* Step 1 : Resultats */}
         {step === 1 && (
           <div className="space-y-5">
-            {/* Cumul banner */}
-            <Card className="p-6 text-center bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border-emerald-500/20">
-              <Sparkles className="w-6 h-6 text-emerald-400 mx-auto mb-2" />
-              <p className="text-sm text-[var(--text-secondary)] mb-1">
-                Vous pouvez potentiellement obtenir jusqu&apos;à
-              </p>
-              <p className="text-4xl font-bold text-emerald-400 mb-1">
-                {cumul.toLocaleString('fr-FR')} euros
-              </p>
-              <p className="text-xs text-[var(--text-muted)]">
-                en cumulant {aides.length} aide{aides.length > 1 ? 's' : ''} identifiee{aides.length > 1 ? 's' : ''}
-              </p>
-            </Card>
-
-            {/* List */}
-            <div className="space-y-3">
-              {aides.map((aide) => (
-                <Card key={aide.id} className="p-4">
-                  <button
-                    onClick={() => setExpandedAide(expandedAide === aide.id ? null : aide.id)}
-                    className="w-full text-left"
-                    data-testid={`aide-${aide.id}`}
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="inline-block px-2 py-0.5 rounded-md text-[10px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                            {TYPE_LABELS[aide.type_aide] ?? aide.type_aide}
-                          </span>
-                          {aide.region && (
-                            <span className="inline-block px-2 py-0.5 rounded-md text-[10px] font-medium bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                              {aide.region}
-                            </span>
-                          )}
-                          {aide.handicap_only && (
-                            <span className="inline-block px-2 py-0.5 rounded-md text-[10px] font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20">
-                              RQTH
-                            </span>
-                          )}
-                        </div>
-                        <h3 className="text-sm font-semibold text-[var(--text-primary)] truncate">
-                          {aide.nom}
-                        </h3>
-                      </div>
-                      <div className="flex items-center gap-2 flex-shrink-0">
-                        {aide.montant_max ? (
-                          <span className="text-sm font-bold text-emerald-400">
-                            {aide.montant_max.toLocaleString('fr-FR')} euros
-                          </span>
-                        ) : (
-                          <span className="text-xs text-[var(--text-muted)]">Variable</span>
-                        )}
-                        <ChevronDown
-                          className={`w-4 h-4 text-[var(--text-muted)] transition-transform ${
-                            expandedAide === aide.id ? 'rotate-180' : ''
-                          }`}
-                        />
-                      </div>
-                    </div>
-                  </button>
-
-                  {expandedAide === aide.id && (
-                    <div className="mt-3 pt-3 border-t border-white/[0.06]">
-                      {aide.description && (
-                        <p className="text-sm text-[var(--text-secondary)] mb-3">
-                          {aide.description}
-                        </p>
-                      )}
-                      {aide.url_officielle && (
-                        <a
-                          href={aide.url_officielle}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 transition-colors"
-                        >
-                          <ExternalLink className="w-3.5 h-3.5" />
-                          Voir le site officiel
-                        </a>
-                      )}
-                    </div>
-                  )}
-                </Card>
-              ))}
-            </div>
+            <FundingCards aides={aides} cumul={cumul} typeLabels={TYPE_LABELS} />
 
             <div className="flex gap-3">
               <Button variant="secondary" onClick={() => setStep(0)} className="flex-1">
@@ -367,98 +286,20 @@ export default function FinancerPage() {
 
         {/* Step 2 : Dossier */}
         {step === 2 && (
-          <Card className="p-6 md:p-8">
-            <h2 className="text-xl font-bold text-[var(--text-primary)] mb-4">
-              Votre dossier personnalise
-            </h2>
-            <p className="text-[var(--text-secondary)] text-sm mb-6">
-              Voici un recapitulatif de vos {aides.length} aides eligibles. Vous pouvez utiliser cette liste comme guide pour constituer vos demandes.
-            </p>
-
-            <div className="space-y-3 mb-6">
-              {aides.map((aide, i) => (
-                <div key={aide.id} className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                  <div className="w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xs font-bold text-emerald-400">{i + 1}</span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-[var(--text-primary)] truncate">{aide.nom}</p>
-                    <p className="text-xs text-[var(--text-muted)]">
-                      {aide.montant_max ? `Jusqu'a ${aide.montant_max.toLocaleString('fr-FR')} euros` : 'Montant variable'}
-                    </p>
-                  </div>
-                  {aide.url_officielle && (
-                    <a
-                      href={aide.url_officielle}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-emerald-400 hover:text-emerald-300"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20 mb-6">
-              <p className="text-sm text-emerald-400 font-medium mb-1">
-                Cumul potentiel : {cumul.toLocaleString('fr-FR')} euros
-              </p>
-              <p className="text-xs text-[var(--text-muted)]">
-                Ce montant est indicatif. Les montants reels dependent de votre dossier et des criteres de chaque organisme.
-              </p>
-            </div>
-
-            <div className="flex gap-3">
-              <Button variant="secondary" onClick={() => setStep(1)} className="flex-1">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Retour aux aides
-              </Button>
-              <Button onClick={() => setStep(3)} className="flex-1" data-testid="btn-goto-suivi">
-                Suivi
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
-          </Card>
+          <DossierStep
+            aides={aides.map(a => ({ ...a, url_info: a.url_officielle }))}
+            typeLabels={TYPE_LABELS}
+            onBack={() => setStep(1)}
+          />
         )}
 
         {/* Step 3 : Suivi */}
         {step === 3 && (
-          <Card className="p-6 md:p-8 text-center">
-            <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mx-auto mb-4">
-              <ClipboardList className="w-7 h-7 text-emerald-400" />
-            </div>
-            <h2 className="text-xl font-bold text-[var(--text-primary)] mb-3">
-              Suivi de vos demandes
-            </h2>
-            <p className="text-[var(--text-secondary)] text-sm mb-6 max-w-md mx-auto">
-              Vous avez identifie {aides.length} aides pour un total potentiel de {cumul.toLocaleString('fr-FR')} euros.
-              Commencez vos demarches en visitant les sites officiels de chaque aide.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <p className="text-2xl font-bold text-emerald-400">{aides.length}</p>
-                <p className="text-xs text-[var(--text-muted)]">Aides identifiees</p>
-              </div>
-              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <p className="text-2xl font-bold text-emerald-400">{cumul.toLocaleString('fr-FR')} euros</p>
-                <p className="text-xs text-[var(--text-muted)]">Cumul potentiel</p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <Button onClick={() => setStep(0)} variant="secondary" data-testid="btn-restart">
-                Refaire une recherche
-              </Button>
-              <Link href="/pricing">
-                <Button className="w-full" data-testid="btn-back-pricing">
-                  Voir les offres {APP_NAME}
-                </Button>
-              </Link>
-            </div>
-          </Card>
+          <TrackingStep
+            aidesCount={aides.length}
+            cumul={cumul}
+            onBack={() => setStep(2)}
+          />
         )}
 
         {/* Footer */}

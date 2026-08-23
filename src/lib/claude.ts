@@ -1,6 +1,10 @@
+import 'server-only'
 import Anthropic from '@anthropic-ai/sdk'
+import { smarana } from '@purama/smarana'
 import type { Plan } from '@/types'
+import type { SmaranaTier } from '@purama/smarana'
 
+// STREAMING reste géré via SDK direct (hors périmètre smarana P0/P1)
 let _client: Anthropic | null = null
 function getAnthropic(): Anthropic {
   if (!_client) {
@@ -52,6 +56,13 @@ export function resolveModel(modelAlias: string | undefined, plan: Plan): string
   return MODEL_MAP[plan]
 }
 
+function mapPlanToTier(plan: Plan, modelAlias?: string): SmaranaTier {
+  const resolvedModel = resolveModel(modelAlias, plan)
+  if (resolvedModel === MODEL_PRO) return 'pro'
+  if (resolvedModel === MODEL_FAST) return 'fast'
+  return 'main'
+}
+
 /**
  * NAMA-Polyglotte = l'identité unique de l'IA de VEDA.
  * Elle est la voix incarnée de l'app. JAMAIS révéler "Claude" ou "Anthropic".
@@ -95,23 +106,45 @@ STYLE :
   return context ? `${base}\n\nCONTEXTE : ${context}` : base
 }
 
+/**
+ * Appel texte non-streaming via @purama/smarana.
+ * Signature compatible avec l'ancienne version (messages array).
+ */
 export async function askClaude(
   messages: { role: 'user' | 'assistant'; content: string }[],
   plan: Plan = 'free',
   systemPrompt?: string,
-  modelAlias?: string
+  modelAlias?: string,
+  userId?: string,
 ): Promise<string> {
-  const response = await getAnthropic().messages.create({
-    model: resolveModel(modelAlias, plan),
-    max_tokens: TOKEN_LIMITS[plan],
-    system: systemPrompt ?? getSystemPrompt(),
-    messages,
+  const tier = mapPlanToTier(plan, modelAlias)
+  const maxTokens = TOKEN_LIMITS[plan]
+  const system = systemPrompt ?? getSystemPrompt()
+
+  // Dernier message = question actuelle, les précédents = historique
+  const lastMsg = messages[messages.length - 1]
+  if (!lastMsg || lastMsg.role !== 'user') {
+    throw new Error('Le dernier message doit être de l\'utilisateur')
+  }
+  const recentMessages = messages.length > 1 ? messages.slice(0, -1) : undefined
+
+  const result = await smarana.ask({
+    appSlug: 'lingora',
+    userId,
+    system,
+    recentMessages,
+    message: lastMsg.content,
+    tier,
+    maxTokens,
   })
-  const block = response.content[0]
-  if (block.type === 'text') return block.text
-  return ''
+
+  return result.text
 }
 
+/**
+ * STREAMING reste géré via SDK Anthropic direct (hors périmètre smarana P0/P1).
+ * Utilisé uniquement par api/holotalk/route.ts.
+ */
 export async function* streamClaude(
   messages: { role: 'user' | 'assistant'; content: string }[],
   plan: Plan = 'free',

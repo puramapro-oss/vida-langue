@@ -120,6 +120,8 @@ Renvoie UNIQUEMENT le JSON, rien d'autre.`
       [{ role: 'user', content: userPrompt }],
       plan,
       PHONETIC_SYSTEM,
+      undefined,
+      user.id,
     )
 
     let parsed: PhoneticResponse

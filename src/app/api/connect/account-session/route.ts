@@ -1,4 +1,4 @@
-import { NextResponse, type NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { createServiceClient } from '@/lib/supabase'
@@ -16,7 +16,7 @@ function getStripe() {
 // Crée une AccountSession pour les Embedded Components Stripe Connect.
 // V4.1 : PAS besoin de STRIPE_CONNECT_CLIENT_ID (ca_...) — uniquement SECRET_KEY serveur.
 // Le client_secret retourné alimente le composant <ConnectAccountOnboarding /> côté client.
-export async function POST(req: NextRequest) {
+export async function POST() {
   try {
     const supabase = await createServerSupabaseClient()
     const { data: { user } } = await supabase.auth.getUser()
